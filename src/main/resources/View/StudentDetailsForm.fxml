@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="532.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.StudentDetails.StudentDetailsFormController">
+   <children>
+      <Label layoutX="26.0" layoutY="-8.0" prefHeight="56.0" prefWidth="333.0" text="STUDENT DETAILS">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSearchStudentID" layoutX="28.0" layoutY="69.0" prefHeight="25.0" prefWidth="202.0" promptText="Student Id" />
+      <Button layoutX="235.0" layoutY="67.0" mnemonicParsing="false" onAction="#btnSearchStudent" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #040e4d; -fx-background-radius: 30;" text="Search" textFill="#f5f0f0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Separator layoutX="27.0" layoutY="35.0" prefHeight="3.0" prefWidth="782.0" />
+      <TableView fx:id="tblStudenDetails" layoutX="23.0" layoutY="107.0" prefHeight="71.0" prefWidth="977.0" stylesheets="@../css/Table.css">
+        <columns>
+          <TableColumn fx:id="colSDstuID" prefWidth="122.0" text="Student ID" />
+          <TableColumn fx:id="colSDregID" prefWidth="145.0" text="Registaion ID" />
+            <TableColumn fx:id="colSDstuName" prefWidth="145.0" text="Student Name" />
+            <TableColumn fx:id="colSDstuGmail" prefWidth="257.0" text="Gmail" />
+            <TableColumn fx:id="colSDstuContact" prefWidth="154.0" text="Contact Number" />
+            <TableColumn fx:id="colSDstuAddress" prefWidth="153.0" text="Address" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tblPerantDetails" layoutX="19.0" layoutY="216.0" prefHeight="71.0" prefWidth="567.0" stylesheets="@../css/Table.css">
+         <columns>
+            <TableColumn fx:id="colPDperName" prefWidth="167.0" text="Perant Name" />
+            <TableColumn fx:id="colPDperGmail" prefWidth="246.0" text="Gmail" />
+            <TableColumn fx:id="colPDperContact" prefWidth="150.0" text="Contact Number" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tblAttendanceDetails" layoutX="18.0" layoutY="313.0" prefHeight="101.0" prefWidth="475.0" stylesheets="@../css/Table.css">
+         <columns>
+            <TableColumn fx:id="colADdate" prefWidth="130.0" text="Date" />
+            <TableColumn fx:id="colADsubject" prefWidth="167.0" text="Subject" />
+            <TableColumn fx:id="colADtime" prefWidth="177.0" text="Time" />
+            <TableColumn prefWidth="177.0" text="Time" />
+         </columns>
+      </TableView>
+      <Label layoutX="23.0" layoutY="196.0" prefHeight="17.0" prefWidth="178.0" text="Perant Details" textFill="#2f1085">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Separator layoutX="23.0" layoutY="189.0" prefHeight="3.0" prefWidth="1031.0" />
+      <Label layoutX="23.0" layoutY="297.0" prefHeight="17.0" prefWidth="178.0" text="Class Attendance Details" textFill="#2f1085">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Separator layoutX="23.0" layoutY="293.0" prefHeight="3.0" prefWidth="507.0" />
+      <Separator layoutX="527.0" layoutY="292.0" orientation="VERTICAL" prefHeight="247.0" prefWidth="5.0" />
+      <TableView fx:id="tblPaymentDetails" layoutX="552.0" layoutY="382.0" prefHeight="125.0" prefWidth="475.0" stylesheets="@../css/Table.css">
+         <columns>
+            <TableColumn fx:id="colPeyDmonth" prefWidth="142.0" text="Subject" />
+            <TableColumn fx:id="colPaysubject" prefWidth="161.0" text="Amount" />
+            <TableColumn fx:id="colPayDay" prefWidth="173.0" text="Payment Day" />
+            <TableColumn prefWidth="175.0" text="Time" />
+         </columns>
+      </TableView>
+      <Label layoutX="557.0" layoutY="362.0" prefHeight="17.0" prefWidth="178.0" text="Class Payment Details" textFill="#2f1085">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="52.0" text="Student ID">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Pane layoutX="862.0" layoutY="14.0" prefHeight="90.0" prefWidth="129.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fx:id="imageViewStudent" fitHeight="101.0" fitWidth="137.0" layoutX="-8.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <Button layoutX="925.0" layoutY="509.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Ok" textFill="#fffdfd">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TableView fx:id="tblCourseAttendanceDetails" layoutX="15.0" layoutY="432.0" prefHeight="101.0" prefWidth="475.0" stylesheets="@../css/Table.css">
+         <columns>
+            <TableColumn fx:id="colCourseDdate1" prefWidth="130.0" text="Date" />
+            <TableColumn fx:id="colCoursesubject1" prefWidth="167.0" text="Subject" />
+            <TableColumn fx:id="colCoursetime1" prefWidth="177.0" text="Time" />
+            <TableColumn prefWidth="177.0" text="Time" />
+         </columns>
+      </TableView>
+      <Label layoutX="26.0" layoutY="416.0" prefHeight="17.0" prefWidth="178.0" text="Course Attendance Details" textFill="#2f1085">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblCoursePaymentDetails1" layoutX="591.0" layoutY="216.0" prefHeight="125.0" prefWidth="457.0" stylesheets="@../css/Table.css">
+         <columns>
+            <TableColumn fx:id="colCourseSubmonth1" prefWidth="142.0" text="Subject" />
+            <TableColumn fx:id="coCourselPaysubject1" prefWidth="161.0" text="Amount" />
+            <TableColumn fx:id="colCoursePayDay1" prefWidth="173.0" text="Payment Day" />
+            <TableColumn prefWidth="175.0" text="Time" />
+         </columns>
+      </TableView>
+      <Label layoutX="597.0" layoutY="195.0" prefHeight="17.0" prefWidth="178.0" text="Course Payment Details" textFill="#2f1085">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

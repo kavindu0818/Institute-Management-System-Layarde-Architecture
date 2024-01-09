@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="AncClassAttendance" prefHeight="532.0" prefWidth="1031.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.Attendance.AttendanceDetailsFormController">
+   <children>
+      <TableView fx:id="tblAttendanceView" layoutX="20.0" layoutY="203.0" prefHeight="309.0" prefWidth="704.0" stylesheets="@../css/Table.css">
+        <columns>
+          <TableColumn fx:id="colStudentId" prefWidth="129.0" text="Student ID" />     
+          <TableColumn fx:id="colStudentName" prefWidth="213.0" text="Student Name" />
+            <TableColumn fx:id="colAttendnceDate" prefWidth="126.0" text="Date" />
+            <TableColumn fx:id="colAttendanceTime" minWidth="0.0" prefWidth="95.0" text="Time" />
+            <TableColumn fx:id="ColAttendanceMarkId" prefWidth="139.0" text="Attendanc Mark ID" />
+        </columns>
+      </TableView>
+      <Label layoutX="475.0" layoutY="11.0" prefHeight="30.0" prefWidth="200.0" text="Attendance Details">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblClassDetailsView" layoutX="741.0" layoutY="203.0" prefHeight="309.0" prefWidth="264.0" stylesheets="@../css/Table.css">
+        <columns>
+          <TableColumn fx:id="colClassId" prefWidth="112.0" text="Class ID" />
+          <TableColumn fx:id="colClassName" prefWidth="151.0" text="Class Name" />
+        </columns>
+      </TableView>
+      <DatePicker fx:id="txtAttendanceDate" layoutX="30.0" layoutY="102.0" prefHeight="25.0" prefWidth="214.0" promptText="Date" />
+      <Button layoutX="164.0" layoutY="141.0" mnemonicParsing="false" onAction="#SearchClassAndDateOnAction" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #000030; -fx-background-radius: 30;" text="Serach" textFill="#fcf6f6">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font></Button>
+      <ComboBox fx:id="cmbSubjectID" layoutX="30.0" layoutY="64.0" prefHeight="25.0" prefWidth="214.0" promptText="Class ID" />
+      <ImageView fitHeight="163.0" fitWidth="179.0" layoutX="860.0" layoutY="14.0">
+         <image>
+            <Image url="@../Assets/AttendanceReport.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="&lt;Back" textFill="#fcf6f6" />
+   </children>
+</AnchorPane>
