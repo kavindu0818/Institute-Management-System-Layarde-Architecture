@@ -12,8 +12,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Tm.CourseAttendnaceTm;
 import lk.ijse.Tm.CourseDetailsViewTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.CourseBO;
+import lk.ijse.bo.custom.Course_AttendanceBO;
 import lk.ijse.bo.custom.impl.CourseBoImpl;
 import lk.ijse.bo.custom.impl.Course_AttendanceBOImpl;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dto.CourseAttendanceJoinDto;
 import lk.ijse.dto.CourseDto;
 import lk.ijse.dao.custom.impl.CourseAttendanceDAOImpl;
@@ -37,11 +42,13 @@ public class CourseAttendanceDetailsFormController {
     public DatePicker DatePiker;
     public AnchorPane AncCourseAttendance;
 
-    private CourseAttendanceDAOImpl ca = new CourseAttendanceDAOImpl();
 
 
-    Course_AttendanceBOImpl courseAttendanceBO = new Course_AttendanceBOImpl();
-    CourseBoImpl courseBo = new CourseBoImpl();
+
+    Course_AttendanceBO courseAttendanceBO = (Course_AttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSEATTENDANCE);
+
+    CourseBO courseBo = (CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE);
+
 
     public void initialize(){
         setDatacmb();

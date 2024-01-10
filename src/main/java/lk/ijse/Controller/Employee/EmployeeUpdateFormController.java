@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.Course_DetailsBO;
+import lk.ijse.bo.custom.EmployeeBO;
 import lk.ijse.bo.custom.impl.EmployeeBOImpl;
 import lk.ijse.dto.EmployeeDto;
 import lk.ijse.dao.custom.impl.EmployeeDAOImpl;
@@ -37,9 +40,7 @@ public class EmployeeUpdateFormController {
     public JFXTextField txtRegistationDate;
     public JFXTextField txtEmpAttendnceMarkID;
 
-    private EmployeeDAOImpl empM = new EmployeeDAOImpl();
-
-    EmployeeBOImpl employeeBO = new EmployeeBOImpl();
+    EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EMPLOYEE);;
 
     public void btnSubmitOnAction(ActionEvent actionEvent) {
         String empId = txtEmpId.getText();
@@ -55,7 +56,7 @@ public class EmployeeUpdateFormController {
         String bankName = txtBankBranchName.getText();
         String gendar = txtGender.getText();
         Image image = imageViewEmp.getImage();
-        byte[] ima = empM.imagenToByte(image);
+        byte[] ima = employeeBO.imagenToByte(image);
         String empAm = txtEmpAttendnceMarkID.getText();
 
 
@@ -69,6 +70,8 @@ public class EmployeeUpdateFormController {
                 new Alert(Alert.AlertType.WARNING,"Try Again").show();
             }
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -98,7 +101,7 @@ public class EmployeeUpdateFormController {
                 String age = String.valueOf(employeeDto.getAge());
                 txtAge.setText(age);
                 txtGmailEmp.setText(employeeDto.getGmail());
-                Image fxImage = empM.convertBytesToJavaFXImage(employeeDto.getImage());
+                Image fxImage = employeeBO.convertBytesToJavaFXImageBO(employeeDto.getImage());
                 imageViewEmp.setImage(fxImage);
                 txtRegistationDate.setText(employeeDto.getDate());
 
@@ -108,9 +111,9 @@ public class EmployeeUpdateFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
-
-
 
 
     }

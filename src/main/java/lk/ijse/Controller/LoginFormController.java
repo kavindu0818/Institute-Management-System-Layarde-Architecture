@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Controller.DashBoard.DashBoardController;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.UserBO;
 import lk.ijse.bo.custom.impl.UserBOImpl;
 import lk.ijse.dto.UserDto;
 import lk.ijse.dao.custom.impl.UserDAOImpl;
@@ -24,10 +27,8 @@ public class LoginFormController {
 
     public static String pasw;
 
-    private DashBoardController db = new DashBoardController();
-    private UserDAOImpl um = new UserDAOImpl();
 
-    UserBOImpl userBO = new UserBOImpl();
+    UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.USER);
 
     public void logOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
 

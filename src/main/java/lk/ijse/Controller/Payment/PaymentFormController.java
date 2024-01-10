@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Tm.ClassFeesDetailsTm;
 import lk.ijse.Tm.CoursePaymentDetailsTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.*;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.Class_PaymentBOImpl;
 import lk.ijse.bo.custom.impl.CourseBoImpl;
@@ -48,13 +50,10 @@ public class PaymentFormController {
     public ComboBox cmbClassD;
     public ComboBox cmbMonthClass;
 
-    private Course_paymentDAOImpl cp = new Course_paymentDAOImpl();
-    private Class_PaymentDAOImpl cpm = new Class_PaymentDAOImpl();
-
-    Course_PaymentBOImpl coursePaymentBO = new Course_PaymentBOImpl();
-    Class_PaymentBOImpl classPaymentBO = new Class_PaymentBOImpl();
-    CourseBoImpl courseBo = new CourseBoImpl();
-    ClassBOImpl classBO = new ClassBOImpl();
+    Course_PaymentBO coursePaymentBO =(Course_PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_PAYMENT);
+    Class_PaymentBO classPaymentBO = (Class_PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS_PAYMENT);
+    CourseBO courseBo =(CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE);
+    ClassBO classBO =(ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
 
     public void initialize(){
         setData();

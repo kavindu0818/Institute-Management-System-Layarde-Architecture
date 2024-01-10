@@ -3,6 +3,8 @@ package lk.ijse.Controller.Shadule;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.dto.ClassDto;
 import lk.ijse.dao.custom.impl.ClassDAOImpl;
@@ -14,9 +16,8 @@ public class AddClassFormController {
     public JFXTextField txtClassName;
     public JFXTextField txtTutorId;
 
-    private ClassDAOImpl cm = new ClassDAOImpl();
+    ClassBO classBO =(ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
 
-    ClassBOImpl classBO = new ClassBOImpl();
     public void btnSaveClassOnAction(ActionEvent actionEvent) {
         String classId = txtClassId.getText();
         String className = txtClassName.getText();

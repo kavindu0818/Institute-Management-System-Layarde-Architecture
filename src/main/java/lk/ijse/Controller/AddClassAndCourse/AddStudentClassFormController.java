@@ -9,8 +9,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Controller.regex.Regex;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.Class_DetailsBO;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.Class_DetailsBOImpl;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dto.ClassDto;
 import lk.ijse.dto.Class_DetailsDto;
 import lk.ijse.dao.custom.impl.ClassDAOImpl;
@@ -27,10 +32,10 @@ public class AddStudentClassFormController {
     public JFXTextField txtAttenAndPay;
     public JFXTextField txtStudentName;
 
-    private Class_DetailsDAOImpl cm = new Class_DetailsDAOImpl();
 
-    ClassBOImpl classBO = new ClassBOImpl();
-    Class_DetailsBOImpl classDetailsBO = new Class_DetailsBOImpl();
+
+    ClassBO classBO = (ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
+    Class_DetailsBO classDetailsBO = (Class_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS_DETAILS);
 
     public void initialize(){
         setClassIDcmb();

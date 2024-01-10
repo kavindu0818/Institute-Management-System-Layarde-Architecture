@@ -15,6 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import lk.ijse.Controller.regex.Regex;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.StudentDetailsBO;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.StudentDetailsBOImpl;
 import lk.ijse.dao.custom.StudentDetailsDAO;
@@ -60,14 +63,12 @@ public class RegistationStudentController {
     public DatePicker DatePickerRegID;
 
 
-    StudentDetailsDAO studentfullDetailsModel = new StudentDetailsDAOImpl();
+    StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
 
-    StudentDetailsBOImpl studentDetailsBO = new StudentDetailsBOImpl();
-    ClassBOImpl classBO = new ClassBOImpl();
+    ClassBO classBO =(ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
+
 
     private static String stuMail;
-
-    private StudentDetailsDAOImpl sfd = new StudentDetailsDAOImpl();
 
     public void initialize(){
         setClassIDcmb();
@@ -124,7 +125,7 @@ public class RegistationStudentController {
             String fullName = stuNameFirst + stuNameLast;
             String PfullName = perFistname + perLastname;
             Image image = img.getImage();
-            byte[] ima = studentfullDetailsModel.imagenToByte(image);
+            byte[] ima = studentDetailsBO.imagenToByteBO(image);
 
             if (regID.isEmpty() || stuNameFirst.isEmpty() || stuNameLast.isEmpty() || stuId.isEmpty() || registDate.isEmpty() || subject.isEmpty() || stuGmail.isEmpty() || addresss.isEmpty() || stuContact.isEmpty() ||
                     stuGrade.isEmpty() || perFistname.isEmpty() || perLastname.isEmpty() || perantContact.isEmpty() ||

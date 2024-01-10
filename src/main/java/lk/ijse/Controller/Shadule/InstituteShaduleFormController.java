@@ -8,6 +8,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Controller.Gmail.GmailMain;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.InstituteDetailsBO;
 import lk.ijse.bo.custom.impl.InstituteDetailsBOImpl;
 import lk.ijse.dto.InstitutMangementDto;
 import lk.ijse.dao.custom.impl.InstituteDetailsDAOImpl;
@@ -31,9 +34,7 @@ public class InstituteShaduleFormController {
     public AnchorPane AncInstitutDetails;
 
     private GmailMain gmail = new GmailMain();
-    private InstituteDetailsDAOImpl id = new InstituteDetailsDAOImpl();
-
-    InstituteDetailsBOImpl instituteDetailsBO = new InstituteDetailsBOImpl();
+    InstituteDetailsBO instituteDetailsBO = (InstituteDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.INSTITUTE_DETAILS);
 
     public void initialize(){
         setText();

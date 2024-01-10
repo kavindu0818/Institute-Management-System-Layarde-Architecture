@@ -10,6 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lk.ijse.Tm.*;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.*;
 import lk.ijse.bo.custom.impl.*;
 import lk.ijse.dao.custom.Class_PaymentDAO;
 import lk.ijse.dao.custom.StudentDetailsDAO;
@@ -57,11 +59,11 @@ public class StudentDetailsFormController {
     private Course_paymentDAOImpl cfm = new Course_paymentDAOImpl();
     private CourseAttendanceDAOImpl cam = new CourseAttendanceDAOImpl();
 
-    StudentDetailsBOImpl studentDetailsBO =new StudentDetailsBOImpl();
-    StudentAttendanceBOImpl studentAttendanceBO = new StudentAttendanceBOImpl();
-    Class_PaymentBOImpl classPaymentBO = new Class_PaymentBOImpl();
-    Course_PaymentBOImpl coursePaymentBO = new Course_PaymentBOImpl();
-    Course_AttendanceBOImpl courseAttendanceBO = new Course_AttendanceBOImpl();;
+    StudentDetailsBO studentDetailsBO =(StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
+    StudentAttendanceBO studentAttendanceBO =(StudentAttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STU_ATTENDANCE);
+    Class_PaymentBO classPaymentBO =(Class_PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS_PAYMENT);
+    Course_PaymentBO coursePaymentBO = (Course_PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_PAYMENT);
+    Course_AttendanceBO courseAttendanceBO = (Course_AttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSEATTENDANCE);
 
 
     ObservableList<StudentDetailsTm> obList = FXCollections.observableArrayList();

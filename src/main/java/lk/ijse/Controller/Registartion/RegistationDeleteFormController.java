@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.Course_DetailsBO;
+import lk.ijse.bo.custom.StudentDetailsBO;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.StudentDetailsBOImpl;
 import lk.ijse.dao.custom.StudentDetailsDAO;
@@ -37,10 +41,8 @@ public class RegistationDeleteFormController {
     public TextField txtDeleteSerachStuId;
     public ImageView ImageViewD;
 
-    private StudentDetailsDAO sdModel = new StudentDetailsDAOImpl();
-
-    StudentDetailsBOImpl studentDetailsBO = new StudentDetailsBOImpl();
-    ClassBOImpl classBO = new ClassBOImpl();
+     StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
+    ClassBO classBO =(ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
 
     public void DeleteBackAction(ActionEvent actionEvent) throws IOException {
         RegistationDelete.getChildren().clear();
@@ -92,7 +94,7 @@ public class RegistationDeleteFormController {
                 txtDPName.setText(studentDto.getPerant_Name());
                 txtDPContact.setText(studentDto.getPerant_contactNo());
                 txtDPGmail.setText(studentDto.getPerant_Gmail());
-                Image fxImage = sdModel.convertBytesToJavaFXImage(studentDto.getImage());
+                Image fxImage = studentDetailsBO.convertBytesToJavaFXImageBO(studentDto.getImage());
                 ImageViewD.setImage(fxImage);
                // ImageViewD.setImage(studentDto.getImage());
 

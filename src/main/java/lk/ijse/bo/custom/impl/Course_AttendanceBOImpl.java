@@ -1,6 +1,8 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.Course_AttendanceBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.CourseAttendanceDAO;
 import lk.ijse.dao.custom.impl.CourseAttendanceDAOImpl;
 import lk.ijse.dto.AttendanceJoinDto;
 import lk.ijse.dto.CourseAttendanceJoinDto;
@@ -11,7 +13,8 @@ import java.util.List;
 
 public class Course_AttendanceBOImpl implements Course_AttendanceBO {
 
-    CourseAttendanceDAOImpl courseAttendanceDAO = new CourseAttendanceDAOImpl();
+   CourseAttendanceDAO courseAttendanceDAO = (CourseAttendanceDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.COURSEATTENDANCE);
+
     public List<AttendanceJoinDto> getAllAttndanceCourse() throws SQLException, ClassNotFoundException {
        return courseAttendanceDAO.getAllAttndance();
 
@@ -36,5 +39,10 @@ public class Course_AttendanceBOImpl implements Course_AttendanceBO {
 
     public List<CourseAttendanceStuDetailsJoinDto> getStudentAllAttendnceBO(String id1) throws SQLException, ClassNotFoundException {
        return courseAttendanceDAO.getStudentAllAttendnce(id1);
+    }
+
+    @Override
+    public int generateNextOrderIdBO() throws SQLException {
+        return courseAttendanceDAO.generateNextOrderId();
     }
 }

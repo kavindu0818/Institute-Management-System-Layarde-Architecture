@@ -9,8 +9,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Controller.regex.Regex;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.CourseBO;
+import lk.ijse.bo.custom.Course_DetailsBO;
 import lk.ijse.bo.custom.impl.CourseBoImpl;
 import lk.ijse.bo.custom.impl.Course_DetailsBOImpl;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dto.ClassDto;
 import lk.ijse.dto.CourseDto;
 import lk.ijse.dao.custom.impl.ClassDAOImpl;
@@ -35,12 +40,11 @@ public class AddStudentCourse {
     public JFXComboBox cmbCourseName;
     public JFXTextField txtStudentPaymentID;
 
-    private Course_detailsDAOImpl courseDetailsModel = new Course_detailsDAOImpl();
-    private Class_DetailsDAOImpl classDetailsModel =new Class_DetailsDAOImpl();
 
-    Course_DetailsBOImpl courseDetailsBO = new Course_DetailsBOImpl();
+    Course_DetailsBO courseDetailsBO = (Course_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_DETAILS);
 
-    CourseBoImpl courseBo = new CourseBoImpl();
+
+    CourseBO courseBo = (CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE);
 
     public void initialize(){
 

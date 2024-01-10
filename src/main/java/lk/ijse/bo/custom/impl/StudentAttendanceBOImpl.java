@@ -1,6 +1,9 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.StudentAttendanceBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
+import lk.ijse.dao.custom.StudentAttendanceDAO;
 import lk.ijse.dao.custom.impl.Stu_AttendanceDAOImpl;
 import lk.ijse.dto.Class_DetailsDto;
 import lk.ijse.dto.StudentAttendance;
@@ -11,7 +14,7 @@ import java.util.List;
 
 public class StudentAttendanceBOImpl implements StudentAttendanceBO {
 
-    Stu_AttendanceDAOImpl stu_attendanceDAO = new Stu_AttendanceDAOImpl();
+    StudentAttendanceDAO stu_attendanceDAO = (StudentAttendanceDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STU_ATTENDANCE);
     public List<StudentAttendance> getClassStudentDetails(String classID, LocalDate classDate) throws SQLException, ClassNotFoundException {
        return stu_attendanceDAO.getClassStudent(classID,classDate);
     }

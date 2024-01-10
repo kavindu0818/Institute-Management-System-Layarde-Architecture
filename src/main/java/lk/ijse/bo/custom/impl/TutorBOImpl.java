@@ -1,6 +1,9 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.TutorBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
+import lk.ijse.dao.custom.TutorDAO;
 import lk.ijse.dao.custom.impl.TutorDAOImpl;
 import lk.ijse.dto.TutorDto;
 
@@ -8,7 +11,8 @@ import java.sql.SQLException;
 
 public class TutorBOImpl implements TutorBO {
 
-    TutorDAOImpl tutorDAO = new TutorDAOImpl();
+    TutorDAO tutorDAO = (TutorDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.TUTOR);
+    ;
     public int howMachTutorBO() throws SQLException {
         return tutorDAO.howMachTutor();
     }

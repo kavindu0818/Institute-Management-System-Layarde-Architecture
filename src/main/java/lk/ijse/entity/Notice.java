@@ -1,4 +1,4 @@
-package lk.ijse.dto;
+package lk.ijse.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class RegistationDto {
-    private String reg_id;
-    private String name;
-    private String regDate;
-    private String stu_id;
+public class Notice {
+    private String note;
+    private String date;
 }

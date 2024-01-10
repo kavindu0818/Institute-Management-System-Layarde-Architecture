@@ -17,4 +17,5 @@ public interface Course_AttendanceBO extends SuperBO {
      int howMachCourseStudentBO() throws SQLException;
      List<CourseAttendanceStuDetailsJoinDto> getStudentAllAttendnceBO(String id1) throws SQLException, ClassNotFoundException;
 
+    int generateNextOrderIdBO() throws SQLException;
 }

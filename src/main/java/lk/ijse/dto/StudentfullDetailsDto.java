@@ -21,7 +21,6 @@ public class StudentfullDetailsDto {
     private String address;
     private String age;
     private String grade;
-
     private String Perant_Name;
     private String Perant_Gmail;
     private String Perant_contactNo;

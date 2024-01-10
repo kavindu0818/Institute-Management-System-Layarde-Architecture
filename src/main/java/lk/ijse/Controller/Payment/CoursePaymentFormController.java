@@ -6,6 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.CourseBO;
+import lk.ijse.bo.custom.Course_DetailsBO;
 import lk.ijse.bo.custom.impl.CourseBoImpl;
 import lk.ijse.bo.custom.impl.Course_DetailsBOImpl;
 import lk.ijse.dto.CourseDto;
@@ -27,11 +30,8 @@ public class CoursePaymentFormController {
     public Button OkOnAction;
     public JFXComboBox cmbCourseID;
     public AnchorPane AncCourse3;
-
-    private Course_detailsDAOImpl cd = new Course_detailsDAOImpl();
-    Course_DetailsBOImpl courseDetailsBO = new Course_DetailsBOImpl();
-
-    CourseBoImpl courseBo = new CourseBoImpl();
+    Course_DetailsBO courseDetailsBO = (Course_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_DETAILS);
+    CourseBO courseBo = (CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE);
 
     public void initialize(){
         setComboBoxValue();

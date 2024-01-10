@@ -5,6 +5,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.DaySheduleBO;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.DaySheduleBoImpl;
 import lk.ijse.dto.ClassDto;
@@ -21,10 +24,8 @@ public class DaySheduleClassController {
     public DatePicker dateDatePic;
     public TextField txtEndTime;
 
-    private DaySheduleDAOImpl ds = new DaySheduleDAOImpl();
-    DaySheduleBoImpl daySheduleBo = new DaySheduleBoImpl();
-
-    ClassBOImpl classBO = new ClassBOImpl();
+    DaySheduleBO daySheduleBo =(DaySheduleBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.DAYSHEDULE);
+    ClassBO classBO = (ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
 
     public void initialize() {
         setClassIDcmb();

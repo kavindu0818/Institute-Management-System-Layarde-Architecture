@@ -5,8 +5,13 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import lk.ijse.Controller.regex.Regex;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.EmployeeBO;
+import lk.ijse.bo.custom.SubjectBO;
+import lk.ijse.bo.custom.TutorBO;
 import lk.ijse.bo.custom.impl.SubjectBOImpl;
 import lk.ijse.bo.custom.impl.TutorBOImpl;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dto.SubjectDto;
 import lk.ijse.dto.TutorDto;
 import lk.ijse.dao.custom.impl.SubjectDAOImpl;
@@ -25,11 +30,10 @@ public class ToutorAddFormController {
     public JFXTextField txtSearchTutorID;
     public JFXTextField txtUpdateSubID;
 
-    private TutorDAOImpl tm = new TutorDAOImpl();
 
-    TutorBOImpl tutorBO = new TutorBOImpl();
+    TutorBO tutorBO =  (TutorBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.TUTOR);
 
-    SubjectBOImpl subjectBO = new SubjectBOImpl();
+    SubjectBO subjectBO =  (SubjectBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.SUBJECT);
 
     public void initialize() throws SQLException, ClassNotFoundException {
         setSubId();

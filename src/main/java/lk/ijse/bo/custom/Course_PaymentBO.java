@@ -11,4 +11,6 @@ public interface Course_PaymentBO extends SuperBO {
 
     List<CoursePaymentJoinDto> getAllPaymentBO(String cusID, String date) throws SQLException, ClassNotFoundException;
     List<CfdDto> getStudentAllPaymentBO(String id2) throws SQLException, ClassNotFoundException;
+
+    int generateNextCourseFeeIdBO() throws SQLException;
 }

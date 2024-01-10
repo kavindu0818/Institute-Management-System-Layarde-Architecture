@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import lk.ijse.Controller.regex.Regex;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.StudentDetailsBO;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.StudentDetailsBOImpl;
 import lk.ijse.dto.ClassDto;
@@ -55,8 +58,9 @@ public class RegistationUpdateformController {
     public ComboBox cmbSubjct;
     private StudentDetailsDAOImpl up = new StudentDetailsDAOImpl();
 
-    StudentDetailsBOImpl studentDetailsBO = new StudentDetailsBOImpl();
-    ClassBOImpl classBO = new ClassBOImpl();
+    StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
+
+    ClassBO classBO =(ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
 
     public void initialize() {
         setClassIDcmb();

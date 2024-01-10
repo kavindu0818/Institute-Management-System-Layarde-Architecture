@@ -13,4 +13,5 @@ public interface EmployeeAttendanceBO extends SuperBO {
     public boolean saveEmpAttendanceBo(String num, String empAttendanceID, String empId) throws SQLException, ClassNotFoundException;
     public List<EmpAttendnaceDto> getAllEmployeeAttendanceBO(String id) throws SQLException, ClassNotFoundException;
 
+    int generateNextOrderIdBO() throws SQLException;
 }

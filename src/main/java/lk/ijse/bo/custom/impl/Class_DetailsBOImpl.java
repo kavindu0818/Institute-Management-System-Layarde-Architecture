@@ -1,6 +1,7 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.Class_DetailsBO;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.ClassDetailsDAO;
 import lk.ijse.dao.custom.Class_PaymentDAO;
 import lk.ijse.dao.custom.impl.Class_DetailsDAOImpl;
@@ -11,7 +12,9 @@ import java.util.List;
 
 public class Class_DetailsBOImpl implements Class_DetailsBO {
 
-    ClassDetailsDAO classDetailsDAO = new Class_DetailsDAOImpl();
+    ClassDetailsDAO classDetailsDAO = (ClassDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CLASS_DETAILS);
+
+
     public boolean saveClassDetailsStudemt(Class_DetailsDto ad) throws SQLException, ClassNotFoundException {
         return classDetailsDAO.saveClassDetails(ad);
     }

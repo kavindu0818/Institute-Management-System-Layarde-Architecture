@@ -2,17 +2,22 @@ package lk.ijse.bo.custom.impl;
 
 import javafx.scene.image.Image;
 import lk.ijse.bo.custom.StudentDetailsBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dao.custom.StudentDetailsDAO;
 import lk.ijse.dao.custom.impl.StudentDetailsDAOImpl;
 import lk.ijse.dto.ClassDto;
 import lk.ijse.dto.StudentfullDetailsDto;
+import lk.ijse.entity.StudentfullDetails;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDetailsBOImpl implements StudentDetailsBO {
 
-    StudentDetailsDAO studentDetailsDAO = new StudentDetailsDAOImpl();
+    StudentDetailsDAO studentDetailsDAO = (StudentDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT_DETAILS);
+
     public boolean saveStudent(StudentfullDetailsDto sr) throws SQLException, ClassNotFoundException {
 
         return studentDetailsDAO.save(sr);
@@ -45,14 +50,31 @@ public class StudentDetailsBOImpl implements StudentDetailsBO {
     }
 
     public StudentfullDetailsDto searchBO(String id) throws SQLException, ClassNotFoundException {
+
         return studentDetailsDAO.search(id);
     }
 
     public List<StudentfullDetailsDto> getClassStudentBO(String iD) throws SQLException, ClassNotFoundException {
-       return studentDetailsDAO.getClassStudent(iD);
+        ArrayList<StudentfullDetailsDto> studentfullDetailsDDTO = new ArrayList<>();
+        List<StudentfullDetails> student = studentDetailsDAO.getClassStudent(iD);
+
+
+        for (StudentfullDetails studentfullDetails :student){
+            studentfullDetailsDDTO.add(new StudentfullDetailsDto(studentfullDetails.getStu_id(),studentfullDetails.getReg_id(),studentfullDetails.getName(),studentfullDetails.getRegDate(),studentfullDetails.getStudent_gmail(),studentfullDetails.getStudent_contactNo(),studentfullDetails.getSub_id(),studentfullDetails.getAddress(),studentfullDetails.getAge(),studentfullDetails.getGrade(),studentfullDetails.getPerant_Name(),studentfullDetails.getPerant_Gmail(),studentfullDetails.getPerant_contactNo(),studentfullDetails.getImage()));
+
+        }
+
+        return studentfullDetailsDDTO;
+
+      // return studentDetailsDAO.getClassStudent(iD);
     }
 
     public Image convertBytesToJavaFXImageBO(byte[] image) {
        return studentDetailsDAO.convertBytesToJavaFXImage(image);
+    }
+
+    @Override
+    public byte[] imagenToByteBO(Image image) {
+        return studentDetailsDAO.imagenToByte(image);
     }
 }

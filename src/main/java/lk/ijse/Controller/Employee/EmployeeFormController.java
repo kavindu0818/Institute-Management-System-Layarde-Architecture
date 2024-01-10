@@ -11,7 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import lk.ijse.Tm.EmployeeViewTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.EmployeeBO;
 import lk.ijse.bo.custom.impl.EmployeeBOImpl;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dto.EmployeeDto;
 import lk.ijse.dao.custom.impl.EmployeeDAOImpl;
 
@@ -28,7 +31,7 @@ public class EmployeeFormController {
     public TableColumn colEmpName;
     public Label lblEmpCount;
 
-    EmployeeBOImpl employeeBO = new EmployeeBOImpl();
+    EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EMPLOYEE);
 
     public void initialize() {
 

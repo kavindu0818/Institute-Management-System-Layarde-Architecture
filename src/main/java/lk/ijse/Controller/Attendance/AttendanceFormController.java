@@ -20,7 +20,11 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.Controller.Gmail.GmailMain;
 import lk.ijse.Tm.AttendanceTm;
 import lk.ijse.Tm.EmployeeAttendanceTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.*;
 import lk.ijse.bo.custom.impl.*;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dao.custom.impl.*;
 import lk.ijse.dto.*;
 
@@ -64,33 +68,19 @@ public class AttendanceFormController {
     public String stuGmail;
     public String clName;
 
-    private Class_DetailsDAOImpl clModel = new Class_DetailsDAOImpl();
-    private Stu_AttendanceDAOImpl stModdel = new Stu_AttendanceDAOImpl();
-    private EmployeeDAOImpl em = new EmployeeDAOImpl();
-    private EmployeeAttendanceDAOImpl ea = new EmployeeAttendanceDAOImpl();
-    private StudentDetailsDAOImpl sm = new StudentDetailsDAOImpl();
-    private Course_detailsDAOImpl sd = new Course_detailsDAOImpl();
+
+
     private GmailMain gm = new GmailMain();
 
-    Course_DetailsBOImpl courseDetailsBO = new Course_DetailsBOImpl();
-
-    StudentDetailsBOImpl studentDetailsBO = new StudentDetailsBOImpl();
-
-    StudentAttendanceBOImpl studentAttendanceBO = new StudentAttendanceBOImpl();
-    Course_AttendanceBOImpl courseAttendanceBO = new Course_AttendanceBOImpl();
-
-    EmployeeAttendanceBOImpl employeeAttendanceBO = new EmployeeAttendanceBOImpl();
-
-    EmployeeBOImpl employeeBO = new EmployeeBOImpl();
-
-  //  StudentAttendanceBOImpl studentAttendanceBO = new StudentAttendanceBOImpl();
-
-    Class_DetailsBOImpl classDetailsBO = new Class_DetailsBOImpl();
+    Course_DetailsBO courseDetailsBO = (Course_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_DETAILS);
+    StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
+    StudentAttendanceBO studentAttendanceBO = (StudentAttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STU_ATTENDANCE);
+    Course_AttendanceBO courseAttendanceBO = (Course_AttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSEATTENDANCE);
+    EmployeeAttendanceBO employeeAttendanceBO = (EmployeeAttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EMPLOYEEATTENDANCE);
+    EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EMPLOYEE);
+    Class_DetailsBO classDetailsBO = (Class_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS_DETAILS);
 
 
-
-
-    private CourseAttendanceDAOImpl ca = new CourseAttendanceDAOImpl();
 
     public void initialize() {
         setCellValueFactory();
@@ -429,7 +419,7 @@ public class AttendanceFormController {
 
     private void generateNextOrderId() {
         try {
-            int orderID =ca.generateNextOrderId();
+            int orderID =courseAttendanceBO.generateNextOrderIdBO();
             num1="000"+orderID;
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -438,7 +428,7 @@ public class AttendanceFormController {
 
     private void generateAttendanceID() {
         try {
-            int orderID =ea.generateNextOrderId();
+            int orderID = employeeAttendanceBO.generateNextOrderIdBO();
             num="000"+orderID;
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

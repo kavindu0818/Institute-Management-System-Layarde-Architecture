@@ -1,6 +1,7 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.ClassDAO;
 import lk.ijse.dao.custom.impl.ClassDAOImpl;
 import lk.ijse.dto.ClassDto;
@@ -10,7 +11,8 @@ import java.util.List;
 
 public class ClassBOImpl implements ClassBO {
 
-    ClassDAO classDAO = new ClassDAOImpl();
+    ClassDAO classDAO = (ClassDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CLASS);
+
 
     public List<ClassDto> getAllClassRegister() throws SQLException, ClassNotFoundException {
         return classDAO.getAllClass();

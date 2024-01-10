@@ -15,7 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lk.ijse.Controller.regex.Regex;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.EmployeeBO;
 import lk.ijse.bo.custom.impl.EmployeeBOImpl;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dto.EmployeeDto;
 import lk.ijse.dao.custom.impl.EmployeeDAOImpl;
 
@@ -47,9 +50,9 @@ public class EmployeeAddFormControler {
     public Image image;
     public JFXTextField txtEmpAttendanceID;
 
-    private EmployeeDAOImpl empM = new EmployeeDAOImpl();
 
-    EmployeeBOImpl employeeBO = new EmployeeBOImpl();
+
+    EmployeeBO employeeBO =  (EmployeeBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EMPLOYEE);;
 
     public void initialize(){
         setData();
@@ -72,7 +75,7 @@ public class EmployeeAddFormControler {
             String bankName = txtBankBranchName.getText();
             String geand = (String) cmd1.getValue();
             Image image = imageViewEmp.getImage();
-            byte[] ima = empM.imagenToByte(image);
+            byte[] ima = employeeBO.imagenToByte(image);
             String name = firstName + lastName;
             String empAttenId = txtEmpAttendanceID.getText();
 
@@ -90,6 +93,8 @@ public class EmployeeAddFormControler {
                     new Alert(Alert.AlertType.WARNING, "Try Again").show();
                 }
             } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }

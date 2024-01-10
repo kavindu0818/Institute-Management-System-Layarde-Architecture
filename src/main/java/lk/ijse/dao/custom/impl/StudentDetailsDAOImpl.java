@@ -6,9 +6,9 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.StudentDetailsDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.StudentfullDetailsDto;
+import lk.ijse.entity.StudentfullDetails;
 
 import javax.imageio.ImageIO;
-import javax.sound.midi.MidiDevice;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -171,7 +171,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 //        return pstm.executeUpdate()>0;
     }
 
-    public List<StudentfullDetailsDto> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
+    public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT * FROM  studentfull_details WHERE stu_id = ?";
@@ -180,10 +180,10 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  studentfull_details WHERE stu_id = ?",iD);
 
-        ArrayList<StudentfullDetailsDto> dtoList = new ArrayList<>();
+        ArrayList<StudentfullDetails> dtoList = new ArrayList<>();
         while(resultSet.next()) {
             dtoList.add(
-                    new StudentfullDetailsDto(
+                    new StudentfullDetails(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),

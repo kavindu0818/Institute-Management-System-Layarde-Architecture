@@ -19,4 +19,6 @@ public interface StudentDetailsBO extends SuperBO {
     StudentfullDetailsDto searchBO(String id) throws SQLException, ClassNotFoundException;
     List<StudentfullDetailsDto> getClassStudentBO(String iD) throws SQLException, ClassNotFoundException;
     Image convertBytesToJavaFXImageBO(byte[] image);
+
+    byte[] imagenToByteBO(Image image);
 }

@@ -8,8 +8,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lk.ijse.Tm.EmpAttendanceDetailsTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.EmployeeAttendanceBO;
+import lk.ijse.bo.custom.EmployeeBO;
 import lk.ijse.bo.custom.impl.EmployeeAttendanceBOImpl;
 import lk.ijse.bo.custom.impl.EmployeeBOImpl;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dto.EmpAttendnaceDto;
 import lk.ijse.dto.EmployeeDto;
 import lk.ijse.dao.custom.impl.EmployeeAttendanceDAOImpl;
@@ -38,11 +42,9 @@ public class EmployeeDetailsFormController {
     public TableColumn colDay;
     public TableColumn colTime;
 
-    private EmployeeDAOImpl em = new EmployeeDAOImpl();
-    private EmployeeAttendanceDAOImpl ea = new EmployeeAttendanceDAOImpl();
 
-    EmployeeBOImpl employeeBO = new EmployeeBOImpl();
-    EmployeeAttendanceBOImpl employeeAttendanceBO = new EmployeeAttendanceBOImpl();
+    EmployeeBO employeeBO =  (EmployeeBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EMPLOYEE);;
+    EmployeeAttendanceBO employeeAttendanceBO =  (EmployeeAttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EMPLOYEEATTENDANCE);
 
     public void initialize(){
         setViewEmployeeAttendance();
@@ -75,7 +77,7 @@ public class EmployeeDetailsFormController {
                 String age = String.valueOf(dto.getAge());
                 lblAge.setText(age);
                 lblBankNum.setText(dto.getBankAccountNum());
-                Image fxImage = em.convertBytesToJavaFXImage(dto.getImage());
+                Image fxImage = employeeBO.convertBytesToJavaFXImageBO(dto.getImage());
                 imageViewEmployee.setImage(fxImage);
                 lblGendar.setText(dto.getGendar());
 

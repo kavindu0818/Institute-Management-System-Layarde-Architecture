@@ -1,4 +1,4 @@
-package lk.ijse.dto;
+package lk.ijse.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,11 +9,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class PerantDto {
+public class Payment {
 
-    private String per_id;
     private String name;
-    private String gmail;
-    private String contactNo;
-    private String stu_id;
+    private String paymentMonth;
+    private String date;
+    private String full_id;
+
+
 }

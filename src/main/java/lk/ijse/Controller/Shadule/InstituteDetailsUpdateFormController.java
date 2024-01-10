@@ -3,6 +3,9 @@ package lk.ijse.Controller.Shadule;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.InstituteDetailsBO;
 import lk.ijse.bo.custom.impl.InstituteDetailsBOImpl;
 import lk.ijse.dto.InstitutMangementDto;
 import lk.ijse.dao.custom.impl.InstituteDetailsDAOImpl;
@@ -16,9 +19,7 @@ public class InstituteDetailsUpdateFormController {
     public JFXTextField txtfb;
     public JFXTextField txtHall;
 
-    private InstituteDetailsDAOImpl ins = new InstituteDetailsDAOImpl();
-
-    InstituteDetailsBOImpl instituteDetailsBO = new InstituteDetailsBOImpl();
+    InstituteDetailsBO instituteDetailsBO = (InstituteDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.INSTITUTE_DETAILS);
 
     public void initialize(){
         setText();

@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.ijse.Controller.Gmail.GmailMain;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.*;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.Class_DetailsBOImpl;
 import lk.ijse.bo.custom.impl.Class_PaymentBOImpl;
@@ -50,15 +52,12 @@ public class ClassFeeFormController {
     public JFXComboBox cmbClassName;
     public TextArea txtFieldClassName;
     public JFXComboBox txtStudentFullID;
-    private Class_DetailsDAOImpl fmodel = new Class_DetailsDAOImpl();
-    private Class_PaymentDAOImpl cpm = new Class_PaymentDAOImpl();
-    private StudentDetailsDAOImpl st = new StudentDetailsDAOImpl();
 
-    Class_DetailsBOImpl classDetailsBO = new Class_DetailsBOImpl();
-    Class_PaymentBOImpl classPaymentBO = new Class_PaymentBOImpl();
 
-    StudentDetailsBOImpl studentDetailsBO = new StudentDetailsBOImpl();
-    ClassBOImpl classBO = new ClassBOImpl();
+    Class_DetailsBO classDetailsBO = (Class_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS_DETAILS);
+    Class_PaymentBO classPaymentBO = (Class_PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS_PAYMENT);
+    StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
+    ClassBO classBO = (ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
 
     private String num;
 

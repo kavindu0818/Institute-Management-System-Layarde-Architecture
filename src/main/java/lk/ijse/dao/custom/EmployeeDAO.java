@@ -27,7 +27,7 @@ public interface EmployeeDAO extends CrudDAO<EmployeeDto> {
    // public EmployeeDto searchEmployee(String empId) throws SQLException;
    // public boolean update(EmployeeDto emp) throws SQLException;
     public EmployeeDto allEmployeeDetails(String empId) throws SQLException;
-    public List<EmployeeDto> getAllEmployee() throws SQLException;
+    public List<EmployeeDto> getAll() throws SQLException;
 
     public EmployeeDto loardEmpValues(String aId) throws SQLException;
 

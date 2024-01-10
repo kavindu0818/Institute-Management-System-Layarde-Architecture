@@ -12,6 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import lk.ijse.Controller.Gmail.GmailMain;
 import lk.ijse.Tm.CourseDetailsTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.Course_DetailsBO;
+import lk.ijse.bo.custom.Course_PaymentBO;
+import lk.ijse.bo.custom.StudentDetailsBO;
 import lk.ijse.bo.custom.impl.Course_DetailsBOImpl;
 import lk.ijse.dao.custom.impl.CourseDAOImpl;
 import lk.ijse.dao.custom.impl.Course_detailsDAOImpl;
@@ -44,18 +48,13 @@ public class CourseFeeFormController {
 
     CourseFeeDetailsFormController courseFeeDetailsFormController;
 
-
-    // Course_detailsDto cpd = new Course_detailsDto(amount, cusDfull, cusDetilList);
-    Course_detailsDAOImpl cpm = new Course_detailsDAOImpl();
-
     private ObservableList<CourseDetailsTm> obList = null;
     private SetPaymentModel setPaymentModel = new SetPaymentModel();
     private Course_detailsDAOImpl courseDetailsModel = new Course_detailsDAOImpl();
     public static final String ORDER_ID_PREFIX = "P";
     private static final int ORDER_ID_LENGTH = 3;
 
-    private StudentDetailsDAOImpl st = new StudentDetailsDAOImpl();
-    private Course_paymentDAOImpl course_paymentModel = new Course_paymentDAOImpl();
+
 
     String num;
     public String togmail;
@@ -68,9 +67,9 @@ public class CourseFeeFormController {
     public String fromGmail ="kavindumaduranga184@gmail.com";
     private GmailMain gm = new GmailMain();
 
-    private Course_detailsDAOImpl cd = new Course_detailsDAOImpl();
-
-    Course_DetailsBOImpl courseDetailsBO = new Course_DetailsBOImpl();
+    Course_DetailsBO courseDetailsBO = (Course_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_DETAILS);
+     StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
+     Course_PaymentBO coursePaymentBO = (Course_PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_PAYMENT);
 
 
     public void initialize(){
@@ -155,7 +154,7 @@ public class CourseFeeFormController {
     public void sendMail(String Id) throws SQLException, ClassNotFoundException {
 
         String cf = (String) cmbCourseDetailsID.getValue();
-        StudentfullDetailsDto mail = st.search(Id);
+        StudentfullDetailsDto mail = studentDetailsBO.searchBO(Id);
         Course_detailsDto cMail = courseDetailsBO.courseNameBO(cf);
 
 //        System.out.println(togmail);
@@ -207,7 +206,7 @@ public class CourseFeeFormController {
 
     private void generateNextOrderId() {
         try {
-            int orderID = course_paymentModel.generateNextCourseFeeId();
+            int orderID = coursePaymentBO.generateNextCourseFeeIdBO();
             num="00"+orderID;
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -218,7 +217,7 @@ public class CourseFeeFormController {
     public void txtCourseStuIdSearchIdOnAction(ActionEvent actionEvent) {
         String a = CoursePayStuIDSarch.getText();
         try {
-            Course_detailsDto dtop = cpm.getAllValuesCd(a);
+            Course_detailsDto dtop = courseDetailsBO.getAllValuesCdBO(a);
             if (dtop != null) {
                 stuiDCursePayment.setText(dtop.getStuId());
                 StuNameCourse.setText(dtop.getStuName());

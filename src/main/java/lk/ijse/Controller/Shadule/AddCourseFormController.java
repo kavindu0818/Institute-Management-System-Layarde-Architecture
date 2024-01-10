@@ -3,6 +3,9 @@ package lk.ijse.Controller.Shadule;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.CourseBO;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.CourseBoImpl;
 import lk.ijse.dto.ClassDto;
@@ -20,11 +23,10 @@ public class AddCourseFormController {
     public JFXTextField txtCourseStartDay;
     public javafx.scene.control.DatePicker DatePicker;
 
-    private CourseDAOImpl cm = new CourseDAOImpl();
-    private ClassDAOImpl cdm = new ClassDAOImpl();
 
-    CourseBoImpl courseBo = new CourseBoImpl();
-    ClassBOImpl classBO = new ClassBOImpl();
+
+    CourseBO courseBo =(CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE);
+    ClassBO classBO =(ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
 
     public void btnCourseAddOnAction(ActionEvent actionEvent) {
         String courseID = txtCourseID.getText();

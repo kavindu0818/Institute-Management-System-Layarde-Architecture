@@ -3,11 +3,10 @@ package lk.ijse.dao.custom.impl;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import lk.ijse.dao.CrudDAO;
 import lk.ijse.dao.custom.EmployeeDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.EmployeeDto;
-import lk.ijse.dto.StudentfullDetailsDto;
+import lk.ijse.entity.StudentfullDetails;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -155,7 +154,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<EmployeeDto> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
+    public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -200,10 +199,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     }
 
-    @Override
-    public List<EmployeeDto> getAllEmployee() throws SQLException {
-        return null;
-    }
+//    @Override
+//    public List<EmployeeDto> getAllEmployee() throws SQLException {
+//        return null;
+//    }
 
     public List<EmployeeDto> getAll() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();

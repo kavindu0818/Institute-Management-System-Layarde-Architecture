@@ -11,6 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Controller.LoginFormController;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.UserBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dto.UserDto;
 import lk.ijse.dao.custom.impl.UserDAOImpl;
 
@@ -38,7 +42,9 @@ public class DashBoardController {
 
     private String us;
 
-    private UserDAOImpl um = new UserDAOImpl();
+
+    UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.USER);
+
 
     public void initialize() throws IOException, SQLException, ClassNotFoundException {
         Twonc.getChildren().clear();
@@ -112,11 +118,11 @@ public class DashBoardController {
     }
 
     public void setPic() throws SQLException, ClassNotFoundException {
-        UserDto dto = um.getUserValueUser(us);
+        UserDto dto = userBO.getUserValueUserBO(us);
         if (dto != null) {
 
             lbl10.setText(dto.getUserName());
-            Image fxImage = um.convertBytesToJavaFXImage(dto.getImage());
+            Image fxImage = userBO.convertBytesToJavaFXImageBO(dto.getImage());
             UserImage.setImage(fxImage);
         }
     }

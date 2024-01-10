@@ -13,7 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.ijse.Tm.DayShedulTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.*;
 import lk.ijse.bo.custom.impl.*;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.impl.*;
 import lk.ijse.dto.DaySheduleDto;
 import lk.ijse.dto.InstitutMangementDto;
@@ -46,16 +49,15 @@ public class DashboardOriginalController {
     public TextArea txtNoticeField;
     // String ld = lblDate.getText();
     // String dl = lblDate.getText();
-    private StudentDetailsDAOImpl sm = new StudentDetailsDAOImpl();
 
-    StudentDetailsBOImpl studentDetailsBO = new StudentDetailsBOImpl();
-    TutorBOImpl tutorBO = new TutorBOImpl();
-    InstituteDetailsBOImpl instituteDetailsBO = new InstituteDetailsBOImpl();
-    DaySheduleBoImpl daySheduleBo = new DaySheduleBoImpl();
-    StudentAttendanceBOImpl studentAttendanceBO = new StudentAttendanceBOImpl();
-    Course_AttendanceBOImpl courseAttendanceBO = new Course_AttendanceBOImpl();
 
-    NoticeBoImpl noticeBo = new NoticeBoImpl();
+    StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
+    TutorBO tutorBO =  (TutorBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.TUTOR);
+    InstituteDetailsBO instituteDetailsBO =  (InstituteDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.INSTITUTE_DETAILS);
+    DaySheduleBO daySheduleBo =  (DaySheduleBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.DAYSHEDULE);
+    StudentAttendanceBO studentAttendanceBO = (StudentAttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STU_ATTENDANCE);
+    Course_AttendanceBO courseAttendanceBO =  (Course_AttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSEATTENDANCE);
+    NoticeBO noticeBo = (NoticeBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.NOTICE);
 
     public void initialize() {
         setLableStu();

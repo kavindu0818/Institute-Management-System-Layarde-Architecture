@@ -9,8 +9,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Tm.AttendanceDetailsViewTm;
 import lk.ijse.Tm.ClassDetailsViewTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.StudentAttendanceBO;
 import lk.ijse.bo.custom.impl.ClassBOImpl;
 import lk.ijse.bo.custom.impl.StudentAttendanceBOImpl;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dto.ClassDto;
 import lk.ijse.dto.StudentAttendance;
 import lk.ijse.dao.custom.impl.ClassDAOImpl;
@@ -36,12 +41,11 @@ public class AttendanceDetailsFormController {
     public ComboBox cmbSubjectID;
     public AnchorPane AncClassAttendance;
 
-    private Stu_AttendanceDAOImpl stu = new Stu_AttendanceDAOImpl();
-    private ClassDAOImpl classModel = new ClassDAOImpl();
 
-    StudentAttendanceBOImpl studentAttendanceBO = new StudentAttendanceBOImpl();
+    StudentAttendanceBO studentAttendanceBO = (StudentAttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STU_ATTENDANCE);
 
-    ClassBOImpl classBO = new ClassBOImpl();
+
+    ClassBO classBO = (ClassBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CLASS);
 
     public void initialize(){
         setClassIDcmb();

@@ -1,6 +1,10 @@
 package lk.ijse.bo.custom.impl;
 
+import javafx.scene.image.Image;
 import lk.ijse.bo.custom.EmployeeBO;
+import lk.ijse.dao.DAOFactory;
+import lk.ijse.dao.custom.Course_PaymentDAO;
+import lk.ijse.dao.custom.EmployeeDAO;
 import lk.ijse.dao.custom.impl.EmployeeDAOImpl;
 import lk.ijse.dto.EmployeeDto;
 
@@ -9,12 +13,13 @@ import java.util.List;
 
 public class EmployeeBOImpl implements EmployeeBO {
 
-    EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+    EmployeeDAO employeeDAO = (EmployeeDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.EMPLOYEE);
+    ;
     public EmployeeDto loardEmpValuesDetails(String aId) throws SQLException {
         return employeeDAO.loardEmpValues(aId);
     }
 
-    public boolean saveEmployeeBO(EmployeeDto emp) throws SQLException {
+    public boolean saveEmployeeBO(EmployeeDto emp) throws SQLException, ClassNotFoundException {
        return employeeDAO.save(emp);
     }
 
@@ -30,11 +35,21 @@ public class EmployeeBOImpl implements EmployeeBO {
        return employeeDAO.howMach();
     }
 
-    public boolean updateEmployeeBO(EmployeeDto emp) throws SQLException {
+    public boolean updateEmployeeBO(EmployeeDto emp) throws SQLException, ClassNotFoundException {
         return employeeDAO.update(emp);
     }
 
-    public EmployeeDto searchEmployeeBO(String empId) throws SQLException {
+    public EmployeeDto searchEmployeeBO(String empId) throws SQLException, ClassNotFoundException {
        return employeeDAO.search(empId);
+    }
+
+    @Override
+    public byte[] imagenToByte(Image image) {
+        return employeeDAO.imagenToByte(image);
+    }
+
+    @Override
+    public Image convertBytesToJavaFXImageBO(byte[] image) {
+        return employeeDAO.convertBytesToJavaFXImage(image);
     }
 }

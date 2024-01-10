@@ -14,4 +14,5 @@ public interface Course_DetailsBO extends SuperBO {
     Course_detailsDto courseNameBO(String cf) throws SQLException, ClassNotFoundException;
     Course_detailsDto getAllDetailsBO(String id, String cusID) throws SQLException, ClassNotFoundException;
 
+    Course_detailsDto getAllValuesCdBO(String a) throws SQLException, ClassNotFoundException;
 }

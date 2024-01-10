@@ -3,6 +3,9 @@ package lk.ijse.Controller.Shadule;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.ClassBO;
+import lk.ijse.bo.custom.SubjectBO;
 import lk.ijse.bo.custom.impl.SubjectBOImpl;
 import lk.ijse.dto.SubjectDto;
 import lk.ijse.dao.custom.impl.SubjectDAOImpl;
@@ -13,9 +16,7 @@ public class AddSubjectFormController {
     public JFXTextField txtSubId;
     public JFXTextField txtSubName;
 
-    private SubjectDAOImpl sm = new SubjectDAOImpl();
-
-    SubjectBOImpl subjectBO = new SubjectBOImpl();
+    SubjectBO subjectBO = (SubjectBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.SUBJECT);
 
     public void btnAddSubjectOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 

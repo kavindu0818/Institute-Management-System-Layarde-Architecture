@@ -8,6 +8,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.Tm.CourseDetailsTm;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.Course_DetailsBO;
 import lk.ijse.bo.custom.impl.Course_DetailsBOImpl;
 import lk.ijse.dto.Course_detailsDto;
 import lk.ijse.dao.custom.impl.Course_detailsDAOImpl;
@@ -24,10 +26,10 @@ public class CourseFeeDetailsFormController {
     public TableColumn colCusDetilPayAmont;
     public JFXTextField txtCurseDetailsSearchCusId;
 
-    private Course_detailsDAOImpl cdMdel = new Course_detailsDAOImpl();
 
-    Course_DetailsBOImpl courseDetailsBO = new Course_DetailsBOImpl();
-    // public static ObservableList<CourseDetailsTm> obList;
+
+    Course_DetailsBO courseDetailsBO = (Course_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_DETAILS);;
+
 
     public void initialize() {
         setCellValueFactory();
