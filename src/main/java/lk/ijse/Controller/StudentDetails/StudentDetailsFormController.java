@@ -52,12 +52,9 @@ public class StudentDetailsFormController {
     public TableView tblCourseAttendanceDetails;
     public TableColumn colCoursePayDay1;
 
-    private StudentDetailsDAOImpl stu = new StudentDetailsDAOImpl();
-    private Stu_AttendanceDAOImpl stuAttendanceModel = new Stu_AttendanceDAOImpl();
-    private Class_PaymentDAO classPaymentModel = new Class_PaymentDAOImpl();
+
     private StudentDetailsDAO up = new StudentDetailsDAOImpl();
-    private Course_paymentDAOImpl cfm = new Course_paymentDAOImpl();
-    private CourseAttendanceDAOImpl cam = new CourseAttendanceDAOImpl();
+
 
     StudentDetailsBO studentDetailsBO =(StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
     StudentAttendanceBO studentAttendanceBO =(StudentAttendanceBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STU_ATTENDANCE);
@@ -302,7 +299,7 @@ public class StudentDetailsFormController {
     String id4 = txtSearchStudentID.getText();
 
     try{
-            StudentfullDetailsDto studentDto = up.search(id4);
+            StudentfullDetailsDto studentDto = studentDetailsBO.searchBO(id4);
             if (studentDto != null) {
 
                 Image fxImage = studentDetailsBO.convertBytesToJavaFXImageBO(studentDto.getImage());

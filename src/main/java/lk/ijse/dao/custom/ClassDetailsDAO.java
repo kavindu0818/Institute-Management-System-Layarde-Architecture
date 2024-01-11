@@ -1,23 +1,19 @@
 package lk.ijse.dao.custom;
 
 import lk.ijse.dao.SuperDAO;
-import lk.ijse.db.DbConnection;
 import lk.ijse.dto.Class_DetailsDto;
+import lk.ijse.entity.Class_Details;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ClassDetailsDAO extends SuperDAO {
 
-    Class_DetailsDto loardValues(String aId) throws SQLException, ClassNotFoundException;
+    Class_Details loardValues(String aId) throws SQLException, ClassNotFoundException;
 
-    List<Class_DetailsDto> getFullId(String sID) throws SQLException, ClassNotFoundException;
+    List<Class_Details> getFullId(String sID) throws SQLException, ClassNotFoundException;
 
-    boolean saveClassDetails(Class_DetailsDto ad) throws SQLException, ClassNotFoundException;
+    boolean saveClassDetails(Class_Details ad) throws SQLException, ClassNotFoundException;
 
     boolean saveValue(String attendance, String stuId, String classID, String stuName) throws SQLException;
 

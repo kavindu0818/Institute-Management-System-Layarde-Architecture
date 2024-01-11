@@ -22,7 +22,8 @@ import java.util.List;
 
 public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
-    public boolean save(StudentfullDetailsDto sr) throws SQLException, ClassNotFoundException {
+     @Override
+    public boolean save(StudentfullDetails sr) throws SQLException, ClassNotFoundException {
         byte[] imageSr = sr.getImage();
 
         return SQLUtil.execute("INSERT INTO studentfull_details VALUES(?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)",sr.getStu_id(),sr.getReg_id(),sr.getName(),
@@ -57,8 +58,8 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 //        return isSaved;
     }
 
-@Override
-    public StudentfullDetailsDto search(String id) throws SQLException, ClassNotFoundException {
+   @Override
+    public StudentfullDetails search(String id) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT * FROM  studentfull_details WHERE stu_id = ?";
@@ -67,7 +68,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  studentfull_details WHERE stu_id = ?",id);
 
-        StudentfullDetailsDto dto = null;
+        StudentfullDetails dto = null;
 
         if (resultSet.next()) {
             String stu_id = resultSet.getString(1);
@@ -91,7 +92,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
 
 
-            dto = new StudentfullDetailsDto(stu_id, reg_id, Stuname, regDate, stuGmail, StuContact, sub_id, adddress, age, grade,perant_name, perant_Gmail, perant_ContactNo, imageBytes);
+            dto = new StudentfullDetails(stu_id, reg_id, Stuname, regDate, stuGmail, StuContact, sub_id, adddress, age, grade,perant_name, perant_Gmail, perant_ContactNo, imageBytes);
         }
         return dto;
     }
@@ -124,13 +125,12 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
 
 
-    public boolean update(StudentfullDetailsDto su) throws SQLException, ClassNotFoundException {
+    public boolean update(StudentfullDetails su) throws SQLException, ClassNotFoundException {
 
         byte[] imageSr = su.getImage();
 
 
-        return SQLUtil.execute("UPDATE studentfull_details SET reg_id = ?,name = ?,regDate = ?,Student_gmail = ?,Student_contactNo =?,sub_id = ?, address = ?,age =?,grade = ?,Perant_Name = ?,Perant_Gmail = ?, Perant_contactNo =?, image =? WHERE stu_id = ?",
-                su.getReg_id(),su.getName(),su.getRegDate(),su.getStudent_gmail(),su.getStudent_contactNo(),su.getSub_id(),su.getAddress(),
+        return SQLUtil.execute("UPDATE studentfull_details SET reg_id = ?,name = ?,regDate = ?,Student_gmail = ?,Student_contactNo =?,sub_id = ?, address = ?,age =?,grade = ?,Perant_Name = ?,Perant_Gmail = ?, Perant_contactNo =?, image =? WHERE stu_id = ?", su.getReg_id(),su.getName(),su.getRegDate(),su.getStudent_gmail(),su.getStudent_contactNo(),su.getSub_id(),su.getAddress(),
                 su.getAge(),su.getGrade(),su.getPerant_Name(),su.getPerant_Gmail(),su.getPerant_contactNo(),imageSr,su.getStu_id());
 
 //        Connection connection = DbConnection.getInstance().getConnection();
@@ -241,7 +241,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 //
 //  }
 
-    public StudentfullDetailsDto getClassMailValue(String id) throws SQLException, ClassNotFoundException {
+    public StudentfullDetails getClassMailValue(String id) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT * FROM  studentfull_details WHERE stu_id = ?";
@@ -250,7 +250,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  studentfull_details WHERE stu_id = ?",id);//pstm.executeQuery();
 
-        StudentfullDetailsDto dto = null;
+        StudentfullDetails dto = null;
 
         if (resultSet.next()) {
             String stu_id = resultSet.getString(1);
@@ -274,7 +274,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
 
 
-            dto = new StudentfullDetailsDto(stu_id, reg_id, Stuname, regDate, stuGmail, StuContact, sub_id, adddress, age, grade,perant_name, perant_Gmail, perant_ContactNo, imageBytes);
+            dto = new StudentfullDetails(stu_id, reg_id, Stuname, regDate, stuGmail, StuContact, sub_id, adddress, age, grade,perant_name, perant_Gmail, perant_ContactNo, imageBytes);
         }
         return dto;
 

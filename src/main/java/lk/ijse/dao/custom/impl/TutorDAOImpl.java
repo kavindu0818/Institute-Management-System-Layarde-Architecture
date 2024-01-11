@@ -5,6 +5,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.TutorDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.TutorDto;
+import lk.ijse.entity.Tutor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +32,7 @@ public class TutorDAOImpl implements TutorDAO {
 
     }
 
-    public boolean saveTutor(TutorDto td) throws SQLException {
+    public boolean saveTutor(Tutor td) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO tutor VALUES(?,?,?)";
@@ -47,7 +48,7 @@ public class TutorDAOImpl implements TutorDAO {
 
     }
 
-    public TutorDto getTutor(String tutId) throws SQLException {
+    public Tutor getTutor(String tutId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "select *from tutor WHERE tut_id=?";
@@ -55,19 +56,19 @@ public class TutorDAOImpl implements TutorDAO {
         pstm.setString(1, tutId);
         ResultSet resultSet = pstm.executeQuery();
 
-        TutorDto doList = null;
+        Tutor doList = null;
 
         if (resultSet.next()) {
             String id = resultSet.getString(1);
             String name = resultSet.getString(2);
             String sub = resultSet.getString(3);
 
-            doList = new TutorDto(id, name, sub);
+            doList = new Tutor(id, name, sub);
         }
         return doList;
     }
 
-    public boolean updateTutor(TutorDto td) throws SQLException, ClassNotFoundException {
+    public boolean updateTutor(Tutor td) throws SQLException, ClassNotFoundException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "UPDATE tutor SET tutorName=?,sub_id=?  WHERE tut_id=?";
         PreparedStatement pstm = connection.prepareStatement(sql);

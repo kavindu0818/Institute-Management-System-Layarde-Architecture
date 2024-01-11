@@ -3,8 +3,9 @@ package lk.ijse.dao.custom;
 import lk.ijse.dto.StudentfullDetailsDto;
 import lk.ijse.entity.Student;
 import lk.ijse.dao.CrudDAO;
+import lk.ijse.entity.StudentfullDetails;
 
-public interface StudentDetailsDAO extends CrudDAO<StudentfullDetailsDto> {
+public interface StudentDetailsDAO extends CrudDAO<StudentfullDetails> {
 
 //    boolean saveStudentDetails(StudentfullDetailsDto sr) throws SQLException;
 //    public StudentfullDetailsDto searchCustomer(String id) throws SQLException;

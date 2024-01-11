@@ -6,6 +6,7 @@ import lk.ijse.dao.custom.EmployeeDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.EmpAttendnaceDto;
 import lk.ijse.dto.EmployeeAttendanceJoin;
+import lk.ijse.entity.EmpAttendnace;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -108,7 +109,7 @@ public class EmployeeAttendanceDAOImpl implements EmlpoyeeAttendanceDAO {
         return 0;
     }
 
-    public List<EmpAttendnaceDto> getAllEmployeeAttendance(String id) throws SQLException, ClassNotFoundException {
+    public List<EmpAttendnace> getAllEmployeeAttendance(String id) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT *FROM employee_attendance WHERE emp_id=?";
@@ -116,11 +117,11 @@ public class EmployeeAttendanceDAOImpl implements EmlpoyeeAttendanceDAO {
 //        pstm.setString(1,id);
 
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM employee_attendance WHERE emp_id=?",id);//pstm.executeQuery();
-        ArrayList<EmpAttendnaceDto> dtoList = new ArrayList<>();
+        ArrayList<EmpAttendnace> dtoList = new ArrayList<>();
 
         while (resultSet.next()) {
             dtoList.add(
-                    new EmpAttendnaceDto(
+                    new EmpAttendnace(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),

@@ -13,9 +13,7 @@ import javafx.util.Duration;
 import lk.ijse.Controller.Gmail.GmailMain;
 import lk.ijse.Tm.CourseDetailsTm;
 import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.Course_DetailsBO;
-import lk.ijse.bo.custom.Course_PaymentBO;
-import lk.ijse.bo.custom.StudentDetailsBO;
+import lk.ijse.bo.custom.*;
 import lk.ijse.bo.custom.impl.Course_DetailsBOImpl;
 import lk.ijse.dao.custom.impl.CourseDAOImpl;
 import lk.ijse.dao.custom.impl.Course_detailsDAOImpl;
@@ -70,7 +68,8 @@ public class CourseFeeFormController {
     Course_DetailsBO courseDetailsBO = (Course_DetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_DETAILS);
      StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
      Course_PaymentBO coursePaymentBO = (Course_PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_PAYMENT);
-
+     CourseBO courseBO = (CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE);
+     SetPaymentBO setPaymentBO = (SetPaymentBO)  BOFactory.getBOFactory().getBO(BOFactory.BOTypes.SET_PAYMENT);
 
     public void initialize(){
         generateNextOrderId();
@@ -87,7 +86,7 @@ public class CourseFeeFormController {
 
         SetPaymentDto setPaymentDto = new SetPaymentDto(num,amount, cusDfull,stuId);
         try {
-            boolean isSuccess = setPaymentModel.setPaymentDetails(setPaymentDto);
+            boolean isSuccess = setPaymentBO.setPaymentDetails(setPaymentDto);
             if (isSuccess) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment Change Success!").show();
                 sendMail(stuiDCursePayment.getText());
@@ -136,7 +135,7 @@ public class CourseFeeFormController {
     public void setComboBoxValue(){
         var course = new CourseDAOImpl();
         try {
-            List<CourseDto> dtoList = course.getCourseID();
+            List<CourseDto> dtoList = courseBO.getCourseIDBO();
 
             for (CourseDto dto : dtoList) {
                 cmbCourse.getItems().add(dto.getCusId());
@@ -234,7 +233,7 @@ public class CourseFeeFormController {
         }
 
         try {
-            List<Course_detailsDto> dtoList = courseDetailsModel.getCourseDetailsID(a);
+            List<Course_detailsDto> dtoList = courseDetailsBO.getCourseDetailsIDBO(a);
 
             for (Course_detailsDto courseDetailsDto : dtoList) {
                 cmbCourseDetailsID.getItems().add(courseDetailsDto.getCusDfull());

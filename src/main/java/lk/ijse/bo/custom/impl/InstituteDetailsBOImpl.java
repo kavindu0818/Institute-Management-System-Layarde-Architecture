@@ -6,6 +6,7 @@ import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dao.custom.InstituteDetailsDAO;
 import lk.ijse.dao.custom.impl.InstituteDetailsDAOImpl;
 import lk.ijse.dto.InstitutMangementDto;
+import lk.ijse.entity.InstitutMangement;
 
 import java.sql.SQLException;
 
@@ -14,14 +15,20 @@ public class InstituteDetailsBOImpl implements InstituteDetailsBO {
     InstituteDetailsDAO instituteDetailsDAO = (InstituteDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.INSTITUTE_DETAILS);
 
     public InstitutMangementDto setAllDetailsBO() throws SQLException {
-       return instituteDetailsDAO.setAllDetails();
+        InstitutMangement institutMangement =  instituteDetailsDAO.setAllDetails();
+        InstitutMangementDto institutMangementDto = new InstitutMangementDto(institutMangement.getGmail(),institutMangement.getContact(),institutMangement.getFb(),institutMangement.getHall());
+        return institutMangementDto;
+
     }
 
     public InstitutMangementDto allDetailsBO() throws SQLException {
-       return instituteDetailsDAO.allDetails();
+      InstitutMangement institutMangement = instituteDetailsDAO.allDetails();
+      InstitutMangementDto institutMangementDto = new InstitutMangementDto(institutMangement.getGmail(),institutMangement.getContact(),institutMangement.getFb(),institutMangement.getHall());
+       return institutMangementDto;
     }
 
     public boolean updateSaveDetailsBO(InstitutMangementDto ui) throws SQLException {
-        return instituteDetailsDAO.updateSaveDetails(ui);
+        InstitutMangement institutMangement = new InstitutMangement(ui.getGmail(),ui.getContact(),ui.getFb(),ui.getHall());
+        return instituteDetailsDAO.updateSaveDetails(institutMangement);
     }
 }

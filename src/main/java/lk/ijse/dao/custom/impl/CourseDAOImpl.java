@@ -4,6 +4,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.CourseDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CourseDto;
+import lk.ijse.entity.Course;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +30,7 @@ public class CourseDAOImpl implements CourseDAO {
         return SQLUtil.execute( "INSERT INTO course VALUES(?,?,?,?,?)",courseID,courseName,courseFeee,date,courseDuration);
     }
 
-    public List<CourseDto> getAllcourse() throws SQLException, ClassNotFoundException {
+    public List<Course> getAllcourse() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT *FROM course ";
@@ -37,12 +38,12 @@ public class CourseDAOImpl implements CourseDAO {
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM course "); //pstm.executeQuery();
 
 
-        ArrayList<CourseDto> dtoList = new ArrayList<>();
+        ArrayList<Course> dtoList = new ArrayList<>();
         // ClassDto dto = null;
 
         while (resultSet.next()) {
             dtoList.add(
-                    new CourseDto(
+                    new Course(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
@@ -56,7 +57,7 @@ public class CourseDAOImpl implements CourseDAO {
         return dtoList;
     }
 
-    public List<CourseDto> getCourseID() throws SQLException, ClassNotFoundException {
+    public List<Course> getCourseID() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT *FROM course ";
@@ -64,12 +65,12 @@ public class CourseDAOImpl implements CourseDAO {
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM course ");//pstm.executeQuery();
 
 
-        ArrayList<CourseDto> dtoList = new ArrayList<>();
+        ArrayList<Course> dtoList = new ArrayList<>();
         // ClassDto dto = null;
 
         while (resultSet.next()) {
             dtoList.add(
-                    new CourseDto(
+                    new Course(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
@@ -83,7 +84,7 @@ public class CourseDAOImpl implements CourseDAO {
         return dtoList;
     }
 
-    public List<CourseDto> getAllcourseID() throws SQLException, ClassNotFoundException {
+    public List<Course> getAllcourseID() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT *FROM course ";
@@ -91,12 +92,12 @@ public class CourseDAOImpl implements CourseDAO {
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM course "); //pstm.executeQuery();
 
 
-        ArrayList<CourseDto> dtoList = new ArrayList<>();
+        ArrayList<Course> dtoList = new ArrayList<>();
         // ClassDto dto = null;
 
         while (resultSet.next()) {
             dtoList.add(
-                    new CourseDto(
+                    new Course(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),

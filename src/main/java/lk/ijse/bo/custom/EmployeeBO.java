@@ -9,13 +9,13 @@ import java.util.List;
 
 public interface EmployeeBO extends SuperBO {
 
-    public EmployeeDto loardEmpValuesDetails(String aId) throws SQLException;
+    public EmployeeDto loardEmpValuesDetails(String aId) throws SQLException, ClassNotFoundException;
 
     public boolean saveEmployeeBO(EmployeeDto emp) throws SQLException, ClassNotFoundException;
 
-    public EmployeeDto allEmployeeDetailsBO(String empId) throws SQLException;
+    public EmployeeDto allEmployeeDetailsBO(String empId) throws SQLException, ClassNotFoundException;
 
-    public List<EmployeeDto> getAllEmployeeBO() throws SQLException ;
+    public List<EmployeeDto> getAllEmployeeBO() throws SQLException, ClassNotFoundException;
 
     public int howMachEmployeeBO() throws SQLException;
     public boolean updateEmployeeBO(EmployeeDto emp) throws SQLException, ClassNotFoundException;

@@ -4,6 +4,7 @@ import lk.ijse.dao.SuperDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.EmpAttendnaceDto;
 import lk.ijse.dto.EmployeeAttendanceJoin;
+import lk.ijse.entity.EmpAttendnace;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,5 +20,5 @@ public interface EmlpoyeeAttendanceDAO extends SuperDAO {
      int generateNextOrderId() throws SQLException;
      List<EmployeeAttendanceJoin> getAllEmployeeAttndance() throws SQLException, ClassNotFoundException;
     int howMachEmployeeAttendance() throws SQLException;
-    List<EmpAttendnaceDto> getAllEmployeeAttendance(String id) throws SQLException, ClassNotFoundException;
+    List<EmpAttendnace> getAllEmployeeAttendance(String id) throws SQLException, ClassNotFoundException;
 }

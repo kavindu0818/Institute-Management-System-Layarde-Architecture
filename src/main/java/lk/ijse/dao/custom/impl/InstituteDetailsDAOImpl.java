@@ -3,6 +3,7 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.dao.custom.InstituteDetailsDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.InstitutMangementDto;
+import lk.ijse.entity.InstitutMangement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +27,7 @@ public class InstituteDetailsDAOImpl implements InstituteDetailsDAO {
         return isSaved;
     }
 
-    public InstitutMangementDto allDetails() throws SQLException {
+    public InstitutMangement allDetails() throws SQLException {
             Connection connection = DbConnection.getInstance().getConnection();
 
             String sql = "SELECT * FROM  institute_details ";
@@ -34,7 +35,7 @@ public class InstituteDetailsDAOImpl implements InstituteDetailsDAO {
 
             ResultSet resultSet = pstm.executeQuery();
 
-            InstitutMangementDto dto = null;
+            InstitutMangement dto = null;
 
             if (resultSet.next()) {
                 String gmail = resultSet.getString(1);
@@ -42,12 +43,12 @@ public class InstituteDetailsDAOImpl implements InstituteDetailsDAO {
                 String facebook = resultSet.getString(3);
                 String hall = resultSet.getString(4);
 
-                dto = new InstitutMangementDto(gmail, contact, facebook, hall);
+                dto = new InstitutMangement(gmail, contact, facebook, hall);
             }
             return dto;
         }
 
-    public boolean updateSaveDetails(InstitutMangementDto ui) throws SQLException {
+    public boolean updateSaveDetails(InstitutMangement ui) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "UPDATE institute_details SET gmail=?, contact=?, facebook=?,hall=? WHERE details_No=1";
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -62,7 +63,7 @@ public class InstituteDetailsDAOImpl implements InstituteDetailsDAO {
 
     }
 
-    public InstitutMangementDto setAllDetails() throws SQLException {
+    public InstitutMangement setAllDetails() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM  institute_details ";
@@ -70,7 +71,7 @@ public class InstituteDetailsDAOImpl implements InstituteDetailsDAO {
 
         ResultSet resultSet = pstm.executeQuery();
 
-        InstitutMangementDto dto = null;
+        InstitutMangement dto = null;
 
         if (resultSet.next()) {
             String gmail = resultSet.getString(1);
@@ -78,7 +79,7 @@ public class InstituteDetailsDAOImpl implements InstituteDetailsDAO {
             String facebook = resultSet.getString(3);
             String hall = resultSet.getString(4);
 
-            dto = new InstitutMangementDto(gmail, contact, facebook, hall);
+            dto = new InstitutMangement(gmail, contact, facebook, hall);
         }
         return dto;
 

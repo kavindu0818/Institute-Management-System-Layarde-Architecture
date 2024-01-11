@@ -4,6 +4,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.NoticeDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.NoticeDto;
+import lk.ijse.entity.Notice;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class NoticeDAOImpl implements NoticeDAO {
         return SQLUtil.execute("INSERT INTO notice VALUES(?,?)",nd.getNote(),date); //preparedStatement.executeUpdate() > 0;
     }
 
-    public List<NoticeDto> getAllNotice() throws SQLException, ClassNotFoundException {
+    public List<Notice> getAllNotice() throws SQLException, ClassNotFoundException {
        // Connection connection = DbConnection.getInstance().getConnection();
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
@@ -37,11 +38,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 //        pstm.setString(1, String.valueOf(sqldate));
         ResultSet resultSet = SQLUtil.execute( "SELECT * FROM notice WHERE date = ?",da); //pstm.executeQuery();
 
-        ArrayList<NoticeDto> dtoList = new ArrayList<>();
+        ArrayList<Notice> dtoList = new ArrayList<>();
 
         while(resultSet.next()) {
             dtoList.add(
-                    new NoticeDto(
+                    new Notice(
                             resultSet.getString(1),
                             resultSet.getString(2)
 

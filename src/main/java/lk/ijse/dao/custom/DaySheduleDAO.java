@@ -3,6 +3,7 @@ package lk.ijse.dao.custom;
 import lk.ijse.dao.SuperDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.DaySheduleDto;
+import lk.ijse.entity.DayShedule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,6 @@ import java.util.List;
 
 public interface DaySheduleDAO extends SuperDAO {
 
-    boolean saveValues(DaySheduleDto day) throws SQLException, ClassNotFoundException;
-    List<DaySheduleDto> getAllShedul() throws SQLException, ClassNotFoundException;
+    boolean saveValues(DayShedule day) throws SQLException, ClassNotFoundException;
+    List<DayShedule> getAllShedul() throws SQLException, ClassNotFoundException;
 }

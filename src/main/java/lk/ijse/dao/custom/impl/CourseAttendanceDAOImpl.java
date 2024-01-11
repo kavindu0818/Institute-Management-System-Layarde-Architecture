@@ -3,19 +3,18 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.CourseAttendanceDAO;
 import lk.ijse.db.DbConnection;
-import lk.ijse.dto.AttendanceJoinDto;
-import lk.ijse.dto.CourseAttendanceJoinDto;
-import lk.ijse.dto.CourseAttendanceStuDetailsJoinDto;
+import lk.ijse.entity.AttendanceJoin;
+import lk.ijse.entity.CourseAttendanceJoin;
+import lk.ijse.entity.CourseAttendanceStuDetailsJoin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
-    public List<CourseAttendanceJoinDto> getAllCourseAttendance(String courseID, String date) throws SQLException, ClassNotFoundException {
+    public ArrayList<CourseAttendanceJoin> getAllCourseAttendance(String courseID, String date) throws SQLException, ClassNotFoundException {
 
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
@@ -33,11 +32,11 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
                 "INNER JOIN course_details ON course_attendance.cusfull_id = course_details.cusDfull_id " +
                 "WHERE cus_id = ? AND date =?",courseID,date); //pstm.executeQuery();
 
-        ArrayList<CourseAttendanceJoinDto> dtoList = new ArrayList<>();
+        ArrayList<CourseAttendanceJoin> dtoList = new ArrayList<>();
 
         while (resultSet.next()) {
             dtoList.add(
-                    new CourseAttendanceJoinDto(
+                    new CourseAttendanceJoin(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getDate(3),
@@ -100,7 +99,7 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
 
     }
 
-    public List<AttendanceJoinDto>getAllAttndance() throws SQLException, ClassNotFoundException {
+    public ArrayList<AttendanceJoin> getAllAttndance() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
@@ -121,11 +120,11 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
                     "INNER JOIN course_details ON course_attendance.cusfull_id = course_details.cusDfull_id " +
                     "WHERE date = ?",sqldate); //pstm.executeQuery();
 
-            ArrayList<AttendanceJoinDto> dtoList = new ArrayList<>();
+            ArrayList<AttendanceJoin> dtoList = new ArrayList<>();
 
             while (resultSet.next()) {
                 dtoList.add(
-                        new AttendanceJoinDto(
+                        new AttendanceJoin(
                                 resultSet.getString(1),
                                 resultSet.getDate(2),
                                 resultSet.getString(3),
@@ -160,7 +159,7 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
     }
 
 
-    public List<CourseAttendanceStuDetailsJoinDto> getStudentAllAttendnce(String id1) throws SQLException, ClassNotFoundException {
+    public ArrayList<CourseAttendanceStuDetailsJoin> getStudentAllAttendnce(String id1) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT course_attendance.date,  course_details.cus_name, course_attendance.time" +
@@ -175,11 +174,11 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
                 "INNER JOIN  course_attendance ON course_details.cusDfull_id = course_attendance.cusfull_id " +
                 "WHERE stu_id = ?",id1); //pstm.executeQuery();
 
-        ArrayList<CourseAttendanceStuDetailsJoinDto> dtoList = new ArrayList<>();
+        ArrayList<CourseAttendanceStuDetailsJoin> dtoList = new ArrayList<>();
 
         while (resultSet.next()) {
             dtoList.add(
-                    new CourseAttendanceStuDetailsJoinDto(
+                    new CourseAttendanceStuDetailsJoin(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3)

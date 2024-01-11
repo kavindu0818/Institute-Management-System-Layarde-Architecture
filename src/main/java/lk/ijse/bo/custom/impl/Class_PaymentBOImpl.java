@@ -5,9 +5,14 @@ import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.Class_PaymentDAO;
 import lk.ijse.dao.custom.impl.Class_PaymentDAOImpl;
 import lk.ijse.dto.ClassPaymentDto;
+import lk.ijse.dto.Class_DetailsDto;
 import lk.ijse.dto.Class_paymentDto;
+import lk.ijse.entity.ClassPayment;
+import lk.ijse.entity.Class_Details;
+import lk.ijse.entity.Class_payment;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Class_PaymentBOImpl implements Class_PaymentBO {
@@ -24,10 +29,27 @@ public class Class_PaymentBOImpl implements Class_PaymentBO {
     }
 
     public List<ClassPaymentDto> getAllClassPaymentBO(String clssID, String month) throws SQLException, ClassNotFoundException {
-       return classPaymentDAO.getAllClassPayment(clssID,month);
+        List<ClassPayment> classPayments = classPaymentDAO.getAllClassPayment(clssID,month);
+        ArrayList<ClassPaymentDto> classPaymentDtos = new ArrayList<>();
+
+        for (ClassPayment classPayment : classPayments){
+            classPaymentDtos.add(new ClassPaymentDto(classPayment.getStId(),classPayment.getName(),classPayment.getDate(),classPayment.getAmount()));
+
+        }
+
+
+       return classPaymentDtos;
     }
 
     public List<Class_paymentDto> getStudentAllPaymentBO(String id2) throws SQLException, ClassNotFoundException {
-       return classPaymentDAO.getStudentAllPayment(id2);
+
+        List<Class_payment> classPayments = classPaymentDAO.getStudentAllPayment(id2);
+        ArrayList<Class_paymentDto> classPaymentDtos = new ArrayList<>();
+
+        for (Class_payment classPayment : classPayments){
+            classPaymentDtos.add(new Class_paymentDto(classPayment.getPay_id(),classPayment.getClass_Id(),classPayment.getStu_Id(),classPayment.getName(),classPayment.getPaymentMonth(),classPayment.getDate(),classPayment.getFull_Id(),classPayment.getAmount()));
+
+        }
+        return classPaymentDtos;
     }
 }

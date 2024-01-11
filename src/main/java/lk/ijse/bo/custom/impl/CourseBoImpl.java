@@ -6,8 +6,10 @@ import lk.ijse.dao.custom.CourseDAO;
 import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dao.custom.impl.CourseDAOImpl;
 import lk.ijse.dto.CourseDto;
+import lk.ijse.entity.Course;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseBoImpl implements CourseBO {
@@ -16,18 +18,42 @@ public class CourseBoImpl implements CourseBO {
     CourseDAO courseDAO = (CourseDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.COURSE);
 
     public List<CourseDto> getAllcourseDetails() throws SQLException, ClassNotFoundException {
-        return courseDAO.getAllcourse();
+       List<Course> courses = courseDAO.getAllcourse();
+        ArrayList<CourseDto> courseDtos = new ArrayList<>();
+
+        for (Course course: courses){
+            courseDtos.add(new CourseDto(course.getCusId(),course.getCusName(),course.getCusFee(),course.getCourseStartDay(),course.getCourseDuration()));
+        }
+
+        return courseDtos;
     }
 
     public List<CourseDto> getAllcourseIDBO() throws SQLException, ClassNotFoundException {
-       return courseDAO.getAllcourseID();
+        List<Course> courses = courseDAO.getAllcourseID();;
+        ArrayList<CourseDto> courseDtos = new ArrayList<>();
+
+        for (Course course: courses){
+            courseDtos.add(new CourseDto(course.getCusId(),course.getCusName(),course.getCusFee(),course.getCourseStartDay(),course.getCourseDuration()));
+        }
+
+        return courseDtos;
+
     }
 
     public List<CourseDto> getCourseIDBO() throws SQLException, ClassNotFoundException {
-         return courseDAO.getCourseID();
+        List<Course> courses = courseDAO.getCourseID();
+        ArrayList<CourseDto> courseDtos = new ArrayList<>();
+
+        for (Course course: courses){
+            courseDtos.add(new CourseDto(course.getCusId(),course.getCusName(),course.getCusFee(),course.getCourseStartDay(),course.getCourseDuration()));
+        }
+
+        return courseDtos;
+
     }
 
     public boolean saveCourseDetailsBO(String courseID, String courseName, String courseFeee, String courseDuration, String date) throws SQLException, ClassNotFoundException {
         return courseDAO.saveCourseDetails(courseID,courseName,courseFeee,courseDuration,date);
     }
+
 }

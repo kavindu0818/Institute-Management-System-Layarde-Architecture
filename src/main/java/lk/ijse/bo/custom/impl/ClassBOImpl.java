@@ -5,8 +5,12 @@ import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.ClassDAO;
 import lk.ijse.dao.custom.impl.ClassDAOImpl;
 import lk.ijse.dto.ClassDto;
+import lk.ijse.dto.Class_paymentDto;
+import lk.ijse.entity.Class;
+import lk.ijse.entity.Class_payment;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClassBOImpl implements ClassBO {
@@ -15,27 +19,62 @@ public class ClassBOImpl implements ClassBO {
 
 
     public List<ClassDto> getAllClassRegister() throws SQLException, ClassNotFoundException {
-        return classDAO.getAllClass();
+
+        List<Class> clz = classDAO.getAllClass();
+        ArrayList<ClassDto> classDtos = new ArrayList<>();
+
+        for (Class classes : clz){
+            classDtos.add(new ClassDto(classes.getClass_id(),classes.getClassName(),classes.getTut_id()));
+
+        }
+
+        return classDtos;
     }
 
     public List<ClassDto> getAllClassUpdate() throws SQLException, ClassNotFoundException {
-        return classDAO.getAllClass();
+        List<Class> clz = classDAO.getAllClass();
+        ArrayList<ClassDto> classDtos = new ArrayList<>();
+
+        for (Class classes : clz){
+            classDtos.add(new ClassDto(classes.getClass_id(),classes.getClassName(),classes.getTut_id()));
+
+        }
+
+        return classDtos;
     }
 
 
     public List<ClassDto> getAllClassDetails() throws SQLException, ClassNotFoundException {
-        return classDAO.getAllClass();
+        List<Class> clz = classDAO.getAllClass();
+        ArrayList<ClassDto> classDtos = new ArrayList<>();
+
+        for (Class classes : clz){
+            classDtos.add(new ClassDto(classes.getClass_id(),classes.getClassName(),classes.getTut_id()));
+
+        }
+
+        return classDtos;
     }
 
     public List<ClassDto> getAllClassBO() throws SQLException, ClassNotFoundException {
-       return classDAO.getAllClass();
+        List<Class> clz = classDAO.getAllClass();
+        ArrayList<ClassDto> classDtos = new ArrayList<>();
+
+        for (Class classes : clz){
+            classDtos.add(new ClassDto(classes.getClass_id(),classes.getClassName(),classes.getTut_id()));
+
+        }
+
+        return classDtos;
     }
 
     public boolean classSaveBO(ClassDto cms) throws SQLException, ClassNotFoundException {
-       return classDAO.classSave(cms);
+        Class classEnt = new Class(cms.getClass_id(),cms.getTut_id(),cms.getClassName());
+       return classDAO.classSave(classEnt);
     }
 
-    public boolean saveCoursesClassBO(ClassDto cd) throws SQLException, ClassNotFoundException {
-        return classDAO.saveCoursesClass(cd);
+    public boolean saveCoursesClassBO(ClassDto cms) throws SQLException, ClassNotFoundException {
+        Class classEnt = new Class(cms.getClass_id(),cms.getTut_id(),cms.getClassName());
+        return classDAO.saveCoursesClass(classEnt);
     }
 }

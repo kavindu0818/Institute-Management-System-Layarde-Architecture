@@ -2,14 +2,13 @@ package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.EmployeeAttendanceBO;
 import lk.ijse.dao.DAOFactory;
-import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.dao.custom.EmlpoyeeAttendanceDAO;
-import lk.ijse.dao.custom.impl.EmployeeAttendanceDAOImpl;
 import lk.ijse.dto.EmpAttendnaceDto;
 import lk.ijse.dto.EmployeeAttendanceJoin;
-import lk.ijse.dto.EmployeeDto;
+import lk.ijse.entity.EmpAttendnace;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeAttendanceBOImpl implements EmployeeAttendanceBO {
@@ -18,7 +17,14 @@ public class EmployeeAttendanceBOImpl implements EmployeeAttendanceBO {
     ;
     public List<EmployeeAttendanceJoin> getAllEmployeeAttndanceAll() throws SQLException, ClassNotFoundException {
 
-        return employeeAttendanceDAO.getAllEmployeeAttndance();
+        List<EmployeeAttendanceJoin> employeeAttendances =  employeeAttendanceDAO.getAllEmployeeAttndance();
+        ArrayList<EmployeeAttendanceJoin> employeeAttendanceJoins = new ArrayList<>();
+
+        for (EmployeeAttendanceJoin employeeAttendanceJoin : employeeAttendances){
+            employeeAttendanceJoins.add(new EmployeeAttendanceJoin(employeeAttendanceJoin.getEmpID(),employeeAttendanceJoin.getEmpName()));
+        }
+
+        return employeeAttendanceJoins;
     }
 
 
@@ -27,7 +33,13 @@ public class EmployeeAttendanceBOImpl implements EmployeeAttendanceBO {
     }
 
     public List<EmpAttendnaceDto> getAllEmployeeAttendanceBO(String id) throws SQLException, ClassNotFoundException {
-        return employeeAttendanceDAO.getAllEmployeeAttendance(id);
+        List<EmpAttendnace> empAttendnaces =  employeeAttendanceDAO.getAllEmployeeAttendance(id);
+        ArrayList<EmpAttendnaceDto> empAttendnaceDtos = new ArrayList<>();
+
+        for (EmpAttendnace empAttendnace: empAttendnaces){
+            empAttendnaceDtos.add(new EmpAttendnaceDto(empAttendnace.getAttenId(),empAttendnace.getAttenMarkId(),empAttendnace.getEmpId(),empAttendnace.getDate(),empAttendnace.getTime()));
+        }
+        return empAttendnaceDtos;
     }
 
     @Override

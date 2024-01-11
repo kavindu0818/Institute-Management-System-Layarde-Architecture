@@ -4,6 +4,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.SubjectDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.SubjectDto;
+import lk.ijse.entity.Subject;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +29,7 @@ public class SubjectDAOImpl implements SubjectDAO {
        return SQLUtil.execute( "INSERT INTO subject VALUES(?,?)",sub.getSub_id(),sub.getSubjectName());
     }
 
-    public List<SubjectDto> getSubject() throws SQLException, ClassNotFoundException {
+    public List<Subject> getSubject() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT *FROM subject";
@@ -36,12 +37,12 @@ public class SubjectDAOImpl implements SubjectDAO {
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM subject");//pstm.executeQuery();
 
 
-        ArrayList<SubjectDto> dtoList = new ArrayList<>();
+        ArrayList<Subject> dtoList = new ArrayList<>();
         // ClassDto dto = null;
 
         while(resultSet.next()) {
             dtoList.add(
-                    new SubjectDto(
+                    new Subject(
                             resultSet.getString(1),
                             resultSet.getString(2)
 

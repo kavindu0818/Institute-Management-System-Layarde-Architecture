@@ -6,6 +6,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.UserDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.UserDto;
+import lk.ijse.entity.User;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -33,7 +34,7 @@ public class UserDAOImpl implements UserDAO {
         return SQLUtil.execute("INSERT INTO user VALUES(?, ?, ?,?)",ud.getUserID(),ud.getPassword(),ud.getUserName(),imageSr);
     }
 
-    public UserDto selectUserValue() throws SQLException, ClassNotFoundException {
+    public User selectUserValue() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = " SELECT *FROM user ";
@@ -41,7 +42,7 @@ public class UserDAOImpl implements UserDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM user"); //pstm.executeQuery();
 
-        UserDto dto = null;
+        User dto = null;
 
         if (resultSet.next()) {
             String userID = resultSet.getString(1);
@@ -50,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
             byte[] imageBytes = resultSet.getBytes(4);
 
 
-            dto = new UserDto(userID,password, userName, imageBytes);
+            dto = new User(userID,password, userName, imageBytes);
         }
         return dto;
     }
@@ -111,7 +112,7 @@ public class UserDAOImpl implements UserDAO {
 
 
 
-    public UserDto getUserValueUser(String us) throws SQLException, ClassNotFoundException {
+    public User getUserValueUser(String us) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = " SELECT *FROM user WHERE password=?";
@@ -119,7 +120,7 @@ public class UserDAOImpl implements UserDAO {
 //        pstm.setString(1,us);
         ResultSet resultSet =SQLUtil.execute("SELECT *FROM user WHERE password=?",us);
 
-        UserDto dto = null;
+        User dto = null;
 
         if (resultSet.next()) {
             String userID = resultSet.getString(1);
@@ -128,7 +129,7 @@ public class UserDAOImpl implements UserDAO {
             byte[] imageBytes = resultSet.getBytes(4);
 
 
-            dto = new UserDto(userID,password,userName,imageBytes);
+            dto = new User(userID,password,userName,imageBytes);
         }
         return dto;
 

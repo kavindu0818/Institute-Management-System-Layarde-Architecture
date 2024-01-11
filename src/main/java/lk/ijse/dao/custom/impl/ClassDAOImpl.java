@@ -4,6 +4,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.ClassDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.ClassDto;
+import lk.ijse.entity.Class;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class ClassDAOImpl implements ClassDAO {
 
-    public List<ClassDto> getAllClass() throws SQLException, ClassNotFoundException {
+    public List<Class> getAllClass() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT *FROM class ";
@@ -22,12 +23,12 @@ public class ClassDAOImpl implements ClassDAO {
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM class ");//pstm.executeQuery();
 
 
-        ArrayList<ClassDto> dtoList = new ArrayList<>();
+        ArrayList<Class> dtoList = new ArrayList<>();
        // ClassDto dto = null;
 
         while(resultSet.next()) {
             dtoList.add(
-                    new ClassDto(
+                    new Class(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3)
@@ -77,7 +78,7 @@ public class ClassDAOImpl implements ClassDAO {
         return isSaved;
     }
 
-    public boolean saveCoursesClass(ClassDto cd) throws SQLException, ClassNotFoundException {
+    public boolean saveCoursesClass(Class cd) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "INSERT INTO class VALUES(?,?,?)";
@@ -90,7 +91,7 @@ public class ClassDAOImpl implements ClassDAO {
         }
 
 
-    public boolean classSave(ClassDto cms) throws SQLException, ClassNotFoundException {
+    public boolean classSave(Class cms) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "INSERT INTO class VALUES(?,?,?)";

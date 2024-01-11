@@ -5,6 +5,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.ClassDetailsDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.Class_DetailsDto;
+import lk.ijse.entity.Class_Details;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import java.util.List;
 public class Class_DetailsDAOImpl implements ClassDetailsDAO {
 
 
-    public Class_DetailsDto loardValues(String aId) throws SQLException, ClassNotFoundException {
+    public Class_Details loardValues(String aId) throws SQLException, ClassNotFoundException {
 
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
@@ -25,7 +26,7 @@ public class Class_DetailsDAOImpl implements ClassDetailsDAO {
 //        pstm.setString(1, aId);
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  class_Details WHERE full_id = ?",aId);
-        Class_DetailsDto dto = null;
+        Class_Details dto = null;
 
         if(resultSet.next()) {
             String fullId = resultSet.getString(1);
@@ -33,13 +34,13 @@ public class Class_DetailsDAOImpl implements ClassDetailsDAO {
             String classId = resultSet.getString(3);
             String stuName = resultSet.getString(4);
 
-            dto = new Class_DetailsDto(fullId,stuId,classId,stuName);
+            dto = new Class_Details(fullId,stuId,classId,stuName);
         }
         return dto;
 
     }
 
-    public List<Class_DetailsDto> getFullId(String sID) throws SQLException, ClassNotFoundException {
+    public List<Class_Details> getFullId(String sID) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT * FROM  class_Details WHERE stu_id = ?";
@@ -47,12 +48,12 @@ public class Class_DetailsDAOImpl implements ClassDetailsDAO {
 //        pstm.setString(1, sID);
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  class_Details WHERE stu_id = ?",sID);//pstm.executeQuery();
-        ArrayList<Class_DetailsDto> dtoList = new ArrayList<>();
+        ArrayList<Class_Details> dtoList = new ArrayList<>();
         // ClassDto dto = null;
 
         while(resultSet.next()) {
             dtoList.add(
-                    new Class_DetailsDto(
+                    new Class_Details(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
@@ -65,7 +66,7 @@ public class Class_DetailsDAOImpl implements ClassDetailsDAO {
 
     }
 
-    public boolean saveClassDetails(Class_DetailsDto ad) throws SQLException, ClassNotFoundException {
+    public boolean saveClassDetails(Class_Details ad) throws SQLException, ClassNotFoundException {
 
         return SQLUtil.execute("INSERT INTO class_details VALUES(?, ?, ?, ?)",ad.getFull_id(),ad.getStu_id(),ad.getClass_id(),ad.getStu_name());
 

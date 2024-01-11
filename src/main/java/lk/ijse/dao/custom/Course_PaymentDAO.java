@@ -4,6 +4,8 @@ import lk.ijse.dao.SuperDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CfdDto;
 import lk.ijse.dto.CoursePaymentJoinDto;
+import lk.ijse.entity.Cfd;
+import lk.ijse.entity.CoursePaymentJoin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +19,6 @@ public interface Course_PaymentDAO extends SuperDAO {
      boolean savePayment(String payId, double amount, String cusDfull, String stuID) throws SQLException, ClassNotFoundException;
      int generateNextCourseFeeId() throws SQLException;
      int splitOrderId(int id);
-     List<CoursePaymentJoinDto> getAllPayment(String cusID, String date) throws SQLException, ClassNotFoundException;
-     List<CfdDto> getStudentAllPayment(String id2) throws SQLException, ClassNotFoundException;
+     List<CoursePaymentJoin> getAllPayment(String cusID, String date) throws SQLException, ClassNotFoundException;
+     List<Cfd> getStudentAllPayment(String id2) throws SQLException, ClassNotFoundException;
 }

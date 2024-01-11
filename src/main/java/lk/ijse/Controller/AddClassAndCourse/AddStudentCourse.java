@@ -52,23 +52,23 @@ public class AddStudentCourse {
        // generateNextOrderId();
     }
 
-    public void setClassIDcmb() {
-        var model = new ClassDAOImpl();
-
-        try {
-            List<ClassDto> dtoList = model.getAllClass();
-
-            for (ClassDto classDto : dtoList) {
-                cmbClassCID.getItems().add(classDto.getClass_id());
-                //cmbClasCIName.getItems().add(classDto.getClassName());
-            }
-
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public void setClassIDcmb() {
+//        var model = new ClassDAOImpl();
+//
+//        try {
+//            List<ClassDto> dtoList = model.getAllClass();
+//
+//            for (ClassDto classDto : dtoList) {
+//                cmbClassCID.getItems().add(classDto.getClass_id());
+//                //cmbClasCIName.getItems().add(classDto.getClassName());
+//            }
+//
+//        } catch (SQLException ex) {
+//            throw new RuntimeException(ex);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
     public void setCoursecmb() {
         var model = new CourseDAOImpl();
 

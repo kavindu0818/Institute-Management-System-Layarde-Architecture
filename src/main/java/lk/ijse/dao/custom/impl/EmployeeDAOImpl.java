@@ -3,10 +3,13 @@ package lk.ijse.dao.custom.impl;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.EmployeeDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.EmployeeDto;
+import lk.ijse.entity.Employee;
 import lk.ijse.entity.StudentfullDetails;
+import lombok.SneakyThrows;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -48,47 +51,50 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public boolean save(EmployeeDto emp) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "INSERT INTO employee VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, emp.getEmp_id());
-        pstm.setString(2, emp.getName());
-        pstm.setString(3, emp.getGmail());
-        pstm.setString(4, emp.getContactNo());
-        pstm.setString(5, emp.getNic());
-        pstm.setString(6, emp.getAddress());
-        pstm.setString(7, emp.getPosition());
-        pstm.setString(8, emp.getDate());
-        pstm.setString(9, emp.getBankAccountNum());
-        pstm.setString(10, emp.getBankBranchName());
-        pstm.setInt(11, emp.getAge());
-
-        pstm.setString(12, emp.getGendar());
+    public boolean save(Employee emp) throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//        String sql = "INSERT INTO employee VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+//
+//        PreparedStatement pstm = connection.prepareStatement(sql);
+//        pstm.setString(1, emp.getEmp_id());
+//        pstm.setString(2, emp.getName());
+//        pstm.setString(3, emp.getGmail());
+//        pstm.setString(4, emp.getContactNo());
+//        pstm.setString(5, emp.getNic());
+//        pstm.setString(6, emp.getAddress());
+//        pstm.setString(7, emp.getPosition());
+//        pstm.setString(8, emp.getDate());
+//        pstm.setString(9, emp.getBankAccountNum());
+//        pstm.setString(10, emp.getBankBranchName());
+//        pstm.setInt(11, emp.getAge());
+//
+//        pstm.setString(12, emp.getGendar());
 
         byte[] imageSr = emp.getImage();
-        pstm.setBytes(13, imageSr);
-        pstm.setString(14, emp.getEmpAttendanceID());
-        boolean isSaved = pstm.executeUpdate() > 0;
+//        pstm.setBytes(13, imageSr);
+//        pstm.setString(14, emp.getEmpAttendanceID());
+//        boolean isSaved = pstm.executeUpdate() > 0;
 
 
-        return isSaved;
+//        return isSaved;
+
+        return SQLUtil.execute("INSERT INTO employee VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",emp.getEmp_id(),emp.getName(),emp.getGmail(),emp.getContactNo(),emp.getNic(),emp.getAddress(),emp.getPosition(),emp.getDate(),
+                emp.getBankAccountNum(),emp.getBankBranchName(),emp.getAge(),emp.getGendar(),imageSr,emp.getEmpAttendanceID());
 
 
     }
 
    @Override
-    public EmployeeDto search(String empId) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public Employee search(String empId) throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//
+//        String sql = "SELECT * FROM employee WHERE emp_id = ?";
+//        PreparedStatement pstm = connection.prepareStatement(sql);
+//        pstm.setString(1, empId);
 
-        String sql = "SELECT * FROM employee WHERE emp_id = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, empId);
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM employee WHERE emp_id = ?",empId);
 
-        ResultSet resultSet = pstm.executeQuery();
-
-        EmployeeDto dto = null;
+        Employee dto = null;
 
         if (resultSet.next()) {
             String emp_id = resultSet.getString(1);
@@ -111,40 +117,42 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             // Image fxImage = convertBytesToJavaFXImage(imageBytes);
 
 
-            dto = new EmployeeDto(emp_id, empName, empGamil, empContact, empNic, empAddress, empPosition, empDate, empBankAccount, empBankBranch,empAge, empGender, imageBytes,empAttenID);
+            dto = new Employee(emp_id, empName, empGamil, empContact, empNic, empAddress, empPosition, empDate, empBankAccount, empBankBranch,empAge, empGender, imageBytes,empAttenID);
         }
         return dto;
     }
 
 @Override
-    public boolean update(EmployeeDto emp) throws SQLException {
+    public boolean update(Employee emp) throws SQLException, ClassNotFoundException {
 
-            Connection connection = DbConnection.getInstance().getConnection();
-            String sql = "UPDATE employee SET name = ?,gmail = ?,contactNo = ?,nic = ?,address =?,position = ?, registrationDate = ?,bankAccountNum =?,bankBranchName =?,age = ?,gendar = ?,image =?,empAttendnceId =? WHERE emp_id = ?";
-
-            PreparedStatement pstm = connection.prepareStatement(sql);
-
-            pstm.setString(1, emp.getName());
-            pstm.setString(2, emp.getGmail());
-            pstm.setString(3, emp.getContactNo());
-            pstm.setString(4, emp.getNic());
-            pstm.setString(5, emp.getAddress());
-            pstm.setString(6, emp.getPosition());
-            pstm.setString(7, emp.getDate());
-            pstm.setString(8, emp.getBankAccountNum());
-            pstm.setString(9, emp.getBankBranchName());
-            pstm.setInt(10, emp.getAge());
-            pstm.setString(11, emp.getGendar());
+//            Connection connection = DbConnection.getInstance().getConnection();
+//            String sql = "UPDATE employee SET name = ?,gmail = ?,contactNo = ?,nic = ?,address =?,position = ?, registrationDate = ?,bankAccountNum =?,bankBranchName =?,age = ?,gendar = ?,image =?,empAttendnceId =? WHERE emp_id = ?";
+//
+//            PreparedStatement pstm = connection.prepareStatement(sql);
+//
+//            pstm.setString(1, emp.getName());
+//            pstm.setString(2, emp.getGmail());
+//            pstm.setString(3, emp.getContactNo());
+//            pstm.setString(4, emp.getNic());
+//            pstm.setString(5, emp.getAddress());
+//            pstm.setString(6, emp.getPosition());
+//            pstm.setString(7, emp.getDate());
+//            pstm.setString(8, emp.getBankAccountNum());
+//            pstm.setString(9, emp.getBankBranchName());
+//            pstm.setInt(10, emp.getAge());
+//            pstm.setString(11, emp.getGendar());
 
             byte[] imageSr = emp.getImage();
-            pstm.setBytes(12, imageSr);
-            pstm.setString(13, emp.getEmpAttendanceID());
-            pstm.setString(14, emp.getEmp_id());
+//            pstm.setBytes(12, imageSr);
+//            pstm.setString(13, emp.getEmpAttendanceID());
+//            pstm.setString(14, emp.getEmp_id());
 
       //  System.out.println(toString(emp));
 
 
-            return pstm.executeUpdate() > 0;
+//            return pstm.executeUpdate() > 0;
+            return SQLUtil.execute("UPDATE employee SET name = ?,gmail = ?,contactNo = ?,nic = ?,address =?,position = ?, registrationDate = ?,bankAccountNum =?,bankBranchName =?,age = ?,gendar = ?,image =?,empAttendnceId =? WHERE emp_id = ?",emp.getName(),emp.getGmail(),emp.getContactNo(),emp.getNic(),emp.getAddress(),emp.getPosition(),emp.getDate(),
+                    emp.getBankAccountNum(),emp.getBankBranchName(),emp.getAge(),emp.getGendar(),imageSr,emp.getEmpAttendanceID(),emp.getEmp_id());
 
     }
 
@@ -159,17 +167,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public EmployeeDto allEmployeeDetails(String empId) throws SQLException {
+    public Employee allEmployeeDetails(String empId) throws SQLException, ClassNotFoundException {
 
-        Connection connection = DbConnection.getInstance().getConnection();
+//        Connection connection = DbConnection.getInstance().getConnection();
+//
+//        String sql = "SELECT * FROM employee WHERE emp_id = ?";
+//        PreparedStatement pstm = connection.prepareStatement(sql);
+//        pstm.setString(1, empId);
 
-        String sql = "SELECT * FROM employee WHERE emp_id = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, empId);
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM employee WHERE emp_id = ?",empId);
 
-        ResultSet resultSet = pstm.executeQuery();
-
-        EmployeeDto dto = null;
+        Employee dto = null;
 
         if (resultSet.next()) {
             String emp_id = resultSet.getString(1);
@@ -191,7 +199,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             // Image fxImage = convertBytesToJavaFXImage(imageBytes);
 
 
-            dto = new EmployeeDto(emp_id, empName, empGamil, empContact, empNic, empAddress, empPosition, empDate, empBankAccount,  empBankBranch,empAge, empGender, imageBytes,empAttendId
+            dto = new Employee(emp_id, empName, empGamil, empContact, empNic, empAddress, empPosition, empDate, empBankAccount,  empBankBranch,empAge, empGender, imageBytes,empAttendId
             );
         }
         return dto;
@@ -204,18 +212,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 //        return null;
 //    }
 
-    public List<EmployeeDto> getAll() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public List<Employee> getAll() throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//
+//        String sql = "SELECT * FROM employee";
+//        PreparedStatement pstm = connection.prepareStatement(sql);
 
-        String sql = "SELECT * FROM employee";
-        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM employee");
 
-        ResultSet resultSet = pstm.executeQuery();
-
-        ArrayList<EmployeeDto> dtoList = new ArrayList<>();
+        ArrayList<Employee> dtoList = new ArrayList<>();
         while(resultSet.next()) {
             dtoList.add(
-                    new EmployeeDto(
+                    new Employee(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
@@ -237,16 +245,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return dtoList;
     }
 
-    public EmployeeDto loardEmpValues(String aId) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "SELECT * FROM employee WHERE empAttendnceId  = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, aId);
+    public Employee loardEmpValues(String aId) throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//
+//        String sql = "SELECT * FROM employee WHERE empAttendnceId  = ?";
+//        PreparedStatement pstm = connection.prepareStatement(sql);
+//        pstm.setString(1, aId);
 
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM employee WHERE empAttendnceId  = ?",aId);
 
-        EmployeeDto dto = null;
+        Employee dto = null;
 
         if (resultSet.next()) {
             String emp_id = resultSet.getString(1);
@@ -267,7 +276,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
             // Image fxImage = convertBytesToJavaFXImage(imageBytes);
 
-            dto = new EmployeeDto(emp_id, empName, empGamil, empContact, empNic, empAddress, empPosition, empDate, empBankAccount,  empBankBranch,empAge, empGender, imageBytes,empAttendId
+            dto = new Employee(emp_id, empName, empGamil, empContact, empNic, empAddress, empPosition, empDate, empBankAccount,  empBankBranch,empAge, empGender, imageBytes,empAttendId
             );
         }
         return dto;
@@ -295,7 +304,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public EmployeeDto getClassMailValue(String id) throws SQLException, ClassNotFoundException {
+    public Employee getClassMailValue(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 }

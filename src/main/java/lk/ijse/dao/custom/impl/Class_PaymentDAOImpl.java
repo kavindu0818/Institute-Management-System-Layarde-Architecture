@@ -5,6 +5,8 @@ import lk.ijse.dao.custom.Class_PaymentDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.ClassPaymentDto;
 import lk.ijse.dto.Class_paymentDto;
+import lk.ijse.entity.ClassPayment;
+import lk.ijse.entity.Class_payment;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -125,7 +127,7 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
         return SQLUtil.execute("INSERT INTO class_payment VALUES(?, ?, ?, ?,?,?,?,?)",num,classId,stuId,name,month,sdate,stuFullId,amount);
     }
 
-    public List<Class_paymentDto> getStudentAllPayment(String iD) throws SQLException, ClassNotFoundException {
+    public List<Class_payment> getStudentAllPayment(String iD) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = ""SELECT * FROM class_payment WHERE stu_id = ?;
@@ -133,10 +135,10 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
 //        pstm.setString(1,iD);
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM class_payment WHERE stu_id = ?",iD);//pstm.executeQuery();
 
-        ArrayList<Class_paymentDto> dtoList = new ArrayList<>();
+        ArrayList<Class_payment> dtoList = new ArrayList<>();
         while(resultSet.next()) {
             dtoList.add(
-                    new Class_paymentDto(
+                    new Class_payment(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
@@ -182,7 +184,7 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
 
     }
 
-    public List<ClassPaymentDto> getAllClassPayment(String clssID, String month) throws SQLException, ClassNotFoundException {
+    public List<ClassPayment> getAllClassPayment(String clssID, String month) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT class_payment.stu_Id,class_payment.name,class_payment.date,class_payment.amount FROM class_payment INNER JOIN class_details ON class_payment.full_id = class_details.ful_id  WHERE class_id= ? AND paymentMonth =?";
@@ -193,9 +195,9 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
 
             ResultSet resultSet =SQLUtil.execute("SELECT class_payment.stu_Id,class_payment.name,class_payment.date,class_payment.amount FROM class_payment INNER JOIN class_details ON class_payment.full_id = class_details.ful_id  WHERE class_id= ? AND paymentMonth =?",clssID,month
 );
-                ArrayList<ClassPaymentDto> dtoList = new ArrayList<>();
+                ArrayList<ClassPayment> dtoList = new ArrayList<>();
                 while (resultSet.next()) {
-                    dtoList.add(new ClassPaymentDto(
+                    dtoList.add(new ClassPayment(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),

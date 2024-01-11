@@ -4,6 +4,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.DaySheduleDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.DaySheduleDto;
+import lk.ijse.entity.DayShedule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaySheduleDAOImpl implements DaySheduleDAO {
-    public boolean saveValues(DaySheduleDto day) throws SQLException, ClassNotFoundException {
+    public boolean saveValues(DayShedule day) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "INSERT INTO dayshedule VALUES(?,?,?,?)";
@@ -29,7 +30,7 @@ public class DaySheduleDAOImpl implements DaySheduleDAO {
         return SQLUtil.execute("INSERT INTO dayshedule VALUES(?,?,?,?)",day.getClassName(),day.getDate(),day.getStime(),day.getETime());
     }
 
-    public List<DaySheduleDto> getAllShedul() throws SQLException, ClassNotFoundException {
+    public List<DayShedule> getAllShedul() throws SQLException, ClassNotFoundException {
        // Connection connection = DbConnection.getInstance().getConnection();
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
@@ -42,11 +43,11 @@ public class DaySheduleDAOImpl implements DaySheduleDAO {
 //        pstm.setString(1, String.valueOf(sqldate));
         ResultSet resultSet = SQLUtil.execute( "SELECT * FROM dayshedule WHERE Date = ?",sDate); //pstm.executeQuery();
 
-        ArrayList<DaySheduleDto> dtoList = new ArrayList<>();
+        ArrayList<DayShedule> dtoList = new ArrayList<>();
 
         while(resultSet.next()) {
             dtoList.add(
-                    new DaySheduleDto(
+                    new DayShedule(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
