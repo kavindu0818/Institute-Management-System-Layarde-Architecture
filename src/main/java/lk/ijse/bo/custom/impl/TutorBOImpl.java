@@ -18,7 +18,7 @@ public class TutorBOImpl implements TutorBO {
         return tutorDAO.howMachTutor();
     }
 
-    public boolean saveTutorBO(TutorDto td) throws SQLException {
+    public boolean saveTutorBO(TutorDto td) throws SQLException, ClassNotFoundException {
         Tutor tutor = new Tutor(td.getTut_id(),td.getTutorName(),td.getSub_id());
        return tutorDAO.saveTutor(tutor);
     }
@@ -28,7 +28,7 @@ public class TutorBOImpl implements TutorBO {
         return tutorDAO.updateTutor(tutor);
     }
 
-    public TutorDto getTutorBO(String tutId) throws SQLException {
+    public TutorDto getTutorBO(String tutId) throws SQLException, ClassNotFoundException {
         Tutor tutor = tutorDAO.getTutor(tutId);
         TutorDto tutorDto = new TutorDto(tutor.getTut_id(),tutor.getTutorName(),tutor.getSub_id());
         return tutorDto;

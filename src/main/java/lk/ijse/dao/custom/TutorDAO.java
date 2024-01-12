@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public interface TutorDAO extends SuperDAO {
 
     public int howMachTutor() throws SQLException;
-    public boolean saveTutor(Tutor td) throws SQLException;
-    public Tutor getTutor(String tutId) throws SQLException;
+    public boolean saveTutor(Tutor td) throws SQLException, ClassNotFoundException;
+    public Tutor getTutor(String tutId) throws SQLException, ClassNotFoundException;
     public boolean updateTutor(Tutor td) throws SQLException, ClassNotFoundException;
 }

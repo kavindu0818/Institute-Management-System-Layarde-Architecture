@@ -128,7 +128,7 @@ public class RegistationUpdateformController {
         byte[] ima = up.imagenToByte(image);
 
             if (stu_id.isEmpty() || reg_id.isEmpty() || Stuname.isEmpty() || stuContact.isEmpty() || stuGrade.isEmpty() || stuAge.isEmpty() || stuGmail.isEmpty() || address.isEmpty() || stuContact.isEmpty() ||
-                    stuGrade.isEmpty() || perantName.isEmpty() || perantCon.isEmpty() || perantId.isEmpty() ||
+                    stuGrade.isEmpty() || perantName.isEmpty() || perantCon.isEmpty() ||
                     stuAge.isEmpty() || image.isBackgroundLoading()) {
 
                 new Alert(Alert.AlertType.ERROR, "Field Not found").showAndWait();

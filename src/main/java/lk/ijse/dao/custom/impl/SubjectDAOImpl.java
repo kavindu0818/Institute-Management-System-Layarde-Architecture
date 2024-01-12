@@ -16,24 +16,12 @@ import java.util.List;
 public class SubjectDAOImpl implements SubjectDAO {
 
     public boolean subSave(SubjectDto sub) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "INSERT INTO subject VALUES(?,?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1,sub.getSub_id());
-//        pstm.setString(2,sub.getSubjectName());
 
-
-
-//        boolean isSaved = pstm.executeUpdate() > 0;
        return SQLUtil.execute( "INSERT INTO subject VALUES(?,?)",sub.getSub_id(),sub.getSubjectName());
     }
 
     public List<Subject> getSubject() throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT *FROM subject";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
+
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM subject");//pstm.executeQuery();
 
 

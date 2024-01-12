@@ -32,29 +32,15 @@ public class TutorDAOImpl implements TutorDAO {
 
     }
 
-    public boolean saveTutor(Tutor td) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public boolean saveTutor(Tutor td) throws SQLException, ClassNotFoundException {
 
-        String sql = "INSERT INTO tutor VALUES(?,?,?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, td.getTut_id());
-        pstm.setString(2, td.getTutorName());
-        pstm.setString(3, td.getSub_id());
-
-
-        boolean isSaved = pstm.executeUpdate() > 0;
-
-        return isSaved;
+        return SQLUtil.execute("INSERT INTO tutor VALUES(?,?,?)",td.getTut_id(),td.getTutorName(),td.getSub_id());
 
     }
 
-    public Tutor getTutor(String tutId) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public Tutor getTutor(String tutId) throws SQLException, ClassNotFoundException {
 
-        String sql = "select *from tutor WHERE tut_id=?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, tutId);
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT *FROM tutor WHERE tut_id=?", tutId);
 
         Tutor doList = null;
 
@@ -69,15 +55,6 @@ public class TutorDAOImpl implements TutorDAO {
     }
 
     public boolean updateTutor(Tutor td) throws SQLException, ClassNotFoundException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "UPDATE tutor SET tutorName=?,sub_id=?  WHERE tut_id=?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, td.getTutorName());
-        pstm.setString(2, td.getSub_id());
-        pstm.setString(3,td.getTut_id());
-
-
 
         return SQLUtil.execute("UPDATE tutor SET tutorName=?,sub_id=?  WHERE tut_id=?",td.getTutorName(),td.getSub_id(),td.getTut_id()); //pstm.executeUpdate() > 0;
 

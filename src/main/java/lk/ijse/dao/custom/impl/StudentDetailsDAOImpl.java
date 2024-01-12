@@ -133,50 +133,15 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
         return SQLUtil.execute("UPDATE studentfull_details SET reg_id = ?,name = ?,regDate = ?,Student_gmail = ?,Student_contactNo =?,sub_id = ?, address = ?,age =?,grade = ?,Perant_Name = ?,Perant_Gmail = ?, Perant_contactNo =?, image =? WHERE stu_id = ?", su.getReg_id(),su.getName(),su.getRegDate(),su.getStudent_gmail(),su.getStudent_contactNo(),su.getSub_id(),su.getAddress(),
                 su.getAge(),su.getGrade(),su.getPerant_Name(),su.getPerant_Gmail(),su.getPerant_contactNo(),imageSr,su.getStu_id());
 
-//        Connection connection = DbConnection.getInstance().getConnection();
-//        String sql = "UPDATE studentfull_details SET reg_id = ?,name = ?,regDate = ?,Student_gmail = ?,Student_contactNo =?,sub_id = ?, address = ?,age =?,grade = ?,Perant_Name = ?,Perant_Gmail = ?, Perant_contactNo =?, image =? WHERE stu_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//        pstm.setString(1, su.getReg_id());
-//        pstm.setString(2, su.getName());
-//        pstm.setString(3, su.getRegDate());
-//        pstm.setString(4, su.getStudent_gmail());
-//        pstm.setString(5, su.getStudent_contactNo());
-//        pstm.setString(6, su.getSub_id());
-//        pstm.setString(7, su.getAddress());
-//        pstm.setString(8, su.getAge());
-//        pstm.setString(9, su.getGrade());
-//      //  pstm.setString(10, su.getPerant_id());
-//        pstm.setString(10, su.getPerant_Name());
-//        pstm.setString(11, su.getPerant_Gmail());
-//        pstm.setString(12, su.getPerant_contactNo());
-//        byte[] imageSr = su.getImage();
-//        pstm.setBytes(13, imageSr);
-//        pstm.setString(14, su.getStu_id());
-//
-//
-//
-//        return pstm.executeUpdate() > 0;
     }
 
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
 
         return SQLUtil.execute("DELETE FROM studentfull_details WHERE stu_id = ?", id);
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "DELETE FROM studentfull_details WHERE stu_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//        pstm.setString(1,id);
-//        return pstm.executeUpdate()>0;
+
     }
 
     public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM  studentfull_details WHERE stu_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, iD);
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  studentfull_details WHERE stu_id = ?",iD);
 
@@ -223,30 +188,10 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
     }
 
-//    public int howMachStudent() throws SQLException {
-//
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql ="select count(stu_id) from studentfull_details";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        ResultSet resultSet = pstm.executeQuery();
-//
-//        int a = 0;
-//
-//        if (resultSet.next()){
-//            return resultSet.getInt(1);
-//
-//        }
-//        return 0;
-//
-//  }
+
+
 
     public StudentfullDetails getClassMailValue(String id) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM  studentfull_details WHERE stu_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, id);
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  studentfull_details WHERE stu_id = ?",id);//pstm.executeQuery();
 

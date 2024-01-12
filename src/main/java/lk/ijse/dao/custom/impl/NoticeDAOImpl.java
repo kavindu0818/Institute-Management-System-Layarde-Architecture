@@ -26,16 +26,11 @@ public class NoticeDAOImpl implements NoticeDAO {
     }
 
     public List<Notice> getAllNotice() throws SQLException, ClassNotFoundException {
-       // Connection connection = DbConnection.getInstance().getConnection();
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
         java.sql.Timestamp sqltime = new java.sql.Timestamp(date.getTime());
 
         String da = String.valueOf(sqldate);
-
-//        String sql = "SELECT * FROM notice WHERE date = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, String.valueOf(sqldate));
         ResultSet resultSet = SQLUtil.execute( "SELECT * FROM notice WHERE date = ?",da); //pstm.executeQuery();
 
         ArrayList<Notice> dtoList = new ArrayList<>();

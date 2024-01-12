@@ -19,7 +19,6 @@ public class Stu_AttendanceDAOImpl implements StudentAttendanceDAO {
 
 
     public boolean saveAttendnceDetails(Class_DetailsDto dtoList) throws SQLException, ClassNotFoundException {
-       // Connection connection = DbConnection.getInstance().getConnection();
 
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
@@ -27,25 +26,13 @@ public class Stu_AttendanceDAOImpl implements StudentAttendanceDAO {
 
         String da = String.valueOf(sqldate);
         String time = String.valueOf(sqltime);
-//
-//        String sql = "INSERT INTO stu_attendance VALUES(?, ?, ?, ?,?,?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//        pstm.setString(1, dtoList.getStu_name());
-//        pstm.setString(2, String.valueOf(sqldate));
-//        pstm.setString(3, dtoList.getFull_id());
-//        pstm.setString(4, dtoList.getStu_id());
-//        pstm.setString(5, dtoList.getClass_id());
-//        pstm.setString(6, String.valueOf(sqltime));
 
-       // boolean isSaved = pstm.executeUpdate() > 0;
 
         return SQLUtil.execute("INSERT INTO stu_attendance VALUES(?, ?, ?, ?,?,?)",dtoList.getStu_name(),da,dtoList.getFull_id(),dtoList.getStu_id(),dtoList.getClass_id(),time);
     }
 
 
     public List<StudentAttendance> getAllStudent() throws SQLException, ClassNotFoundException {
-       // Connection connection = DbConnection.getInstance().getConnection();
 
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
@@ -53,9 +40,6 @@ public class Stu_AttendanceDAOImpl implements StudentAttendanceDAO {
 
         String da = String.valueOf(sqldate);
 
-//        String sql = "SELECT * FROM stu_attendance WHERE date = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, String.valueOf(sqldate));
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM stu_attendance WHERE date = ?",da); //pstm.executeQuery();
 
         ArrayList<StudentAttendance> dtoList = new ArrayList<>();
@@ -77,12 +61,7 @@ public class Stu_AttendanceDAOImpl implements StudentAttendanceDAO {
     }
 
     public List<StudentAttendance> getClassStudent(String clId, LocalDate classDate) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM stu_attendance WHERE class_id = ? AND date = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1,clId);
-//        pstm.setString(2, String.valueOf(classDate));
+
 
         String da = String.valueOf(classDate);
         ResultSet resultSet =SQLUtil.execute("SELECT * FROM stu_attendance WHERE class_id = ? AND date = ?",clId,da); //pstm.executeQuery();
@@ -104,11 +83,7 @@ public class Stu_AttendanceDAOImpl implements StudentAttendanceDAO {
     }
 
     public List<StudentAttendance> getStudentAllAttendnce(String iD) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM stu_attendance WHERE stu_id =?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1,iD);
+
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM stu_attendance WHERE stu_id =?",iD);//pstm.executeQuery();
 
         ArrayList<StudentAttendance> dtoList = new ArrayList<>();

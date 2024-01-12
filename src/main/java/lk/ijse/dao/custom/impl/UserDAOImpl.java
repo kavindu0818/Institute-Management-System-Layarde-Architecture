@@ -19,14 +19,6 @@ import java.sql.SQLException;
 
 public class UserDAOImpl implements UserDAO {
     public boolean setUserDetails(UserDto ud) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "INSERT INTO user VALUES(?, ?, ?,?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//        pstm.setString(1, ud.getUserID());
-//        pstm.setString(2, ud.getPassword());
-//        pstm.setString(3, ud.getUserName());
 
         byte[] imageSr = ud.getImage();
        // pstm.setBytes(4, imageSr);
@@ -35,10 +27,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public User selectUserValue() throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = " SELECT *FROM user ";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
 
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM user"); //pstm.executeQuery();
 
@@ -57,11 +45,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public UserDto getUserValue(String pw) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = " SELECT *FROM user WHERE userID=?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1,pw);
+
         ResultSet resultSet =SQLUtil.execute("SELECT *FROM user WHERE userID=?",pw); //pstm.executeQuery();
 
         UserDto dto = null;
@@ -90,21 +74,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public boolean updateUser(UserDto up) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//
-//        String sql ="UPDATE User SET userName=?, image=?, password=? WHERE userID=?";
-//
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//
-//        pstm.setString(1,up.getUserName());
 
         byte[] imageSr = up.getImage();
-//        pstm.setBytes(2, imageSr);
-//
-//        pstm.setString(3, up.getPassword());
-//        pstm.setString(4, up.getUserID());
 
         return SQLUtil.execute("UPDATE User SET userName=?, image=?, password=? WHERE userID=?",up.getUserName(),imageSr,up.getPassword(),up.getUserID());//pstm.executeUpdate() > 0;
 
@@ -113,11 +84,7 @@ public class UserDAOImpl implements UserDAO {
 
 
     public User getUserValueUser(String us) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = " SELECT *FROM user WHERE password=?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1,us);
+
         ResultSet resultSet =SQLUtil.execute("SELECT *FROM user WHERE password=?",us);
 
         User dto = null;

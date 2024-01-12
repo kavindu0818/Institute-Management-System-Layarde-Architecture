@@ -20,10 +20,7 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     public List<Course> getAllcourse() throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT *FROM course ";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
+
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM course "); //pstm.executeQuery();
 
 
@@ -47,10 +44,7 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     public List<Course> getCourseID() throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT *FROM course ";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
+
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM course ");//pstm.executeQuery();
 
 
@@ -74,10 +68,7 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     public List<Course> getAllcourseID() throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT *FROM course ";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
+
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM course "); //pstm.executeQuery();
 
 

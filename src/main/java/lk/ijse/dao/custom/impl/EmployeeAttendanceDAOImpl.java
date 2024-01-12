@@ -17,7 +17,6 @@ import java.util.List;
 
 public class EmployeeAttendanceDAOImpl implements EmlpoyeeAttendanceDAO {
     public boolean saveEmpAttendance(String num, String empAttendanceID, String empId) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
         java.sql.Timestamp sqltime = new java.sql.Timestamp(date.getTime());
@@ -25,17 +24,6 @@ public class EmployeeAttendanceDAOImpl implements EmlpoyeeAttendanceDAO {
         String sDate = String.valueOf(sqldate);
         String sTime = String.valueOf(sqltime);
 
-//        String sql = "INSERT INTO employee_attendance VALUES(?, ?, ?, ?,?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//        pstm.setString(1,num);
-//        pstm.setString(2, empAttendanceID);
-//        pstm.setString(3, empId);
-//        pstm.setString(4, String.valueOf(sqldate));
-//        pstm.setString(5, String.valueOf(sqltime));
-//
-//
-//        boolean isSaved = pstm.executeUpdate() > 0;
 
         return SQLUtil.execute( "INSERT INTO employee_attendance VALUES(?, ?, ?, ?,?)",num,empAttendanceID,empId,sDate,sTime);
 
@@ -61,18 +49,12 @@ public class EmployeeAttendanceDAOImpl implements EmlpoyeeAttendanceDAO {
     }
 
     public List<EmployeeAttendanceJoin> getAllEmployeeAttndance() throws SQLException, ClassNotFoundException {
-       // Connection connection = DbConnection.getInstance().getConnection();
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
 
-//        String sql = "SELECT employee_attendance.emp_id,employee.name\n" +
-//                "FROM employee INNER JOIN employee_attendance ON employee.emp_id=Employee_attendance.emp_id WHERE Date = ?";
-//
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setDate(1, sqldate);
         ResultSet resultSet =SQLUtil.execute( "SELECT employee_attendance.emp_id,employee.name\n" +
                 "FROM employee INNER JOIN employee_attendance ON employee.emp_id=Employee_attendance.emp_id WHERE Date = ?",sqldate
-); //pstm.executeQuery();
+);
 
         ArrayList<EmployeeAttendanceJoin> dtoList = new ArrayList<>();
 
@@ -110,11 +92,7 @@ public class EmployeeAttendanceDAOImpl implements EmlpoyeeAttendanceDAO {
     }
 
     public List<EmpAttendnace> getAllEmployeeAttendance(String id) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT *FROM employee_attendance WHERE emp_id=?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1,id);
+
 
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM employee_attendance WHERE emp_id=?",id);//pstm.executeQuery();
         ArrayList<EmpAttendnace> dtoList = new ArrayList<>();
