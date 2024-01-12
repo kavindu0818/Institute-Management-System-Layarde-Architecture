@@ -16,10 +16,7 @@ import java.util.List;
 public class ClassDAOImpl implements ClassDAO {
 
     public List<Class> getAllClass() throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT *FROM class ";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
+
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM class ");//pstm.executeQuery();
 
 
@@ -79,26 +76,14 @@ public class ClassDAOImpl implements ClassDAO {
     }
 
     public boolean saveCoursesClass(Class cd) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "INSERT INTO class VALUES(?,?,?)";
-//        try (PreparedStatement pstm = connection.prepareStatement(sql)) {
-//            pstm.setString(1, cd.getClass_id());
-//            pstm.setString(2, cd.getTut_id());
-//            pstm.setString(3, cd.getClassName());
+
 
             return SQLUtil.execute("INSERT INTO class VALUES(?,?,?)",cd.getClass_id(),cd.getTut_id(),cd.getClassName());
         }
 
 
     public boolean classSave(Class cms) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "INSERT INTO class VALUES(?,?,?)";
-//        try (PreparedStatement pstm = connection.prepareStatement(sql)) {
-//            pstm.setString(1, cms.getClass_id());
-//            pstm.setString(2, cms.getTut_id());
-//            pstm.setString(3, cms.getClassName());
+
 
         return SQLUtil.execute("INSERT INTO class VALUES(?,?,?)",cms.getClass_id(), cms.getTut_id(), cms.getClassName());
     }

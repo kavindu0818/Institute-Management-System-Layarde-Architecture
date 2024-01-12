@@ -17,24 +17,14 @@ import static lk.ijse.Controller.Payment.CourseFeeFormController.ORDER_ID_PREFIX
 
 public class Course_detailsDAOImpl implements Course_DetailsDAO {
     public boolean upateAmount(double amont, String studentId) throws SQLException, ClassNotFoundException {
-//        System.out.println(amont + studentId);
-//        Connection connection = DbConnection.getInstance().getConnection();
-//        String bsql = "UPDATE course_details SET paidCou_fee = (paidCou_fee - ?) WHERE cusDfull_id = ?";
-//        PreparedStatement preparedStatement = connection.prepareStatement(bsql);
-//        preparedStatement.setDouble(1, amont);
-//        preparedStatement.setString(2, studentId);
-        ;
+
 
         return SQLUtil.execute("UPDATE course_details SET paidCou_fee = (paidCou_fee - ?) WHERE cusDfull_id = ?",amont,studentId);
 
     }
 
     public Course_details getAllValuesCd(String a) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM course_details WHERE stu_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, a);
+
         ResultSet resultSet =SQLUtil.execute("SELECT * FROM course_details WHERE stu_id = ?",a); //pstm.executeQuery();
 
         Course_details dto = null;
@@ -53,12 +43,7 @@ public class Course_detailsDAOImpl implements Course_DetailsDAO {
     }
 
     public List<Course_details> getAllCourseValue(String sd) throws SQLException, ClassNotFoundException {
-//        System.out.println(sd);
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT *FROM course_details WHERE cus_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, sd);
+
         ResultSet resultSet =SQLUtil.execute("SELECT *FROM course_details WHERE cus_id = ?",sd); //pstm.executeQuery();
         System.out.println(resultSet.toString());
 
@@ -84,29 +69,14 @@ public class Course_detailsDAOImpl implements Course_DetailsDAO {
 
 
     public boolean saveCourseDetails(String paymentID,String courseId,String stuId,String stuName, String courseName, Double amount) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//    String sql = "INSERT INTO course_details VALUES(?,?,?,?,?,?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1,paymentID );
-//        pstm.setString(2, courseId);
-//        pstm.setString(3, stuId);
-//        pstm.setString(4, stuName);
-//        pstm.setString(5, courseName);
-//        pstm.setDouble(6, amount);
-//
-//        boolean isSaved = pstm.executeUpdate() > 0;
+
 
         return SQLUtil.execute("INSERT INTO course_details VALUES(?,?,?,?,?,?)",paymentID,courseId,stuId,stuName,courseName,amount);
     }
 
 
     public List<Course_details> getCourseDetailsID(String a) throws SQLException, ClassNotFoundException {
-//            Connection connection = DbConnection.getInstance().getConnection();
-//
-//            String sql = "SELECT * FROM course_details WHERE stu_id = ?";
-//            PreparedStatement pstm = connection.prepareStatement(sql);
-//            pstm.setString(1, a);
+
             ResultSet resultSet =SQLUtil.execute("SELECT * FROM course_details WHERE stu_id = ?",a); //pstm.executeQuery();
 
         ArrayList<Course_details> dtoList = new ArrayList<>();
@@ -128,11 +98,7 @@ public class Course_detailsDAOImpl implements Course_DetailsDAO {
     }
 
     public Course_details courseName(String cf) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM course_details WHERE cusDfull_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, cf);
+
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM course_details WHERE cusDfull_id = ?",cf); //pstm.executeQuery();
 
         Course_details dto = null;
@@ -152,12 +118,7 @@ public class Course_detailsDAOImpl implements Course_DetailsDAO {
     }
 
     public Course_details getAllDetails(String id, String cusID) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM course_details WHERE stu_id = ? AND cus_id=? ";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, id);
-//        pstm.setString(2, cusID);
+
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM course_details WHERE stu_id = ? AND cus_id=? ",id,cusID);//pstm.executeQuery();
 
         Course_details dto = null;
@@ -178,11 +139,7 @@ public class Course_detailsDAOImpl implements Course_DetailsDAO {
     }
 
     public Course_details getsendMailValue(String csId) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM course_details WHERE cusDfull_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, csId);
+
 
         ResultSet resultSet =SQLUtil.execute("SELECT * FROM course_details WHERE cusDfull_id = ?",csId); //pstm.executeQuery();
 

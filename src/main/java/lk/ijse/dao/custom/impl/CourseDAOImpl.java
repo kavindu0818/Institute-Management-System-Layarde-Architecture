@@ -15,17 +15,6 @@ import java.util.List;
 
 public class CourseDAOImpl implements CourseDAO {
     public boolean saveCourseDetails(String courseID, String courseName, String courseFeee, String courseDuration, String date) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "INSERT INTO course VALUES(?,?,?,?,?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, courseID);
-//        pstm.setString(2, courseName);
-//        pstm.setString(3, courseFeee);
-//        pstm.setString(4, date);
-//        pstm.setString(5, courseDuration);
-//
-//        boolean isSaved = pstm.executeUpdate() > 0;
 
         return SQLUtil.execute( "INSERT INTO course VALUES(?,?,?,?,?)",courseID,courseName,courseFeee,date,courseDuration);
     }

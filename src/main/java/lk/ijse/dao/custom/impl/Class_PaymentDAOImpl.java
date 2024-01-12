@@ -16,30 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Class_PaymentDAOImpl implements Class_PaymentDAO {
-   /* public boolean stuPaymentSave(Class_paymentDto cp) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
 
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqldate = new java.sql.Date(date.getTime());
-        java.sql.Timestamp sqltime = new java.sql.Timestamp(date.getTime());
-
-        String sql = "INSERT INTO class_payment VALUES(?, ?, ?, ?,?,?,?,?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1,splitOrderId(null));
-
-        pstm.setString(2, cp.getClass_Id());
-        pstm.setString(3, cp.getStu_Id());
-        pstm.setString(4, cp.getName());
-        pstm.setString(5, cp.getPaymentMonth());
-        pstm.setString(6, String.valueOf(sqldate));
-        pstm.setString(7, cp.getFull_Id());
-        pstm.setDouble(8, cp.getAmount());
-
-        boolean isSaved = pstm.executeUpdate() > 0;
-
-        return isSaved;
-    }*/
     public int generateNextOrderId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -59,25 +36,9 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
         }
         return++id;
 }
-   /* private static String splitOrderId(String currentOrderId) {
-        if(currentOrderId != null) {
-            String[] split = currentOrderId.split("O0");
-
-            int id = Integer.parseInt(split[1]); //01
-            id++;
-            return "PO00" + id;
-        } else {
-            return "PO001";
-        }
-    }*/
 
     public List<Class_paymentDto> getClassStudent(String classId, String month) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM class_payment WHERE class_Id= ? AND paymentMonth = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, classId);
-//        pstm.setString(2, month);
+
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM class_payment WHERE class_Id= ? AND paymentMonth = ?",classId,month); //pstm.executeQuery();
 
         ArrayList<Class_paymentDto> dList = new ArrayList<>();
@@ -101,38 +62,19 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
         }
 
     public boolean stuPaymentSave(String num,String classId, String stuId, String name, String month, String stuFullId, double amount) throws SQLException, ClassNotFoundException {
-//    Connection connection = DbConnection.getInstance().getConnection();
-//
+
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
         java.sql.Timestamp sqltime = new java.sql.Timestamp(date.getTime());
 
         String sdate = String.valueOf(sqldate);
-//
-//        String sql = "INSERT INTO class_payment VALUES(?, ?, ?, ?,?,?,?,?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//        pstm.setString(1, num);
-//
-//        pstm.setString(2, classId);
-//        pstm.setString(3, stuId);
-//        pstm.setString(4, name);
-//        pstm.setString(5, month);
-//        pstm.setString(6, String.valueOf(sqldate));
-//        pstm.setString(7, stuFullId);
-//        pstm.setDouble(8, amount);
-//
-//        boolean isSaved = pstm.executeUpdate() > 0;
+
 
         return SQLUtil.execute("INSERT INTO class_payment VALUES(?, ?, ?, ?,?,?,?,?)",num,classId,stuId,name,month,sdate,stuFullId,amount);
     }
 
     public List<Class_payment> getStudentAllPayment(String iD) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = ""SELECT * FROM class_payment WHERE stu_id = ?;
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1,iD);
+
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM class_payment WHERE stu_id = ?",iD);//pstm.executeQuery();
 
         ArrayList<Class_payment> dtoList = new ArrayList<>();
@@ -185,13 +127,7 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
     }
 
     public List<ClassPayment> getAllClassPayment(String clssID, String month) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT class_payment.stu_Id,class_payment.name,class_payment.date,class_payment.amount FROM class_payment INNER JOIN class_details ON class_payment.full_id = class_details.ful_id  WHERE class_id= ? AND paymentMonth =?";
-//
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//            pstm.setString(1, clssID);
-//            pstm.setString(2, month);
+
 
             ResultSet resultSet =SQLUtil.execute("SELECT class_payment.stu_Id,class_payment.name,class_payment.date,class_payment.amount FROM class_payment INNER JOIN class_details ON class_payment.full_id = class_details.ful_id  WHERE class_id= ? AND paymentMonth =?",clssID,month
 );
