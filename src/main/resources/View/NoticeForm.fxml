@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="85.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NoticeFormController">
+<AnchorPane prefHeight="85.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.NoticeFormController">
    <children>
       <JFXTextArea fx:id="txtNotice" layoutX="14.0" layoutY="12.0" prefHeight="62.0" prefWidth="316.0" />
       <DatePicker fx:id="DatePicker" layoutX="363.0" layoutY="24.0" />

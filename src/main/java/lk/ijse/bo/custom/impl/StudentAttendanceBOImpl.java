@@ -16,6 +16,8 @@ import java.util.List;
 public class StudentAttendanceBOImpl implements StudentAttendanceBO {
 
     StudentAttendanceDAO stu_attendanceDAO = (StudentAttendanceDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STU_ATTENDANCE);
+
+    @Override
     public List<StudentAttendance> getClassStudentDetails(String classID, LocalDate classDate) throws SQLException, ClassNotFoundException {
       List<StudentAttendance> studentAttendances =  stu_attendanceDAO.getClassStudent(classID,classDate);
       ArrayList<StudentAttendance> studentAttendances1 = new ArrayList<>();
@@ -27,6 +29,7 @@ public class StudentAttendanceBOImpl implements StudentAttendanceBO {
        return studentAttendances;
     }
 
+    @Override
     public List<StudentAttendance> getAllStudentAttendance() throws SQLException, ClassNotFoundException {
         List<StudentAttendance> studentAttendances =  stu_attendanceDAO.getAllStudent();
         ArrayList<StudentAttendance> studentAttendances1 = new ArrayList<>();
@@ -39,14 +42,17 @@ public class StudentAttendanceBOImpl implements StudentAttendanceBO {
 
     }
 
+    @Override
     public boolean saveAttendnceDetailsStudent(Class_DetailsDto dtoList) throws SQLException, ClassNotFoundException {
        return stu_attendanceDAO.saveAttendnceDetails(dtoList);
     }
 
+    @Override
     public int howMachStudentBO() throws SQLException, ClassNotFoundException {
        return stu_attendanceDAO.howMachStudent();
     }
 
+    @Override
     public List<StudentAttendance> getStudentAllAttendnceBO(String id1) throws SQLException, ClassNotFoundException {
         List<StudentAttendance> studentAttendances = stu_attendanceDAO.getStudentAllAttendnce(id1);
         ArrayList<StudentAttendance> studentAttendances1 = new ArrayList<>();

@@ -47,7 +47,6 @@ public class CourseFeeFormController {
     CourseFeeDetailsFormController courseFeeDetailsFormController;
 
     private ObservableList<CourseDetailsTm> obList = null;
-    private SetPaymentModel setPaymentModel = new SetPaymentModel();
     private Course_detailsDAOImpl courseDetailsModel = new Course_detailsDAOImpl();
     public static final String ORDER_ID_PREFIX = "P";
     private static final int ORDER_ID_LENGTH = 3;
@@ -69,7 +68,7 @@ public class CourseFeeFormController {
      StudentDetailsBO studentDetailsBO = (StudentDetailsBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.STUDENT_DETAILS);
      Course_PaymentBO coursePaymentBO = (Course_PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE_PAYMENT);
      CourseBO courseBO = (CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.COURSE);
-     SetPaymentBO setPaymentBO = (SetPaymentBO)  BOFactory.getBOFactory().getBO(BOFactory.BOTypes.SET_PAYMENT);
+
 
     public void initialize(){
         generateNextOrderId();
@@ -86,7 +85,7 @@ public class CourseFeeFormController {
 
         SetPaymentDto setPaymentDto = new SetPaymentDto(num,amount, cusDfull,stuId);
         try {
-            boolean isSuccess = setPaymentBO.setPaymentDetails(setPaymentDto);
+            boolean isSuccess = coursePaymentBO.setPaymentDetails(setPaymentDto);
             if (isSuccess) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment Change Success!").show();
                 sendMail(stuiDCursePayment.getText());

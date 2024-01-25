@@ -17,6 +17,7 @@ public class CourseBoImpl implements CourseBO {
 
     CourseDAO courseDAO = (CourseDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.COURSE);
 
+    @Override
     public List<CourseDto> getAllcourseDetails() throws SQLException, ClassNotFoundException {
        List<Course> courses = courseDAO.getAllcourse();
         ArrayList<CourseDto> courseDtos = new ArrayList<>();
@@ -28,6 +29,7 @@ public class CourseBoImpl implements CourseBO {
         return courseDtos;
     }
 
+    @Override
     public List<CourseDto> getAllcourseIDBO() throws SQLException, ClassNotFoundException {
         List<Course> courses = courseDAO.getAllcourseID();;
         ArrayList<CourseDto> courseDtos = new ArrayList<>();
@@ -40,6 +42,7 @@ public class CourseBoImpl implements CourseBO {
 
     }
 
+    @Override
     public List<CourseDto> getCourseIDBO() throws SQLException, ClassNotFoundException {
         List<Course> courses = courseDAO.getCourseID();
         ArrayList<CourseDto> courseDtos = new ArrayList<>();
@@ -52,6 +55,7 @@ public class CourseBoImpl implements CourseBO {
 
     }
 
+    @Override
     public boolean saveCourseDetailsBO(String courseID, String courseName, String courseFeee, String courseDuration, String date) throws SQLException, ClassNotFoundException {
         return courseDAO.saveCourseDetails(courseID,courseName,courseFeee,courseDuration,date);
     }

@@ -2,6 +2,7 @@ package lk.ijse.dao.custom;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import lk.ijse.dao.CrudDAO;
 import lk.ijse.dao.SuperDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.UserDto;
@@ -16,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface UserDAO extends SuperDAO {
+public interface UserDAO extends CrudDAO<User> {
 
     public boolean setUserDetails(UserDto ud) throws SQLException, ClassNotFoundException;
     public User selectUserValue() throws SQLException, ClassNotFoundException;

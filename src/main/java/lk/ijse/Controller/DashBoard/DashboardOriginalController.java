@@ -90,6 +90,8 @@ public class DashboardOriginalController {
             lblStudentCount.setText(String.valueOf(count));
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -101,6 +103,8 @@ public class DashboardOriginalController {
 
             lbltutorCount2.setText(String.valueOf(count));
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -143,6 +147,8 @@ public class DashboardOriginalController {
             lblHall.setText(imd.getHall());
 
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -230,6 +236,8 @@ public class DashboardOriginalController {
 
             cosA = count;
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

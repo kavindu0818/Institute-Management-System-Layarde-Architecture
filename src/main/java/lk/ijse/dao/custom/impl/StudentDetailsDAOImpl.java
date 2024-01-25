@@ -30,41 +30,10 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
                 sr.getRegDate(),sr.getStudent_gmail(),sr.getStudent_contactNo(),sr.getSub_id(),sr.getAddress(),
                 sr.getAge(), sr.getGrade(),sr.getPerant_Name(), sr.getPerant_Gmail(),sr.getPerant_contactNo(),imageSr);
 
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "INSERT INTO studentfull_details VALUES(?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//        pstm.setString(1, sr.getStu_id());
-//        pstm.setString(2, sr.getReg_id());
-//        pstm.setString(3, sr.getName());
-//        pstm.setString(4, sr.getRegDate());
-//        pstm.setString(5, sr.getStudent_gmail());
-//        pstm.setString(6, sr.getStudent_contactNo());
-//        pstm.setString(7, sr.getSub_id());
-//        pstm.setString(8, sr.getAddress());
-//        pstm.setString(9, sr.getAge());
-//        pstm.setString(10, sr.getGrade());
-//        pstm.setString(11, sr.getPerant_Name());
-//        pstm.setString(12, sr.getPerant_Gmail());
-//        pstm.setString(13, sr.getPerant_contactNo());
-//
-    // byte[] imageSr = sr.getImage();
-     //pstm.setBytes(14, imageSr);
-//
-//
-//        boolean isSaved = pstm.executeUpdate() > 0;
-//
-//        return isSaved;
     }
 
    @Override
     public StudentfullDetails search(String id) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT * FROM  studentfull_details WHERE stu_id = ?";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//        pstm.setString(1, id);
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  studentfull_details WHERE stu_id = ?",id);
 
@@ -97,6 +66,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
         return dto;
     }
 
+    @Override
     public byte[] imagenToByte(Image imgId) {
         BufferedImage bufferimage = SwingFXUtils.fromFXImage(imgId, null);
         ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -111,7 +81,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
     }
 
 
-
+@Override
   public Image convertBytesToJavaFXImage(byte[] imageData) {
       try {
           ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -124,7 +94,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
   }
 
 
-
+@Override
     public boolean update(StudentfullDetails su) throws SQLException, ClassNotFoundException {
 
         byte[] imageSr = su.getImage();
@@ -135,11 +105,16 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
     }
 
+
+    @Override
+
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
 
         return SQLUtil.execute("DELETE FROM studentfull_details WHERE stu_id = ?", id);
 
     }
+
+    @Override
 
     public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
 
@@ -170,12 +145,9 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
     }
 
     @Override
-    public int howMach() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public int howMach() throws SQLException, ClassNotFoundException {
 
-        String sql ="select count(stu_id) from studentfull_details";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT count(stu_id) FROM studentfull_details"); //pstm.executeQuery();
 
         int a = 0;
 
@@ -188,9 +160,7 @@ public class StudentDetailsDAOImpl implements StudentDetailsDAO {
 
     }
 
-
-
-
+@Override
     public StudentfullDetails getClassMailValue(String id) throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM  studentfull_details WHERE stu_id = ?",id);//pstm.executeQuery();

@@ -3,6 +3,7 @@ package lk.ijse.bo.custom.impl;
 import lk.ijse.bo.custom.EmployeeAttendanceBO;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.EmlpoyeeAttendanceDAO;
+import lk.ijse.dao.custom.QuaryDAO;
 import lk.ijse.dto.EmpAttendnaceDto;
 import lk.ijse.dto.EmployeeAttendanceJoin;
 import lk.ijse.entity.EmpAttendnace;
@@ -14,10 +15,11 @@ import java.util.List;
 public class EmployeeAttendanceBOImpl implements EmployeeAttendanceBO {
 
     EmlpoyeeAttendanceDAO employeeAttendanceDAO = (EmlpoyeeAttendanceDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.EMPLOYEEATTENDANCE);
-    ;
+    QuaryDAO quaryDAO = (QuaryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.QUARY);
+   @Override
     public List<EmployeeAttendanceJoin> getAllEmployeeAttndanceAll() throws SQLException, ClassNotFoundException {
 
-        List<EmployeeAttendanceJoin> employeeAttendances =  employeeAttendanceDAO.getAllEmployeeAttndance();
+        List<EmployeeAttendanceJoin> employeeAttendances =  quaryDAO.getAllEmployeeAttndance(); /////
         ArrayList<EmployeeAttendanceJoin> employeeAttendanceJoins = new ArrayList<>();
 
         for (EmployeeAttendanceJoin employeeAttendanceJoin : employeeAttendances){
@@ -27,11 +29,12 @@ public class EmployeeAttendanceBOImpl implements EmployeeAttendanceBO {
         return employeeAttendanceJoins;
     }
 
-
+@Override
     public boolean saveEmpAttendanceBo(String num, String empAttendanceID, String empId) throws SQLException, ClassNotFoundException {
         return employeeAttendanceDAO.saveEmpAttendance(num,empAttendanceID,empId);
     }
 
+ @Override
     public List<EmpAttendnaceDto> getAllEmployeeAttendanceBO(String id) throws SQLException, ClassNotFoundException {
         List<EmpAttendnace> empAttendnaces =  employeeAttendanceDAO.getAllEmployeeAttendance(id);
         ArrayList<EmpAttendnaceDto> empAttendnaceDtos = new ArrayList<>();

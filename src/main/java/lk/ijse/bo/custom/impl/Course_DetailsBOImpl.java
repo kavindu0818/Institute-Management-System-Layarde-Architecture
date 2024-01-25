@@ -16,19 +16,21 @@ public class Course_DetailsBOImpl implements Course_DetailsBO {
 
     Course_DetailsDAO courseDetailsDAO = (Course_DetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.COURSE_DETAILS);
 
+    @Override
     public boolean saveCourseDetailsStudent(String paymentID, String courseId, String stuId, String stuName, String courseName, Double amount) throws SQLException, ClassNotFoundException {
 
         return courseDetailsDAO.saveCourseDetails(paymentID,courseId,stuId,stuName,courseName,amount);
     }
 
+  @Override
     public Course_detailsDto getsendMailValueAll(String csId) throws SQLException, ClassNotFoundException {
         Course_details courseDetails = courseDetailsDAO.getsendMailValue(csId);
         Course_detailsDto courseDetailsDto = new Course_detailsDto(courseDetails.getCusDfull(),courseDetails.getCusId(),courseDetails.getStuId(),courseDetails.getStuName(),courseDetails.getCusName(),courseDetails.getPaidCusFee());
 
-
         return courseDetailsDto;
     }
 
+    @Override
     public List<Course_detailsDto> getAllCourseValueBO(String cd) throws SQLException, ClassNotFoundException {
         List<Course_details> courseDetails = courseDetailsDAO.getAllCourseValue(cd);
         ArrayList<Course_detailsDto> courseDetailsDtos = new ArrayList<>();
@@ -41,6 +43,7 @@ public class Course_DetailsBOImpl implements Course_DetailsBO {
        return courseDetailsDtos;
     }
 
+    @Override
     public Course_detailsDto courseNameBO(String cf) throws SQLException, ClassNotFoundException {
 
         Course_details courseDetails = courseDetailsDAO.courseName(cf);
@@ -50,6 +53,7 @@ public class Course_DetailsBOImpl implements Course_DetailsBO {
         return courseDetailsDto;
     }
 
+    @Override
     public Course_detailsDto getAllDetailsBO(String id, String cusID) throws SQLException, ClassNotFoundException {
         Course_details courseDetails = courseDetailsDAO.getAllDetails(id,cusID);;
         Course_detailsDto courseDetailsDto = new Course_detailsDto(courseDetails.getCusDfull(),courseDetails.getCusId(),courseDetails.getStuId(),courseDetails.getStuName(),courseDetails.getCusName(),courseDetails.getPaidCusFee());

@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom;
 
+import lk.ijse.dao.CrudDAO;
 import lk.ijse.dao.SuperDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.EmpAttendnaceDto;
@@ -13,12 +14,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface EmlpoyeeAttendanceDAO extends SuperDAO {
+public interface EmlpoyeeAttendanceDAO extends CrudDAO<EmployeeAttendanceJoin> {
 
      boolean saveEmpAttendance(String num, String empAttendanceID, String empId) throws SQLException, ClassNotFoundException;
 
      int generateNextOrderId() throws SQLException;
-     List<EmployeeAttendanceJoin> getAllEmployeeAttndance() throws SQLException, ClassNotFoundException;
-    int howMachEmployeeAttendance() throws SQLException;
+     //List<EmployeeAttendanceJoin> getAllEmployeeAttndance() throws SQLException, ClassNotFoundException;
+    int howMachEmployeeAttendance() throws SQLException, ClassNotFoundException;
     List<EmpAttendnace> getAllEmployeeAttendance(String id) throws SQLException, ClassNotFoundException;
 }

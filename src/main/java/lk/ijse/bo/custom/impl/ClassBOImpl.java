@@ -17,7 +17,7 @@ public class ClassBOImpl implements ClassBO {
 
     ClassDAO classDAO = (ClassDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CLASS);
 
-
+  @Override
     public List<ClassDto> getAllClassRegister() throws SQLException, ClassNotFoundException {
 
         List<Class> clz = classDAO.getAllClass();
@@ -31,6 +31,7 @@ public class ClassBOImpl implements ClassBO {
         return classDtos;
     }
 
+    @Override
     public List<ClassDto> getAllClassUpdate() throws SQLException, ClassNotFoundException {
         List<Class> clz = classDAO.getAllClass();
         ArrayList<ClassDto> classDtos = new ArrayList<>();
@@ -43,6 +44,7 @@ public class ClassBOImpl implements ClassBO {
         return classDtos;
     }
 
+    @Override
 
     public List<ClassDto> getAllClassDetails() throws SQLException, ClassNotFoundException {
         List<Class> clz = classDAO.getAllClass();
@@ -56,6 +58,7 @@ public class ClassBOImpl implements ClassBO {
         return classDtos;
     }
 
+    @Override
     public List<ClassDto> getAllClassBO() throws SQLException, ClassNotFoundException {
         List<Class> clz = classDAO.getAllClass();
         ArrayList<ClassDto> classDtos = new ArrayList<>();
@@ -68,11 +71,14 @@ public class ClassBOImpl implements ClassBO {
         return classDtos;
     }
 
+    @Override
+
     public boolean classSaveBO(ClassDto cms) throws SQLException, ClassNotFoundException {
         Class classEnt = new Class(cms.getClass_id(),cms.getTut_id(),cms.getClassName());
        return classDAO.classSave(classEnt);
     }
 
+    @Override
     public boolean saveCoursesClassBO(ClassDto cms) throws SQLException, ClassNotFoundException {
         Class classEnt = new Class(cms.getClass_id(),cms.getTut_id(),cms.getClassName());
         return classDAO.saveCoursesClass(classEnt);

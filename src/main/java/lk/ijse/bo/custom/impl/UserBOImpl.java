@@ -23,6 +23,7 @@ public class UserBOImpl implements UserBO {
         return userDto;
     }
 
+    @Override
    public UserDto getUserValueUserBO(String us) throws SQLException, ClassNotFoundException {
        User user =userDAO.getUserValueUser(us);
        UserDto userDto = new UserDto(user.getUserID(),user.getPassword(),user.getUserName(),user.getImage());
@@ -30,6 +31,7 @@ public class UserBOImpl implements UserBO {
        return userDto;
     }
 
+    @Override
    public Image convertBytesToJavaFXImageBO(byte[] image){
         return userDAO.convertBytesToJavaFXImage(image);
     }

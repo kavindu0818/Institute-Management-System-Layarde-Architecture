@@ -81,10 +81,10 @@ public class ToutorAddFormController {
             new Alert(Alert.AlertType.WARNING,"Tutor Name Not Valid").show();
             return false;
         }
-        if (!(Regex.getSubjectCodePattern().matcher(txtUpdateSubID.getText()).matches())) {
-            new Alert(Alert.AlertType.WARNING,"Subject ID Not Valid").show();
-            return false;
-        }
+//        if (!(Regex.getSubjectCodePattern().matcher(txtUpdateSubID.getText()).matches())) {
+//            new Alert(Alert.AlertType.WARNING,"Subject ID Not Valid").show();
+//            return false;
+//        }
         return true;
     }
 

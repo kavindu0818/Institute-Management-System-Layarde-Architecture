@@ -449,6 +449,8 @@ public class AttendanceFormController {
             lblNomalClassStu.setText(String.valueOf(count));
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
         var Cmodel = new CourseAttendanceDAOImpl();
@@ -459,6 +461,8 @@ public class AttendanceFormController {
             lblCourseStu.setText(String.valueOf(count));
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
         var Emodel = new EmployeeAttendanceDAOImpl();
@@ -468,6 +472,8 @@ public class AttendanceFormController {
 
             lbllEmployeeCount.setText(String.valueOf(count));
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

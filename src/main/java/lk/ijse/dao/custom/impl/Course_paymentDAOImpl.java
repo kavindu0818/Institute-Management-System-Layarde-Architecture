@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom.impl;
 
+import javafx.scene.image.Image;
 import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.Course_PaymentDAO;
 import lk.ijse.db.DbConnection;
@@ -7,6 +8,7 @@ import lk.ijse.dto.CfdDto;
 import lk.ijse.dto.CoursePaymentJoinDto;
 import lk.ijse.entity.Cfd;
 import lk.ijse.entity.CoursePaymentJoin;
+import lk.ijse.entity.StudentfullDetails;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Course_paymentDAOImpl implements Course_PaymentDAO {
+   @Override
     public  boolean savePayment(String payId, double amount, String cusDfull, String stuID) throws SQLException, ClassNotFoundException {
 
         java.util.Date date = new java.util.Date();
@@ -25,10 +28,10 @@ public class Course_paymentDAOImpl implements Course_PaymentDAO {
         String sTime = String.valueOf(sqltime);
         String sDate = String.valueOf(sqldate);
 
-
         return SQLUtil.execute("INSERT INTO course_payment VALUES(?, ?,?,?,?,?)",payId,amount,sDate,sTime,cusDfull,stuID);
     }
 
+    @Override
     public int generateNextCourseFeeId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -42,6 +45,7 @@ public class Course_paymentDAOImpl implements Course_PaymentDAO {
         return splitOrderId(0);
     }
 
+  @Override
     public int splitOrderId(int id) {
         if (id == 0) {
             return 1;
@@ -50,47 +54,49 @@ public class Course_paymentDAOImpl implements Course_PaymentDAO {
 
     }
 
-    public List<CoursePaymentJoin> getAllPayment(String cusID, String date) throws SQLException, ClassNotFoundException {
-
-        ResultSet resultSet = SQLUtil.execute("SELECT course_payment.stu_id,course_details.stu_name,course_payment.Date,course_payment.payment\n" +
-                        "FROM course_details INNER JOIN course_payment ON course_payment.cusDfull_id= course_details.cusDfull_id WHERE cus_id = ? AND Date=?",cusID,date);// pstm.executeQuery();
-
-        ArrayList<CoursePaymentJoin> dtoList = new ArrayList<>();
-        while(resultSet.next()) {
-            dtoList.add(
-                    new CoursePaymentJoin(
-                            resultSet.getString(1),
-                            resultSet.getString(2),
-                            resultSet.getString(3),
-                            resultSet.getString(4)
-
-                    )
-            );
-        }
-        return dtoList;
+    @Override
+    public boolean save(CoursePaymentJoin dto) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
-    public List<Cfd> getStudentAllPayment(String id2) throws SQLException, ClassNotFoundException {
+    @Override
+    public CoursePaymentJoin search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 
+    @Override
+    public byte[] imagenToByte(Image imgId) {
+        return new byte[0];
+    }
 
-        ResultSet resultSet = SQLUtil.execute("SELECT course_details.cus_name, course_payment.payment, course_payment.Date" +
-                " FROM course_payment" +
-                " INNER JOIN course_details ON course_payment.cusDfull_id = course_details.cusDfull_id" +
-                " WHERE course_payment.stu_id = ?",id2);//pstm.executeQuery();
+    @Override
+    public Image convertBytesToJavaFXImage(byte[] imageData) {
+        return null;
+    }
 
-        ArrayList<Cfd> dtoList = new ArrayList<>();
-        while(resultSet.next()) {
-            dtoList.add(
-                    new Cfd(
-                            resultSet.getString(1),
-                            resultSet.getString(2),
-                            resultSet.getString(3)
+    @Override
+    public boolean update(CoursePaymentJoin dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
 
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
 
-                    )
-            );
-        }
-        return dtoList;
+    @Override
+    public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public int howMach() throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public CoursePaymentJoin getClassMailValue(String id) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }
 

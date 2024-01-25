@@ -12,9 +12,9 @@ public interface Course_AttendanceBO extends SuperBO {
 
      List<AttendanceJoinDto> getAllAttndanceCourse() throws SQLException, ClassNotFoundException;
      boolean saveAttendnceDetailsBo(String aId, String num1) throws SQLException, ClassNotFoundException;
-     int howMachCourseStudentBo() throws SQLException;
+     int howMachCourseStudentBo() throws SQLException, ClassNotFoundException;
      List<CourseAttendanceJoinDto> getAllCourseAttendanceBO(String courseID, String date) throws SQLException, ClassNotFoundException;
-     int howMachCourseStudentBO() throws SQLException;
+     int howMachCourseStudentBO() throws SQLException, ClassNotFoundException;
      List<CourseAttendanceStuDetailsJoinDto> getStudentAllAttendnceBO(String id1) throws SQLException, ClassNotFoundException;
 
     int generateNextOrderIdBO() throws SQLException;

@@ -15,7 +15,7 @@ public interface StudentDetailsBO extends SuperBO {
     boolean deleteStudent(String id) throws SQLException, ClassNotFoundException;
     StudentfullDetailsDto getClassMailValueAll(String stuId) throws SQLException, ClassNotFoundException;
     StudentfullDetailsDto getClassMailValueBO(String stuId) throws SQLException, ClassNotFoundException;
-    int howMachStudentBO() throws SQLException;
+    int howMachStudentBO() throws SQLException, ClassNotFoundException;
     StudentfullDetailsDto searchBO(String id) throws SQLException, ClassNotFoundException;
     List<StudentfullDetailsDto> getClassStudentBO(String iD) throws SQLException, ClassNotFoundException;
     Image convertBytesToJavaFXImageBO(byte[] image);

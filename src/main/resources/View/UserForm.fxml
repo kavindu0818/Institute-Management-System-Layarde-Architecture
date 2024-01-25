@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="517.0" prefWidth="413.0" style="-fx-background-radius: 30;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.UserFormController">
+<AnchorPane prefHeight="517.0" prefWidth="413.0" style="-fx-background-radius: 30;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.UserFormController">
    <children>
       <Label layoutX="155.0" layoutY="1.0" text="ADD USER">
          <font>

@@ -18,12 +18,14 @@ public class StudentDetailsBOImpl implements StudentDetailsBO {
 
     StudentDetailsDAO studentDetailsDAO = (StudentDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT_DETAILS);
 
+    @Override
     public boolean saveStudent(StudentfullDetailsDto sr) throws SQLException, ClassNotFoundException {
         StudentfullDetails studentfullDetails = new StudentfullDetails(sr.getStu_id(),sr.getReg_id(),sr.getName(),sr.getRegDate(),sr.getStudent_gmail(),sr.getStudent_contactNo(),sr.getSub_id(),sr.getAddress(),sr.getAge(),sr.getGrade(),sr.getPerant_Name(),sr.getPerant_Gmail(),sr.getPerant_contactNo(),sr.getImage());
         return studentDetailsDAO.save(studentfullDetails);
 
     }
 
+    @Override
     public StudentfullDetailsDto searchStudent(String id) throws SQLException, ClassNotFoundException {
         StudentfullDetails studentfullDetails = studentDetailsDAO.search(id);
         StudentfullDetailsDto studentfullDetailsDto = new StudentfullDetailsDto(studentfullDetails.getStu_id(),studentfullDetails.getReg_id(),studentfullDetails.getName(),studentfullDetails.getRegDate(),studentfullDetails.getStudent_gmail(),studentfullDetails.getStudent_contactNo(),studentfullDetails.getSub_id(),studentfullDetails.getAddress(),studentfullDetails.getAge(),studentfullDetails.getGrade(),studentfullDetails.getPerant_Name(),studentfullDetails.getPerant_Gmail(),studentfullDetails.getPerant_contactNo(),studentfullDetails.getImage());
@@ -31,17 +33,19 @@ public class StudentDetailsBOImpl implements StudentDetailsBO {
         return studentfullDetailsDto;
     }
 
+    @Override
     public boolean updateStudent(StudentfullDetailsDto sr) throws SQLException, ClassNotFoundException {
         StudentfullDetails studentfullDetails = new StudentfullDetails(sr.getStu_id(),sr.getReg_id(),sr.getName(),sr.getRegDate(),sr.getStudent_gmail(),sr.getStudent_contactNo(),sr.getSub_id(),sr.getAddress(),sr.getAge(),sr.getGrade(),sr.getPerant_Name(),sr.getPerant_Gmail(),sr.getPerant_contactNo(),sr.getImage());
 
         return studentDetailsDAO.update(studentfullDetails);
     }
 
-
+@Override
     public boolean deleteStudent(String id) throws SQLException, ClassNotFoundException {
         return studentDetailsDAO.delete(id);
     }
 
+    @Override
     public StudentfullDetailsDto getClassMailValueAll(String stuId) throws SQLException, ClassNotFoundException {
         StudentfullDetails studentfullDetails = studentDetailsDAO.getClassMailValue(stuId);
         StudentfullDetailsDto studentfullDetailsDto = new StudentfullDetailsDto(studentfullDetails.getStu_id(),studentfullDetails.getReg_id(),studentfullDetails.getName(),studentfullDetails.getRegDate(),studentfullDetails.getStudent_gmail(),studentfullDetails.getStudent_contactNo(),studentfullDetails.getSub_id(),studentfullDetails.getAddress(),studentfullDetails.getAge(),studentfullDetails.getGrade(),studentfullDetails.getPerant_Name(),studentfullDetails.getPerant_Gmail(),studentfullDetails.getPerant_contactNo(),studentfullDetails.getImage());
@@ -50,6 +54,7 @@ public class StudentDetailsBOImpl implements StudentDetailsBO {
 
     }
 
+    @Override
     public StudentfullDetailsDto getClassMailValueBO(String stuId) throws SQLException, ClassNotFoundException {
         StudentfullDetails studentfullDetails =studentDetailsDAO.getClassMailValue(stuId);
         StudentfullDetailsDto studentfullDetailsDto = new StudentfullDetailsDto(studentfullDetails.getStu_id(),studentfullDetails.getReg_id(),studentfullDetails.getName(),studentfullDetails.getRegDate(),studentfullDetails.getStudent_gmail(),studentfullDetails.getStudent_contactNo(),studentfullDetails.getSub_id(),studentfullDetails.getAddress(),studentfullDetails.getAge(),studentfullDetails.getGrade(),studentfullDetails.getPerant_Name(),studentfullDetails.getPerant_Gmail(),studentfullDetails.getPerant_contactNo(),studentfullDetails.getImage());
@@ -58,10 +63,12 @@ public class StudentDetailsBOImpl implements StudentDetailsBO {
 
     }
 
-    public int howMachStudentBO() throws SQLException {
+    @Override
+    public int howMachStudentBO() throws SQLException, ClassNotFoundException {
       return studentDetailsDAO.howMach();
     }
 
+    @Override
     public StudentfullDetailsDto searchBO(String id) throws SQLException, ClassNotFoundException {
         StudentfullDetails studentfullDetails =studentDetailsDAO.search(id);
         StudentfullDetailsDto studentfullDetailsDto = new StudentfullDetailsDto(studentfullDetails.getStu_id(),studentfullDetails.getReg_id(),studentfullDetails.getName(),studentfullDetails.getRegDate(),studentfullDetails.getStudent_gmail(),studentfullDetails.getStudent_contactNo(),studentfullDetails.getSub_id(),studentfullDetails.getAddress(),studentfullDetails.getAge(),studentfullDetails.getGrade(),studentfullDetails.getPerant_Name(),studentfullDetails.getPerant_Gmail(),studentfullDetails.getPerant_contactNo(),studentfullDetails.getImage());
@@ -69,6 +76,7 @@ public class StudentDetailsBOImpl implements StudentDetailsBO {
         return studentfullDetailsDto;
     }
 
+    @Override
     public List<StudentfullDetailsDto> getClassStudentBO(String iD) throws SQLException, ClassNotFoundException {
         ArrayList<StudentfullDetailsDto> studentfullDetailsDDTO = new ArrayList<>();
         List<StudentfullDetails> student = studentDetailsDAO.getClassStudent(iD);
@@ -83,6 +91,8 @@ public class StudentDetailsBOImpl implements StudentDetailsBO {
 
       // return studentDetailsDAO.getClassStudent(iD);
     }
+
+    @Override
 
     public Image convertBytesToJavaFXImageBO(byte[] image) {
        return studentDetailsDAO.convertBytesToJavaFXImage(image);

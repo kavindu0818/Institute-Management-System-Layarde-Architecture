@@ -18,12 +18,13 @@ public class Class_DetailsBOImpl implements Class_DetailsBO {
 
     ClassDetailsDAO classDetailsDAO = (ClassDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CLASS_DETAILS);
 
-
+    @Override
     public boolean saveClassDetailsStudemt(Class_DetailsDto ad) throws SQLException, ClassNotFoundException {
      Class_Details classDetails = new Class_Details(ad.getFull_id(),ad.getStu_id(),ad.getClass_id(),ad.getStu_name());
         return classDetailsDAO.saveClassDetails(classDetails);
     }
 
+    @Override
     public Class_DetailsDto loardValuesAll(String aId) throws SQLException, ClassNotFoundException {
         Class_Details classDetails = classDetailsDAO.loardValues(aId);
         Class_DetailsDto classDetailsDto = new Class_DetailsDto(classDetails.getFull_id(),classDetails.getStu_id(),classDetails.getClass_id(),classDetails.getStu_name());
@@ -31,6 +32,7 @@ public class Class_DetailsBOImpl implements Class_DetailsBO {
        return classDetailsDto;
     }
 
+    @Override
     public Class_DetailsDto getsendMailValueAll(String atId) throws SQLException, ClassNotFoundException {
 
         Class_Details classDetails = classDetailsDAO.loardValues(atId);
@@ -39,6 +41,7 @@ public class Class_DetailsBOImpl implements Class_DetailsBO {
         return classDetailsDto;
     }
 
+    @Override
     public List<Class_DetailsDto> getFullIdBO(String sID) throws SQLException, ClassNotFoundException {
         List<Class_Details> classDetails = classDetailsDAO.getFullId(sID);
         ArrayList<Class_DetailsDto> classDetailsDtos = new ArrayList<>();

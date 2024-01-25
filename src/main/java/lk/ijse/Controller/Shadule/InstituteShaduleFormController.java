@@ -99,6 +99,8 @@ public class InstituteShaduleFormController {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -119,6 +121,8 @@ public class InstituteShaduleFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     public void isClear(){

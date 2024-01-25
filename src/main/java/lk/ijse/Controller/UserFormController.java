@@ -1,4 +1,4 @@
-package lk.ijse;
+package lk.ijse.Controller;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;

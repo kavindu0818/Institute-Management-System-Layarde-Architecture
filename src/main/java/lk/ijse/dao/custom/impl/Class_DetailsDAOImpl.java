@@ -1,11 +1,13 @@
 package lk.ijse.dao.custom.impl;
 
 
+import javafx.scene.image.Image;
 import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.ClassDetailsDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.Class_DetailsDto;
 import lk.ijse.entity.Class_Details;
+import lk.ijse.entity.StudentfullDetails;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +19,7 @@ import java.util.List;
 public class Class_DetailsDAOImpl implements ClassDetailsDAO {
 
 
+    @Override
     public Class_Details loardValues(String aId) throws SQLException, ClassNotFoundException {
 
 
@@ -35,6 +38,7 @@ public class Class_DetailsDAOImpl implements ClassDetailsDAO {
 
     }
 
+    @Override
     public List<Class_Details> getFullId(String sID) throws SQLException, ClassNotFoundException {
 
 
@@ -57,46 +61,66 @@ public class Class_DetailsDAOImpl implements ClassDetailsDAO {
 
     }
 
+    @Override
     public boolean saveClassDetails(Class_Details ad) throws SQLException, ClassNotFoundException {
 
-        return SQLUtil.execute("INSERT INTO class_details VALUES(?, ?, ?, ?)",ad.getFull_id(),ad.getStu_id(),ad.getClass_id(),ad.getStu_name());
+        return SQLUtil.execute("INSERT INTO class_details VALUES(?, ?, ?, ?)", ad.getFull_id(),ad.getStu_id(),ad.getClass_id(),ad.getStu_name());
 
     }
 
+    @Override
     public boolean saveValue(String attendance, String stuId, String classID, String stuName) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "INSERT INTO class_details VALUES(?, ?, ?, ?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, attendance);
-        pstm.setString(2, stuId);
-        pstm.setString(3, classID);
-        pstm.setString(4,stuName);
-
-
-        boolean isSaved = pstm.executeUpdate() > 0;
-
-        return isSaved;
+        return false;
     }
 
+    @Override
     public Class_DetailsDto getsendMailValue(String atId) throws SQLException, ClassNotFoundException {
-
-
-        ResultSet resultSet = SQLUtil.execute("SELECT * FROM  class_Details WHERE full_id = ?",atId);
-
-        Class_DetailsDto dto = null;
-
-        if(resultSet.next()) {
-            String fullId = resultSet.getString(1);
-            String stuId = resultSet.getString(2);
-            String clasID = resultSet.getString(3);
-            String name = resultSet.getString(4);
-
-            dto = new Class_DetailsDto(fullId,stuId,clasID,name);
-
+        return null;
     }
-        return dto;
 
-}
+
+    @Override
+    public boolean save(Class_Details dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public Class_Details search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public byte[] imagenToByte(Image imgId) {
+        return new byte[0];
+    }
+
+    @Override
+    public Image convertBytesToJavaFXImage(byte[] imageData) {
+        return null;
+    }
+
+    @Override
+    public boolean update(Class_Details dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public int howMach() throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public Class_Details getClassMailValue(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 }

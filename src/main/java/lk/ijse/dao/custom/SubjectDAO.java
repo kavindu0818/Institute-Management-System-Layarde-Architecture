@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom;
 
+import lk.ijse.dao.CrudDAO;
 import lk.ijse.dao.SuperDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.SubjectDto;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface SubjectDAO extends SuperDAO {
+public interface SubjectDAO extends CrudDAO<Subject> {
 
     public boolean subSave(SubjectDto sub) throws SQLException, ClassNotFoundException;
 

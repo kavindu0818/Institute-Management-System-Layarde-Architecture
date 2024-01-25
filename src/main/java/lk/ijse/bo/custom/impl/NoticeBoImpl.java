@@ -15,7 +15,8 @@ import java.util.List;
 public class NoticeBoImpl implements NoticeBO {
 
     NoticeDAO noticeDAO = (NoticeDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.NOTICE);
-    ;
+
+    @Override
     public List<NoticeDto> getAllNoticeBO() throws SQLException, ClassNotFoundException {
         List<Notice> notices = noticeDAO.getAllNotice();
         ArrayList<NoticeDto> noticeDtos = new ArrayList<>();

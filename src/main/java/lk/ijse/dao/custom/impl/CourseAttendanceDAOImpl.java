@@ -1,45 +1,24 @@
 package lk.ijse.dao.custom.impl;
 
+import javafx.scene.image.Image;
 import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.CourseAttendanceDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.entity.AttendanceJoin;
 import lk.ijse.entity.CourseAttendanceJoin;
 import lk.ijse.entity.CourseAttendanceStuDetailsJoin;
+import lk.ijse.entity.StudentfullDetails;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
-    public ArrayList<CourseAttendanceJoin> getAllCourseAttendance(String courseID, String date) throws SQLException, ClassNotFoundException {
 
-        ResultSet resultSet = SQLUtil.execute("SELECT course_details.stu_id, course_details.stu_name,course_attendance.date, course_attendance.time, course_attendance.cusfull_id"
-                + " FROM course_attendance " +
-                "INNER JOIN course_details ON course_attendance.cusfull_id = course_details.cusDfull_id " +
-                "WHERE cus_id = ? AND date =?",courseID,date); //pstm.executeQuery();
-
-        ArrayList<CourseAttendanceJoin> dtoList = new ArrayList<>();
-
-        while (resultSet.next()) {
-            dtoList.add(
-                    new CourseAttendanceJoin(
-                            resultSet.getString(1),
-                            resultSet.getString(2),
-                            resultSet.getDate(3),
-                            resultSet.getString(4),
-                            resultSet.getString(5)
-
-                    )
-            );
-        }
-        return dtoList;
-
-
-    }
-
+    @Override
     public boolean saveAttendnceDetails(String aId, String num1) throws SQLException, ClassNotFoundException {
 
         java.util.Date date = new java.util.Date();
@@ -53,6 +32,7 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
         return SQLUtil.execute("INSERT INTO course_attendance VALUES(?, ?, ?, ?)",num1,aId,sDate,sTime);
     }
 
+    @Override
     public int generateNextOrderId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -67,7 +47,7 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
     }
 
 
-
+@Override
     public int splitOrderId(int id) {
         if (id == 0) {
             return 1;
@@ -77,44 +57,14 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
 
     }
 
-    public ArrayList<AttendanceJoin> getAllAttndance() throws SQLException, ClassNotFoundException {
+
+        @Override
+    public int howMachCourseStudent() throws SQLException, ClassNotFoundException {
 
         java.util.Date date = new java.util.Date();
         java.sql.Date sqldate = new java.sql.Date(date.getTime());
 
-            ResultSet resultSet =SQLUtil.execute("SELECT course_attendance.cusfull_id, course_attendance.date, course_attendance.time, " +
-                    "course_details.cus_id, course_details.stu_name, course_details.stu_id " +
-                    "FROM course_attendance " +
-                    "INNER JOIN course_details ON course_attendance.cusfull_id = course_details.cusDfull_id " +
-                    "WHERE date = ?",sqldate); //pstm.executeQuery();
-
-            ArrayList<AttendanceJoin> dtoList = new ArrayList<>();
-
-            while (resultSet.next()) {
-                dtoList.add(
-                        new AttendanceJoin(
-                                resultSet.getString(1),
-                                resultSet.getDate(2),
-                                resultSet.getString(3),
-                                resultSet.getString(4),
-                                resultSet.getString(5),
-                                 resultSet.getString(6)
-                        )
-                );
-            }
-            return dtoList;
-        }
-
-    public int howMachCourseStudent() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqldate = new java.sql.Date(date.getTime());
-
-
-        String sql ="select count(attendanceID) from course_attendance WHERE date=?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setDate(1,sqldate);
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet =SQLUtil.execute("SELECT count(attendanceID) FROM course_attendance WHERE date=?", sqldate); //pstm.executeQuery();
 
         int a = 0;
 
@@ -127,27 +77,49 @@ public class CourseAttendanceDAOImpl implements CourseAttendanceDAO {
     }
 
 
-    public ArrayList<CourseAttendanceStuDetailsJoin> getStudentAllAttendnce(String id1) throws SQLException, ClassNotFoundException {
+    @Override
+    public boolean save(CourseAttendanceJoin dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
 
-        ResultSet resultSet =SQLUtil.execute("SELECT course_attendance.date,  course_details.cus_name, course_attendance.time" +
-                " FROM course_details " +
-                "INNER JOIN  course_attendance ON course_details.cusDfull_id = course_attendance.cusfull_id " +
-                "WHERE stu_id = ?",id1); //pstm.executeQuery();
+    @Override
+    public CourseAttendanceJoin search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 
-        ArrayList<CourseAttendanceStuDetailsJoin> dtoList = new ArrayList<>();
+    @Override
+    public byte[] imagenToByte(Image imgId) {
+        return new byte[0];
+    }
 
-        while (resultSet.next()) {
-            dtoList.add(
-                    new CourseAttendanceStuDetailsJoin(
-                            resultSet.getString(1),
-                            resultSet.getString(2),
-                            resultSet.getString(3)
+    @Override
+    public Image convertBytesToJavaFXImage(byte[] imageData) {
+        return null;
+    }
 
-                    )
-            );
-        }
-        return dtoList;
+    @Override
+    public boolean update(CourseAttendanceJoin dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
 
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public int howMach() throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public CourseAttendanceJoin getClassMailValue(String id) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }
 

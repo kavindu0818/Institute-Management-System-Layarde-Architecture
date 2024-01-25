@@ -1,10 +1,12 @@
 package lk.ijse.dao.custom.impl;
 
+import javafx.scene.image.Image;
 import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.ClassDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.ClassDto;
 import lk.ijse.entity.Class;
+import lk.ijse.entity.StudentfullDetails;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +17,7 @@ import java.util.List;
 
 public class ClassDAOImpl implements ClassDAO {
 
+    @Override
     public List<Class> getAllClass() throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM class ");//pstm.executeQuery();
@@ -37,6 +40,7 @@ public class ClassDAOImpl implements ClassDAO {
     }
 
 
+    @Override
     public List<ClassDto> getAllStudent() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -60,6 +64,7 @@ public class ClassDAOImpl implements ClassDAO {
         return dtoList;
     }
 
+    @Override
     public boolean saveCoursesClass(String courseID, String courseName, String tutor) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -75,6 +80,7 @@ public class ClassDAOImpl implements ClassDAO {
         return isSaved;
     }
 
+    @Override
     public boolean saveCoursesClass(Class cd) throws SQLException, ClassNotFoundException {
 
 
@@ -82,9 +88,55 @@ public class ClassDAOImpl implements ClassDAO {
         }
 
 
+        @Override
     public boolean classSave(Class cms) throws SQLException, ClassNotFoundException {
 
 
         return SQLUtil.execute("INSERT INTO class VALUES(?,?,?)",cms.getClass_id(), cms.getTut_id(), cms.getClassName());
+    }
+
+    @Override
+    public boolean save(Class dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public Class search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public byte[] imagenToByte(Image imgId) {
+        return new byte[0];
+    }
+
+    @Override
+    public Image convertBytesToJavaFXImage(byte[] imageData) {
+        return null;
+    }
+
+    @Override
+    public boolean update(Class dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public int howMach() throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public Class getClassMailValue(String id) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom.impl;
 
+import javafx.scene.image.Image;
 import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.Class_PaymentDAO;
 import lk.ijse.db.DbConnection;
@@ -7,6 +8,7 @@ import lk.ijse.dto.ClassPaymentDto;
 import lk.ijse.dto.Class_paymentDto;
 import lk.ijse.entity.ClassPayment;
 import lk.ijse.entity.Class_payment;
+import lk.ijse.entity.StudentfullDetails;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +19,7 @@ import java.util.List;
 
 public class Class_PaymentDAOImpl implements Class_PaymentDAO {
 
+    @Override
     public int generateNextOrderId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -30,6 +33,7 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
         return splitOrderId(0001);
     }
 
+    @Override
     public int splitOrderId(int id) {
         if (id ==0){
             return 1;
@@ -37,6 +41,7 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
         return++id;
 }
 
+    @Override
     public List<Class_paymentDto> getClassStudent(String classId, String month) throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM class_payment WHERE class_Id= ? AND paymentMonth = ?",classId,month); //pstm.executeQuery();
@@ -61,6 +66,7 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
         return dList;
         }
 
+        @Override
     public boolean stuPaymentSave(String num,String classId, String stuId, String name, String month, String stuFullId, double amount) throws SQLException, ClassNotFoundException {
 
         java.util.Date date = new java.util.Date();
@@ -69,10 +75,10 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
 
         String sdate = String.valueOf(sqldate);
 
-
         return SQLUtil.execute("INSERT INTO class_payment VALUES(?, ?, ?, ?,?,?,?,?)",num,classId,stuId,name,month,sdate,stuFullId,amount);
     }
 
+    @Override
     public List<Class_payment> getStudentAllPayment(String iD) throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM class_payment WHERE stu_id = ?",iD);//pstm.executeQuery();
@@ -99,6 +105,7 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
 
     }
 
+    @Override
     public List<ClassPaymentDto> readyClassFessDetails(String classId, String month) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -122,10 +129,10 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
             );
         }
 
-        return dtoList;
+       return dtoList;
+   }
 
-    }
-
+    @Override
     public List<ClassPayment> getAllClassPayment(String clssID, String month) throws SQLException, ClassNotFoundException {
 
 
@@ -143,7 +150,52 @@ public class Class_PaymentDAOImpl implements Class_PaymentDAO {
                 }
                 return dtoList;
             }
-        }
+
+    @Override
+    public boolean save(Class_payment dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public Class_payment search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public byte[] imagenToByte(Image imgId) {
+        return new byte[0];
+    }
+
+    @Override
+    public Image convertBytesToJavaFXImage(byte[] imageData) {
+        return null;
+    }
+
+    @Override
+    public boolean update(Class_payment dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public int howMach() throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public Class_payment getClassMailValue(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+}
 
 
 

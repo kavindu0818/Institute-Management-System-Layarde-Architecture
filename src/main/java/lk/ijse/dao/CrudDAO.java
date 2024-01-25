@@ -20,6 +20,6 @@ public interface CrudDAO<T> extends SuperDAO{
     boolean delete(String id) throws SQLException, ClassNotFoundException;
 
     List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException;
-    int howMach() throws SQLException;
+    int howMach() throws SQLException, ClassNotFoundException;
     T getClassMailValue(String id) throws SQLException, ClassNotFoundException;
 }

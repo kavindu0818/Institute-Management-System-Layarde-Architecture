@@ -14,20 +14,23 @@ public class InstituteDetailsBOImpl implements InstituteDetailsBO {
 
     InstituteDetailsDAO instituteDetailsDAO = (InstituteDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.INSTITUTE_DETAILS);
 
-    public InstitutMangementDto setAllDetailsBO() throws SQLException {
+    @Override
+    public InstitutMangementDto setAllDetailsBO() throws SQLException, ClassNotFoundException {
         InstitutMangement institutMangement =  instituteDetailsDAO.setAllDetails();
         InstitutMangementDto institutMangementDto = new InstitutMangementDto(institutMangement.getGmail(),institutMangement.getContact(),institutMangement.getFb(),institutMangement.getHall());
         return institutMangementDto;
 
     }
 
-    public InstitutMangementDto allDetailsBO() throws SQLException {
+    @Override
+    public InstitutMangementDto allDetailsBO() throws SQLException, ClassNotFoundException {
       InstitutMangement institutMangement = instituteDetailsDAO.allDetails();
       InstitutMangementDto institutMangementDto = new InstitutMangementDto(institutMangement.getGmail(),institutMangement.getContact(),institutMangement.getFb(),institutMangement.getHall());
        return institutMangementDto;
     }
 
-    public boolean updateSaveDetailsBO(InstitutMangementDto ui) throws SQLException {
+    @Override
+    public boolean updateSaveDetailsBO(InstitutMangementDto ui) throws SQLException, ClassNotFoundException {
         InstitutMangement institutMangement = new InstitutMangement(ui.getGmail(),ui.getContact(),ui.getFb(),ui.getHall());
         return instituteDetailsDAO.updateSaveDetails(institutMangement);
     }

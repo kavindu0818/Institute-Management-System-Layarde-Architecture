@@ -146,7 +146,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     }
 
-
+@Override
     public List<Employee> getAll() throws SQLException, ClassNotFoundException {
 
 
@@ -177,10 +177,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return dtoList;
     }
 
-
+@Override
     public Employee loardEmpValues(String aId) throws SQLException, ClassNotFoundException {
 
-        ResultSet resultSet = SQLUtil.execute("SELECT * FROM employee WHERE empAttendnceId  = ?",aId);
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM employee WHERE empAttendnceId  = ?", aId);
 
         Employee dto = null;
 
@@ -213,12 +213,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
 @Override
-    public int howMach() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public int howMach() throws SQLException, ClassNotFoundException {
 
-        String sql ="select count(emp_id) from employee";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet =SQLUtil.execute("SELECT count(emp_id) FROM employee"); //pstm.executeQuery();
 
         int a = 0;
 

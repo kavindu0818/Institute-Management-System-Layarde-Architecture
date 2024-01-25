@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="342.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.Employee.ToutorAddFormController">
    <children>
-      <AnchorPane layoutX="11.0" layoutY="14.0" prefHeight="317.0" prefWidth="374.0" style="-fx-background-color: #82cf97;">
+      <AnchorPane layoutX="11.0" layoutY="14.0" prefHeight="317.0" prefWidth="374.0" style="-fx-background-color: #919fb5;">
          <children>
             <Label layoutX="124.0" layoutY="-4.0" prefHeight="35.0" prefWidth="140.0" text="Add Tutor">
                <font>
@@ -41,7 +41,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="392.0" layoutY="14.0" prefHeight="317.0" prefWidth="374.0" style="-fx-background-color: #ebf569;">
+      <AnchorPane layoutX="392.0" layoutY="14.0" prefHeight="317.0" prefWidth="374.0" style="-fx-background-color: #6ca3a3;">
          <children>
             <Label layoutX="124.0" layoutY="-4.0" prefHeight="35.0" prefWidth="181.0" text="Tutor Update">
                <font>

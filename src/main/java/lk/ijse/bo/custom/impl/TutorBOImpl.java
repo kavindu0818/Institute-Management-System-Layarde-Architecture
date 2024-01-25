@@ -14,20 +14,24 @@ public class TutorBOImpl implements TutorBO {
 
     TutorDAO tutorDAO = (TutorDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.TUTOR);
 
-    public int howMachTutorBO() throws SQLException {
+    @Override
+    public int howMachTutorBO() throws SQLException, ClassNotFoundException {
         return tutorDAO.howMachTutor();
     }
 
+    @Override
     public boolean saveTutorBO(TutorDto td) throws SQLException, ClassNotFoundException {
         Tutor tutor = new Tutor(td.getTut_id(),td.getTutorName(),td.getSub_id());
        return tutorDAO.saveTutor(tutor);
     }
 
+    @Override
     public boolean updateTutorBO(TutorDto td) throws SQLException, ClassNotFoundException {
         Tutor tutor = new Tutor(td.getTut_id(),td.getTutorName(),td.getSub_id());
         return tutorDAO.updateTutor(tutor);
     }
 
+    @Override
     public TutorDto getTutorBO(String tutId) throws SQLException, ClassNotFoundException {
         Tutor tutor = tutorDAO.getTutor(tutId);
         TutorDto tutorDto = new TutorDto(tutor.getTut_id(),tutor.getTutorName(),tutor.getSub_id());

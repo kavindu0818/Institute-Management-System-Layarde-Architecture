@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom;
 
+import lk.ijse.dao.CrudDAO;
 import lk.ijse.dao.SuperDAO;
 import lk.ijse.dto.ClassPaymentDto;
 import lk.ijse.dto.Class_paymentDto;
@@ -9,7 +10,7 @@ import lk.ijse.entity.Class_payment;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface Class_PaymentDAO extends SuperDAO {
+public interface Class_PaymentDAO extends CrudDAO<Class_payment> {
 
      int generateNextOrderId() throws SQLException;
      int splitOrderId(int id);

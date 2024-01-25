@@ -42,6 +42,8 @@ public class InstituteDetailsUpdateFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -62,6 +64,8 @@ public class InstituteDetailsUpdateFormController {
                 new Alert(Alert.AlertType.WARNING, "Try Agin").show();
             }
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom;
 
+import lk.ijse.dao.CrudDAO;
 import lk.ijse.dao.SuperDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.CourseDto;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface CourseDAO extends SuperDAO {
+public interface CourseDAO extends CrudDAO<Course> {
 
     public boolean saveCourseDetails(String courseID, String courseName, String courseFeee, String courseDuration, String date) throws SQLException, ClassNotFoundException;
     public List<Course> getAllcourse() throws SQLException, ClassNotFoundException;

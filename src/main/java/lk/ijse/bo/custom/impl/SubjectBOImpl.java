@@ -16,6 +16,7 @@ public class SubjectBOImpl implements SubjectBO {
 
     SubjectDAO subjectDAO = (SubjectDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.SUBJECT);
 
+    @Override
     public List<SubjectDto> getSubjectBO() throws SQLException, ClassNotFoundException {
         List<Subject> subjects = subjectDAO.getSubject();
         ArrayList<SubjectDto> subjectDtos = new ArrayList<>();
@@ -26,6 +27,7 @@ public class SubjectBOImpl implements SubjectBO {
        return subjectDtos;
     }
 
+    @Override
     public boolean subSaveBO(SubjectDto sub) throws SQLException, ClassNotFoundException {
        return subjectDAO.subSave(sub);
     }

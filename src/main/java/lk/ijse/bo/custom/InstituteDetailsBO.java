@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public interface InstituteDetailsBO extends SuperBO {
 
-    InstitutMangementDto setAllDetailsBO() throws SQLException;
+    InstitutMangementDto setAllDetailsBO() throws SQLException, ClassNotFoundException;
 
-    InstitutMangementDto allDetailsBO() throws SQLException;
+    InstitutMangementDto allDetailsBO() throws SQLException, ClassNotFoundException;
 
-    boolean updateSaveDetailsBO(InstitutMangementDto ui) throws SQLException;
+    boolean updateSaveDetailsBO(InstitutMangementDto ui) throws SQLException, ClassNotFoundException;
 }

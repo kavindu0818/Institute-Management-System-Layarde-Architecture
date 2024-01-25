@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public interface TutorBO extends SuperBO {
 
-    int howMachTutorBO() throws SQLException;
+    int howMachTutorBO() throws SQLException, ClassNotFoundException;
     boolean saveTutorBO(TutorDto td) throws SQLException, ClassNotFoundException;
     boolean updateTutorBO(TutorDto td) throws SQLException, ClassNotFoundException;
     TutorDto getTutorBO(String tutId) throws SQLException, ClassNotFoundException;

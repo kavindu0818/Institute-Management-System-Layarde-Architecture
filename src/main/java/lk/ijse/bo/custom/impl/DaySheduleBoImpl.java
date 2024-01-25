@@ -15,6 +15,8 @@ import java.util.List;
 public class DaySheduleBoImpl implements DaySheduleBO {
 
     DaySheduleDAO daySheduleDAO =  (DaySheduleDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.DAYSHEDULE);
+
+    @Override
     public List<DaySheduleDto> getAllShedulBO() throws SQLException, ClassNotFoundException {
        List<DayShedule> dayShedules = daySheduleDAO.getAllShedul();
         ArrayList<DaySheduleDto> daySheduleDtos = new ArrayList<>();
@@ -26,6 +28,7 @@ public class DaySheduleBoImpl implements DaySheduleBO {
         return daySheduleDtos;
     }
 
+    @Override
     public boolean saveValuesBO(DaySheduleDto day) throws SQLException, ClassNotFoundException {
        DayShedule dayShedule = new DayShedule(day.getClassName(),day.getDate(),day.getStime(),day.getETime());
 

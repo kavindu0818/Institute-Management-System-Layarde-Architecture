@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom;
 
+import lk.ijse.dao.CrudDAO;
 import lk.ijse.dao.SuperDAO;
 import lk.ijse.dto.ClassDto;
 import lk.ijse.entity.Class;
@@ -7,7 +8,7 @@ import lk.ijse.entity.Class;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ClassDAO extends SuperDAO {
+public interface ClassDAO extends CrudDAO<Class> {
 
     List<Class> getAllClass() throws SQLException, ClassNotFoundException;
     List<ClassDto> getAllStudent() throws SQLException;

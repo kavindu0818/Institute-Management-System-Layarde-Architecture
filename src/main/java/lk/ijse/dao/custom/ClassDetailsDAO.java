@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom;
 
+import lk.ijse.dao.CrudDAO;
 import lk.ijse.dao.SuperDAO;
 import lk.ijse.dto.Class_DetailsDto;
 import lk.ijse.entity.Class_Details;
@@ -7,7 +8,7 @@ import lk.ijse.entity.Class_Details;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ClassDetailsDAO extends SuperDAO {
+public interface ClassDetailsDAO extends CrudDAO<Class_Details> {
 
     Class_Details loardValues(String aId) throws SQLException, ClassNotFoundException;
 

@@ -13,7 +13,7 @@ public class DAOFactory {
 
         CLASS_DETAILS,CLASS_PAYMENT,CLASS,COURSE_DETAILS,COURSE_PAYMENT,COURSEATTENDANCE,COURSE,
         DAYSHEDULE,EMPLOYEEATTENDANCE,EMPLOYEE,INSTITUTE_DETAILS,NOTICE,STU_ATTENDANCE,STUDENT_DETAILS,
-        SUBJECT,TUTOR,USER
+        SUBJECT,TUTOR,USER,QUARY
     }
     public SuperDAO getDAO(DAOTypes daoTypes){
         switch (daoTypes){
@@ -51,6 +51,8 @@ public class DAOFactory {
                 return new TutorDAOImpl();
             case USER:
                 return new UserDAOImpl();
+            case QUARY:
+                return new QuaryDAOimpl();
             default:
                 return null;
         }

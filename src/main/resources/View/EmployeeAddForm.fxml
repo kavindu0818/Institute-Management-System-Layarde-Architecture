@@ -21,7 +21,7 @@
                </children>
             </Pane>
             <Button fx:id="imgSelectBtn" layoutX="62.0" layoutY="191.0" mnemonicParsing="false" onAction="#btnBrowserOpenOnAction" text="Open Browser" />
-            <JFXTextField fx:id="txtEmpId" layoutX="218.0" layoutY="38.0" prefHeight="25.0" prefWidth="156.0" />
+            <JFXTextField fx:id="txtEmpId" layoutX="218.0" layoutY="38.0" prefHeight="25.0" prefWidth="156.0" text="E0006" />
             <JFXTextField fx:id="txtFirstName" layoutX="403.0" layoutY="38.0" prefHeight="25.0" prefWidth="156.0" />
             <JFXTextField fx:id="txtLastName" layoutX="590.0" layoutY="38.0" prefHeight="25.0" prefWidth="156.0" />
             <JFXTextField fx:id="txtAddress" layoutX="220.0" layoutY="81.0" prefHeight="25.0" prefWidth="522.0" />

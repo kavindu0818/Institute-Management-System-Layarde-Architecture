@@ -6,6 +6,7 @@ import lk.ijse.dao.SQLUtil;
 import lk.ijse.dao.custom.UserDAO;
 import lk.ijse.db.DbConnection;
 import lk.ijse.dto.UserDto;
+import lk.ijse.entity.StudentfullDetails;
 import lk.ijse.entity.User;
 
 import javax.imageio.ImageIO;
@@ -16,8 +17,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
+    @Override
     public boolean setUserDetails(UserDto ud) throws SQLException, ClassNotFoundException {
 
         byte[] imageSr = ud.getImage();
@@ -26,6 +29,7 @@ public class UserDAOImpl implements UserDAO {
         return SQLUtil.execute("INSERT INTO user VALUES(?, ?, ?,?)",ud.getUserID(),ud.getPassword(),ud.getUserName(),imageSr);
     }
 
+    @Override
     public User selectUserValue() throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet = SQLUtil.execute("SELECT *FROM user"); //pstm.executeQuery();
@@ -44,6 +48,7 @@ public class UserDAOImpl implements UserDAO {
         return dto;
     }
 
+    @Override
     public UserDto getUserValue(String pw) throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet =SQLUtil.execute("SELECT *FROM user WHERE userID=?",pw); //pstm.executeQuery();
@@ -62,6 +67,22 @@ public class UserDAOImpl implements UserDAO {
         return dto;
 
     }
+
+    @Override
+    public boolean save(User dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public User search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public byte[] imagenToByte(Image imgId) {
+        return new byte[0];
+    }
+
     public  Image convertBytesToJavaFXImage(byte[] imageData) {
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -71,6 +92,31 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public boolean update(User dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public List<StudentfullDetails> getClassStudent(String iD) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public int howMach() throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public User getClassMailValue(String id) throws SQLException, ClassNotFoundException {
+        return null;
     }
 
     public boolean updateUser(UserDto up) throws SQLException, ClassNotFoundException {
